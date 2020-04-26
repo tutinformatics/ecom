@@ -14,6 +14,7 @@ export class app {
     config.options.root = '/';
     config.map([
       {route:[ "", "home"], name: 'home', moduleId: PLATFORM.moduleName('pages/index/index'), nav: false, title:'Home'},
+      {route:[ "dashboard", "dashboard"], name: 'dashboard', moduleId: PLATFORM.moduleName('pages/dashboard/dashboard'), nav: false, title:'Dashboard'},
     ]);
 
     this.router = router;
