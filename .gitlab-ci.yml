@@ -1,0 +1,41 @@
+stages:
+  - build
+  - deploy
+
+before_script:
+  - export APP_CONTAINER_NAME=ecom-front-container
+
+build ecom:
+  stage: build
+  image: node:11-alpine
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+    paths:
+      - node_modules/
+    policy: pull
+  artifacts:
+    paths:
+      - dist
+  tags:
+    - ecom
+  variables:
+    api: localhost/api
+  script:
+    - docker build -t "ecom:${CI_COMMIT_SHORT_SHA}" .
+  only:
+    - master
+    - tags
+
+
+deploy accounting:
+  stage: deploy
+  tags:
+    - ecom
+  script:
+    - docker stop "$APP_CONTAINER_NAME" || true
+    - docker rm "$APP_CONTAINER_NAME" || true
+    - docker run --name "$APP_CONTAINER_NAME" -p 80:80 -d "ecom:${CI_COMMIT_SHORT_SHA}"
+    - docker system prune -af
+  only:
+    - master
+    - tags
