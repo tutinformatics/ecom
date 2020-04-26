@@ -26,6 +26,5 @@
     "port": 6060,
     "host": "localhost",
     "output": "dist"
-  },
-  "packageManager": "npm"
+  }
 }

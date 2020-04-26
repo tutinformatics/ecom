@@ -144,13 +144,13 @@
 
   <div class="container">
     <nav class="nav">
-      <img src="../../resources/images/logo.png" alt="logo">
+      <img src="/svg/logo.svg">
       <span> <a href="https://docs.saleor.io/docs/index/" target="_blank">View documentation</a> for Saleor 2.10 </span>
     </nav>
     <div class="inner-container">
       <div class="content-container">
         <div class="splash__container">
-          {% include "home/images/splash.svg" %}
+          <img src="/svg/splash.svg">
         </div>
         <main class="main">
           <h1>Congratulations.</h1>
@@ -165,14 +165,14 @@
             {% if dashboard_url %}
             <a href="{{dashboard_url}}" target="_blank">
               <button class="btn tile">
-                {% include "home/images/dashboard.svg" %}
+                <img src="/svg/dashboard.svg">
                 <span class="tile__label" href="#">Dashboard</span>
               </button>
             </a>
             {% endif %} {% if storefront_url %}
             <a href="{{storefront_url}}" target="_blank">
               <button class="btn tile">
-                {% include "home/images/storefront.svg" %}
+                <img src="/svg/storefront.svg">
                 <span class="tile__label" href="#">Storefront</span>
               </button>
             </a>
@@ -180,7 +180,7 @@
 
             <a href={% url "api" %}  target="_blank">
             <button class="btn tile">
-              {% include "home/images/playground.svg" %}
+              <img src="/svg/playground.svg">
               <span class="tile__label" href="#">GraphQL Playground</span>
             </button>
             </a>
