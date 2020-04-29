@@ -1,8 +1,14 @@
 import {autoinject} from "aurelia-framework";
 import {HttpClient, json} from "aurelia-fetch-client";
+import {Model} from "../model/model";
 
+/**
+ * Service implementation for aurelia frontend.
+ *
+ * Copyright: Tavo Annus
+ */
 @autoinject
-export class Service {
+export class Service<T extends Model> {
     constructor(protected http: HttpClient) {
         this.http.configure(config => {
             config
@@ -27,7 +33,7 @@ export class Service {
         });
     }
 
-    protected formatUrl(url: string, params: Object) {
+    protected formatUrl(url: string, params: Object): string {
         const esc = encodeURIComponent;
         const query = Object.keys(params)
             .map(k => esc(k) + '=' + esc(params[k]))
@@ -35,17 +41,17 @@ export class Service {
         return query.length > 0 ? url + '?' + query : url;
     }
 
-    get(url: string, params: Object = {}) {
+    get<U>(url: string, params: Object = {}): Promise<U> {
         const formattedUrl = this.formatUrl(url, params);
         return this.http.fetch(formattedUrl)
             .then(response => response.json())
     }
 
-    post(url: string, data: any) {
-        console.log(json(data));
+    post(url: string, data: T): Promise<T> {
+        console.log("POST data:", json(data));
         return this.http.fetch(url, {
             method: 'post',
-            body: json(data)
+            body: json(data.getPreparedJson()) // <- needed to remove related entities
         })
             .then(response => response.json());
     }

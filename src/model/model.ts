@@ -1,7 +1,7 @@
 
 export abstract class Model {
 
-    toJson(): Object {
+    getPreparedJson(): Object {
         let fields = Object.entries(this)
         let jsonObj = {}
         for (let [field, value] of fields) {
