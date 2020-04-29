@@ -9,15 +9,37 @@ export class Products {
 
   // @ts-ignore
   products: [Product] = []
+  sortAsc = true
 
   constructor(private productService: ProductsService) {
     this.loadProducts()
+  }
+
+  public sortBy(prop) {
+    this.sortAsc = !this.sortAsc;
+    this.products = this.products.sort((a, b) => {
+      if (a[prop] > b[prop]) return this.sortAsc ? 1 : -1;
+      if (a[prop] < b[prop]) return this.sortAsc ? -1 : 1;
+      return 0;
+    })
+  }
+
+  public sortByRelated(propGetFunc: Function) {
+    this.sortAsc = !this.sortAsc;
+    this.products = this.products.sort((a, b) => {
+      if (propGetFunc(a) > propGetFunc(b)) return this.sortAsc ? 1 : -1;
+      if (propGetFunc(a) < propGetFunc(b)) return this.sortAsc ? -1 : 1;
+      return 0;
+    })
   }
 
   getPriceWithTaxString(product: Product): string {
     let price = 0;
     if (typeof product._toMany_ProductPrice !== "undefined") {
       price = product._toMany_ProductPrice[0].priceWithTax;
+    }
+    if (price === null) {
+      price = 0;
     }
     return "Price with tax: " + price + "$"
   }
@@ -26,6 +48,9 @@ export class Products {
     let price = 0;
     if (typeof product._toMany_ProductPrice !== "undefined") {
       price = product._toMany_ProductPrice[0].priceWithoutTax;
+    }
+    if (price === null) {
+      price = 0;
     }
     return "Price without tax: " + price + "$"
   }

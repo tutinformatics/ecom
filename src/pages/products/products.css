@@ -8,6 +8,10 @@ smart-card {
   margin: 8px;
 }
 
+table-head {
+  margin: 8px;
+}
+
 smart-card.basic-card .card-content,
 smart-card.basic-card .card-action {
   box-sizing: border-box;

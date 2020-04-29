@@ -1,19 +1,24 @@
 <template>
-  <div class="cards-container">
+  <div>
     <require from="./products.css"></require>
-    <smart-card #card class="basic-card" repeat.for="product of products">
-      <div class="card-content">
-        <span class="card-title">${ product.productName }</span>
-        <div class="columns is-mobile">
-          <div class="column"><p>${ product.description }</p></div>
-          <div class="column"><p>${ getCategoryInfo(product) }</p></div>
-          <div class="column"><p>${ getPriceWithoutTaxString(product) }</p></div>
-          <div class="column"><p>${ getPriceWithTaxString(product) }</p></div>
+    <div class="cards-container">
+      <div class="columns has-margin-1">
+        <div class="column"><p class="has-text-centered" click.delegate="sortBy('description')">Description</p></div>
+        <div class="column"><p class="has-text-centered" click.delegate="sortByRelated(getCategoryInfo)">Category</p></div>
+        <div class="column"><p class="has-text-centered" click.delegate="sortByRelated(getPriceWithoutTaxString)">Price without tax:</p></div>
+        <div class="column"><p class="has-text-centered" click.delegate="sortByRelated(getPriceWithTaxString)">Price with tax:</p></div>
+      </div>
+      <smart-card #card class="basic-card" repeat.for="product of products">
+        <div class="card-content">
+          <span class="card-title">${ product.productName }</span>
+          <div class="columns is-mobile">
+            <div class="column"><p>${ product.description }</p></div>
+            <div class="column"><p>${ getCategoryInfo(product) }</p></div>
+            <div class="column"><p>${ getPriceWithoutTaxString(product) }</p></div>
+            <div class="column"><p>${ getPriceWithTaxString(product) }</p></div>
+          </div>
         </div>
-      </div>
-      <div class="card-action"> <a href="#">This is a link</a>
-        <a href="#">This is a link</a>
-      </div>
-    </smart-card>
+      </smart-card>
+    </div>
   </div>
 </template>
