@@ -3,9 +3,10 @@ import {HttpClient, json} from "aurelia-fetch-client";
 import {Model} from "../model/model";
 
 /**
- * Service implementation for aurelia frontend.
- *
- * Copyright: Tavo Annus
+ * Copyright (C) Tavo Annus - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Tavo Annus <tavo.annus@gmail.com>, April 2020
  */
 @autoinject
 export class Service<T extends Model> {
