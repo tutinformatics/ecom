@@ -42,7 +42,7 @@ export class Service<T extends Model> {
         return query.length > 0 ? url + '?' + query : url;
     }
 
-    get<U>(url: string, params: Object = {}): Promise<U> {
+    get<U extends T | [T]>(url: string, params: Object = {}): Promise<U> {
         const formattedUrl = this.formatUrl(url, params);
         return this.http.fetch(formattedUrl)
             .then(response => response.json())
