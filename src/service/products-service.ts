@@ -4,6 +4,6 @@ import {Product} from "../model/product";
 export class ProductsService extends Service<Product> {
 
   getAll() {
-    return this.get<[Product]>("/entities/Product")
+    return this.get<[Product]>("/entities/Product", { _depth: 1 })
   }
 }

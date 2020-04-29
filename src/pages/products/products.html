@@ -1,10 +1,15 @@
 <template>
-  <div>
+  <div class="cards-container">
     <require from="./products.css"></require>
     <smart-card #card class="basic-card" repeat.for="product of products">
       <div class="card-content">
-        <span class="card-title">Card Title</span>
-        <p>${ product.productId }</p>
+        <span class="card-title">${ product.productName }</span>
+        <div class="columns is-mobile">
+          <div class="column"><p>${ product.description }</p></div>
+          <div class="column"><p>${ getCategoryInfo(product) }</p></div>
+          <div class="column"><p>${ getPriceWithoutTaxString(product) }</p></div>
+          <div class="column"><p>${ getPriceWithTaxString(product) }</p></div>
+        </div>
       </div>
       <div class="card-action"> <a href="#">This is a link</a>
         <a href="#">This is a link</a>

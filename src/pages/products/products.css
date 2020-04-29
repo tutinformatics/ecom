@@ -1,9 +1,19 @@
+
+div .cards-container {
+  background: azure;
+}
+
+smart-card {
+  width: 95%;
+  margin: 8px;
+}
+
 smart-card.basic-card .card-content,
 smart-card.basic-card .card-action {
   box-sizing: border-box;
-  padding: 20px;
-  color: white;
-  background-color: #546E7A;
+  padding: 10px;
+  color: #1d1d1d;
+  background-color: #e5e5e5;
   border-bottom: 1px solid rgba(160,160,160,0.2);
   border-radius: 2px 2px 2px 2px;
 }
@@ -13,15 +23,14 @@ smart-card.basic-card .card-title {
 }
 
 smart-card.basic-card a {
-  color: #ffab40;
+  color: #296d00;
   transition: color .3s ease;
   text-transform: uppercase;
   border-bottom: none;
   text-decoration: none;
-  margin-right: 20px;
 }
 
 smart-card.basic-card a:hover {
-  color: #ffd8a6;
+  color: #37bf08;
 }
 
