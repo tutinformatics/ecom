@@ -2,13 +2,13 @@ import {Model} from "./model";
 
 export class ProductKeyword extends Model {
   relevancyWeight?: number;
-  lastUpdatedStamp: any;
+  lastUpdatedStamp: Date;
   productId: string;
   statusId: string;
   keywordTypeId: string;
-  createdTxStamp: any;
-  createdStamp: any;
+  createdTxStamp: Date;
+  createdStamp: Date;
   // _ENTITY_NAME_: string;
-  lastUpdatedTxStamp: any;
+  lastUpdatedTxStamp: Date;
   keyword: string;
 }

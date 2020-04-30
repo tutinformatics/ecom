@@ -16,7 +16,7 @@ export class Detail {
 
   private loadProduct(id: string) {
     this.productService.getSingle(id)
-      .then((product) => this.product = product[0])
+      .then((product) => this.product = product[0]) // TODO: Change asap back get fixed
       .then(() => console.log(this.product));
   }
 
