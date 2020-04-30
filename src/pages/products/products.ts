@@ -8,7 +8,7 @@ import "../../../node_modules/bulma/css/bulma.min.css";
 export class Products {
 
   // @ts-ignore
-  products: [Product] = []
+  products: Product[] = []
   sortAsc = true
 
   constructor(private productService: ProductsService) {

@@ -17,4 +17,27 @@ export abstract class Model {
         }
         return jsonObj;
     }
+
+    static fromJson<T extends Model>(json: Object, model: new() => T): T {
+      const obj = new model();
+      const keys = Object.keys(json);
+      for (const key of keys) {
+        if (json.hasOwnProperty(key)) {
+          if (key.toLowerCase().includes('stamp') &&  typeof json[key] == 'number') {
+            obj[key] = new Date(json[key]);
+          } else {
+            obj[key] = json[key];
+          }
+        }
+      }
+      return obj
+    }
+
+    static arrayFromJson<T extends Model>(json: Object[], model: { new(): T }): T[] {
+        let arr = Array<T>();
+        for (const obj of json) {
+          arr.push(this.fromJson(obj, model));
+        }
+        return arr;
+    }
 }

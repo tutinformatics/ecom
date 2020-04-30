@@ -2,14 +2,14 @@ import {Model} from "./model";
 
 export class ProductCategory extends Model {
   longDescription: string;
-  lastUpdatedStamp: any;
+  lastUpdatedStamp: Date;
   productCategoryTypeId: string;
   detailScreen: string;
-  createdTxStamp: any;
-  createdStamp: any;
+  createdTxStamp: Date;
+  createdStamp: Date;
   // _ENTITY_NAME_: string;
   description: string;
-  lastUpdatedTxStamp: any;
+  lastUpdatedTxStamp: Date;
   linkTwoImageUrl?: any;
   categoryName?: any;
   productCategoryId: string;
