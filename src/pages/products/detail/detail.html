@@ -1,6 +1,8 @@
 <template>
- <div>
-   <require from="./detail.css"></require>
-
- </div>
+  <div>
+    <require from="./detail.css"></require>
+    <h2> ${ product.productName} </h2>
+    <span>Category: ${ product._toOne_PrimaryProductCategory.categoryName}</span>
+    <p> ${product.description} </p>
+  </div>
 </template>

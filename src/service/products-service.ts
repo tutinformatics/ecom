@@ -10,4 +10,12 @@ export class ProductsService extends Service<Product> {
       {_depth: 1}
     );
   }
+
+  getSingle(id: string): Promise<Product> {
+    return this.get<Product>("/entities/Product",
+      (data) => Model.fromJson(data as Object, Product),
+      {productId: id, _depth: 1}
+      )
+  }
+
 }
