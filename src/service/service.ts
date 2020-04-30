@@ -55,12 +55,13 @@ export class Service<T extends Model> {
       .then((json) => converter(json));
   }
 
-  post(url: string, data: T): Promise<T> {
+  post(url: string, data: T, converter: (json: Object) => T): Promise<T> {
     console.log("POST data:", json(data));
     return this.http.fetch(url, {
       method: 'post',
       body: json(data.getPreparedJson()) // <- needed to remove related entities
     })
-      .then(response => response.json());
+      .then(response => response.json())
+      .then((json) => converter(json));
   }
 }
