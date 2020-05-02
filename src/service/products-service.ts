@@ -16,6 +16,13 @@ export class ProductsService extends Service<Product> {
     return this.get<Product[]>("/entities/Product",
       (data) => Model.arrayFromJson(data as Object[], Product),
       {productId: id, _depth: 1}
-      );
+    );
+  }
+
+  createProduct(product: Product): Promise<Product> {
+    return this.post("/services/createProduct",
+      product,
+      (data) => Model.fromJson(data as Object[], Product)
+    );
   }
 }

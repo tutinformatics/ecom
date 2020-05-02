@@ -2,14 +2,22 @@
   <div class="is-size-5-desktop has-margin-100 has-padding-10">
     <form>
       <div class="has-background-light">
-        <label class="is-size-5"> Name:
+        <label class="is-size-5"> *Name:
           <input type="text" class="is-size-6 has-margin-10" value.bind="product.productName"/>
         </label>
-        <label> Category:
+        <label> *Category:
           <select value.bind="product.primaryProductCategoryId">
             <option model.bind="null">Choose...</option>
             <option repeat.for="category of categories" model.bind="category.productCategoryId">
               ${category.categoryName}
+            </option>
+          </select>
+        </label>
+        <label> *Type:
+          <select value.bind="product.productTypeId">
+            <option model.bind="null">Choose...</option>
+            <option repeat.for="type of types" model.bind="type.productTypeId">
+              ${type.productTypeId}
             </option>
           </select>
         </label>
@@ -19,24 +27,36 @@
           <textarea value.bind="product.description" class="textarea"></textarea>
         </label>
       </div>
+      <!--
       <div class="has-background-light is-size-6">
         <p>${getPriceWithoutTaxString(product)}</p>
         <p>${getPriceWithTaxString(product)}</p>
       </div>
+      -->
       <div class="has-background-grey-light">
-        <p>Brand name: ${product.brandName ? product.brandName : 'none'}</p>
-      </div>
-      <div class="has-background-light is-size-6">
-        <p>Created at: ${product.createdStamp}</p>
+        <label>Brand name:
+          <input type="text" value.bind="product.brandName">
+        </label>
       </div>
       <div class="has-background-grey-light">
         <p>Shipping dimensions:</p>
       </div>
-      <div class="has-background-light is-size-6 has-text-right has-padding-right-25">
-        <p>Weight: ${product.shippingWeight ? product.shippingWeight : 0}kg</p>
-        <p>Height: ${product.shippingHeight ? product.shippingHeight : 0}m</p>
-        <p>Width: ${product.shippingWidth ? product.shippingWidth : 0}m</p>
-        <p>Depth: ${product.shippingDepth ? product.shippingDepth : 0}m</p>
+      <div class="has-background-light is-size-6">
+        <label>Weight:
+          <input type="number" value.bind="product.shippingWeight">
+        </label>
+        <label>Height:
+          <input type="number" value.bind="product.shippingHeight">
+        </label>
+        <label>Width:
+          <input type="number" value.bind="product.shippingWidth">
+        </label>
+        <label>Depth:
+          <input type="number" value.bind="product.shippingDepth">
+        </label>
+      </div>
+      <div>
+        <button type="submit" class="button has-background-primary has-margin-25" click.delegate="createProduct()">Create product</button>
       </div>
     </form>
   </div>

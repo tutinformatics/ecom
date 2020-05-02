@@ -57,6 +57,8 @@ export class Service<T extends Model> {
 
   post(url: string, data: T, converter: (json: Object) => T): Promise<T> {
     console.log("POST data:", json(data));
+    data['login.username'] = "admin";
+    data['login.password'] = "ofbiz";
     return this.http.fetch(url, {
       method: 'post',
       body: json(data.getPreparedJson()) // <- needed to remove related entities
