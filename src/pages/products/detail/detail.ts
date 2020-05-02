@@ -5,7 +5,6 @@ import {ProductUtils} from "../../../util/product-utils";
 
 @inject(ProductsService)
 export class Detail {
-  utils = ProductUtils
   product?: Product = null;
 
   constructor(private productService: ProductsService) {
@@ -20,4 +19,15 @@ export class Detail {
       .then((product) => this.product = product[0]) // TODO: Change asap back get fixed
       .then(() => console.log(this.product));
   }
+
+  getCategoryInfo(product: Product): string {
+    return ProductUtils.getCategoryInfo(product);
+  }
+  getPriceWithoutTaxString(product: Product): string {
+    return ProductUtils.getPriceWithoutTaxString(product);
+  }
+  getPriceWithTaxString(product: Product): string {
+    return ProductUtils.getPriceWithTaxString(product);
+  }
+
 }

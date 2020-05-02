@@ -6,6 +6,7 @@
     </div>
     <div class="cards-container">
       <div class="columns has-margin-1">
+        <div class="column"><p class="has-text-centered" click.delegate="sortBy('productName')">Name</p></div>
         <div class="column"><p class="has-text-centered" click.delegate="sortBy('description')">Description</p></div>
         <div class="column"><p class="has-text-centered" click.delegate="sortByRelated(getCategoryInfo)">Category</p></div>
         <div class="column"><p class="has-text-centered" click.delegate="sortByRelated(getPriceWithoutTaxString)">Price without tax:</p></div>
@@ -16,9 +17,9 @@
           <span class="card-title"><a href="/products/detail?productId=${product.productId}">${ product.productName }</a></span>
           <div class="columns is-mobile">
             <div class="column"><p>${ product.description }</p></div>
-            <div class="column"><p>${ utils.getCategoryInfo(product) }</p></div>
-            <div class="column"><p>${ utils.getPriceWithoutTaxString(product) }</p></div>
-            <div class="column"><p>${ utils.getPriceWithTaxString(product) }</p></div>
+            <div class="column"><p>${ getCategoryInfo(product) }</p></div>
+            <div class="column"><p>${ getPriceWithoutTaxString(product) }</p></div>
+            <div class="column"><p>${ getPriceWithTaxString(product) }</p></div>
           </div>
         </div>
       </smart-card>

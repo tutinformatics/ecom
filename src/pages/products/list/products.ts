@@ -9,7 +9,6 @@ export class Products {
   // @ts-ignore
   products: Product[] = []
   sortAsc = true
-  utils = ProductUtils
 
   constructor(private productService: ProductsService) {
     this.loadProducts()
@@ -37,5 +36,16 @@ export class Products {
     this.productService.getAll()
       .then((products) => this.products = products)
       .then(() => console.log(this.products))
+  }
+
+  getCategoryInfo(product: Product): string {
+    return ProductUtils.getCategoryInfo(product);
+  }
+
+  getPriceWithoutTaxString(product: Product): string {
+    return ProductUtils.getPriceWithoutTaxString(product);
+  }
+  getPriceWithTaxString(product: Product): string {
+    return ProductUtils.getPriceWithTaxString(product);
   }
 }
