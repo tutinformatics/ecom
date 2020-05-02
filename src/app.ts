@@ -1,6 +1,7 @@
 import { autoinject } from "aurelia-framework";
 import {PLATFORM} from 'aurelia-pal';
 import {RouterConfiguration, Router} from 'aurelia-router';
+import 'bootstrap';
 
 @autoinject
 export class app {
