@@ -1,6 +1,9 @@
 <template>
-  <div if.bind="product" class="is-size-5-desktop has-margin-100 has-padding-10">
+  <div if.bind="product" class="is-size-5-desktop has-margin-100 has-padding-25">
     <require from="./detail.css"></require>
+    <div class="has-text-right">
+      <a class="button has-background-primary has-text-white has-margin-10 has-padding-10" href="/products">Back</a>
+    </div>
     <div class="has-background-light">
       <h1 class="is-size-2 has-padding-10"> ${ product.productName} </h1>
       <span>Category: ${ getCategoryInfo(product) }</span>

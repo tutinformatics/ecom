@@ -35,7 +35,7 @@ export class Products {
   private loadProducts() {
     this.productService.getAll()
       .then((products) => this.products = products)
-      .then(() => console.log(this.products))
+      .then(() => console.log(this.products));
   }
 
   getCategoryInfo(product: Product): string {

@@ -23,7 +23,8 @@ export class New {
   createProduct() {
     this.product.internalName = this.product.productName;
     this.productService.createProduct(this.product)
-      .then((product) => console.log(product));
+      .then((product) => console.log(product))
+      .then(() => this.product = new Product());
   }
 
   private loadCategories() {
