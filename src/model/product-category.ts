@@ -11,7 +11,7 @@ export class ProductCategory extends Model {
   description: string;
   lastUpdatedTxStamp: Date;
   linkTwoImageUrl?: any;
-  categoryName?: any;
+  categoryName?: string;
   productCategoryId: string;
   linkOneImageUrl?: any;
   primaryParentCategoryId: string;
