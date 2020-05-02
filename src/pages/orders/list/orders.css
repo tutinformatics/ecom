@@ -1,0 +1,12 @@
+td{
+  color: white !important;
+}
+.table-header{
+  color: #bbdeea !important;
+}
+table{
+  border-radius: 10px;
+}
+input.form-control{
+  background-color: darkslategrey;
+}
