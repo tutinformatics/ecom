@@ -9,6 +9,33 @@
     "valueConverters": "resources/value-converters",
     "bindingBehaviors": "resources/binding-behaviors"
   },
+  "dependencies": [
+
+    "jquery",
+    {
+      "name": "popper.js",
+      "path": "../node_modules/popper.js/dist/umd",
+      "main": "popper.min"
+    },
+    {
+      "name": "bootstrap",
+      "path": "../node_modules/bootstrap/dist",
+      "main": "js/bootstrap.min",
+      "deps": ["jquery"],
+      "exports": "$",
+      "resources": [
+        "css/bootstrap.css"
+      ]
+    },
+    {
+      "name": "moment",
+      "path": "../node_modules/moment",
+      "main": "min/moment-with-locales",
+      "resources": [
+        "**/*.{css,html}"
+      ]
+    }
+  ],
   "transpiler": {
     "id": "typescript",
     "fileExtension": ".ts"
