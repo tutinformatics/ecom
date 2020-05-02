@@ -20,4 +20,11 @@ export class Detail {
       .then(() => console.log(this.product));
   }
 
+  getCategoryInfo(product: Product): string {
+    if (typeof product._toOne_PrimaryProductCategory !== "undefined") {
+      return product._toOne_PrimaryProductCategory.categoryName
+    }
+    return "none"
+  }
+
 }

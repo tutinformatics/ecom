@@ -1,8 +1,6 @@
 import {inject} from 'aurelia-framework';
 import {ProductsService} from "../../../service/products-service";
 import {Product} from "../../../model/product";
-import "../../../../node_modules/smart-webcomponents-community/source/styles/smart.default.css";
-import "../../../../node_modules/bulma/css/bulma.min.css";
 
 @inject(ProductsService)
 export class Products {

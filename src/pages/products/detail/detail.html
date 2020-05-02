@@ -1,8 +1,12 @@
 <template>
-  <div>
+  <div if.bind="product" class="is-size-5-desktop has-margin-5">
     <require from="./detail.css"></require>
-    <h2> ${ product.productName} </h2>
-    <span>Category: ${ product._toOne_PrimaryProductCategory.categoryName}</span>
-    <p> ${product.description} </p>
+    <div class="has-background-light">
+      <h1 class="is-size-2"> ${ product.productName} </h1>
+      <span>Category: ${ getCategoryInfo(product) }</span>
+    </div>
+    <div class="has-background-grey-light">
+      <p> ${product.description} </p>
+    </div>
   </div>
 </template>
