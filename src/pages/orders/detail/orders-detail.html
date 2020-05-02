@@ -1,2 +1,153 @@
 <template>
+  <require from="./orders-detail.css"></require>
+
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="row justify-content-around">
+        <div class="col-7">
+          <div class="col-10 row border main-body mb-5">
+            <div class="col-12 tab">
+              <div>
+                <h3>
+                  Kinnitamata
+                </h3>
+              </div>
+            </div>
+
+            <div class="col-12 tab m-0 p-0">
+              <table class="table">
+                <thead>
+                <tr>
+                  <td width="35%" class="table-header">Produkt</td>
+                  <td width="12%" class="table-header">Kogus</td>
+                  <td width="12%" class="table-header">Hind</td>
+                  <td width="12%" class="table-header">Kokku</td>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>särk</td>
+                  <td>2</td>
+                  <td>25.5€</td>
+                  <td>51€</td>
+                </tr>
+                <tr>
+                  <td>särk</td>
+                  <td>2</td>
+                  <td>25.5€</td>
+                  <td>51€</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Kinnita</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col-10 row border main-body mb-5">
+            <div class="col-12 tab">
+              <div>
+                <h3>
+                  Makstud
+                </h3>
+              </div>
+            </div>
+
+            <div class="row col-12 tab m-0 p-0">
+              <div class="m-2 col-12">
+                <table class="paid">
+                  <tbody>
+                  <tr>
+                    <td width="15%">Vahesumma</td>
+                    <td width="30%">3 toodet</td>
+                    <td width="10%">102€</td>
+                  </tr>
+                  <tr class="">
+                    <td width="15%">Maksud</td>
+                    <td width="30%">Maksuvaba</td>
+                    <td width="10%">0€</td>
+                  </tr>
+                  <tr>
+                    <td width="15%">Tarne</td>
+                    <td width="30%">DHL</td>
+                    <td width="10%">10€</td>
+                  </tr>
+                  <tr>
+                    <td width="15%">Kokku</td>
+                    <td width="30%"></td>
+                    <td width="10%">112€</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="m-2 col-12 border-top">
+                <table class="paid">
+                  <tbody>
+                  <tr>
+                    <td width="15%">Broneeritud</td>
+                    <td width="30%"></td>
+                    <td width="10%">0€</td>
+                  </tr>
+                  <tr>
+                    <td width="15%">Makstud summa</td>
+                    <td width="30%"></td>
+                    <td width="10%">112€</td>
+                  </tr>
+                  <tr>
+                    <td width="15%">Vaja maksta</td>
+                    <td width="30%"></td>
+                    <td width="10%">0€</td>
+                  </tr>
+                  </tbody>
+                  <tfoot class="border-top">
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td>Võta tagasi</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-5">
+          <div class="col-10 row border main-body mb-5">
+            <div class="col-12 tab">
+              <div class="">All Customers</div>
+            </div>
+            <div class="col-12 tab">
+              Search
+            </div>
+
+            <div class="col-12 tab m-0 p-0">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <td width="25%" class="table-header">Nimi</td>
+                  <td width="15%" class="table-header">Email</td>
+                  <td width="15%" class="table-header">Tellimusi</td>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr repeat.for="party of parties" click.delegate='onClickCustomer($event)'>
+                  <td>${party.partyName}</td>
+                  <td>${party.partyEmail}</td>
+                  <td>${party.partyOrders}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

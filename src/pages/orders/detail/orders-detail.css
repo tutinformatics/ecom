@@ -1,0 +1,30 @@
+.table-header{
+  color: #bbdeea !important;
+}
+
+.border {
+  border-radius: 5px !important;
+  border-color: #EAEAEA !important;
+}
+
+.main-body {
+  background-color: white;
+}
+
+.temporary-name{
+  background-color: #F1F6F6 !important;
+}
+
+.paid tr{
+  line-height: 35px;
+}
+
+.tab {
+  display: flex;
+  overflow: hidden;
+  min-height: 48px;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px;
+  border-bottom: 1px solid #EAEAEA;
+}
+
