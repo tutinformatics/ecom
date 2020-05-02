@@ -1,12 +1,31 @@
 <template>
-  <div if.bind="product" class="is-size-5-desktop has-margin-5">
+  <div if.bind="product" class="is-size-5-desktop has-margin-100 has-padding-10">
     <require from="./detail.css"></require>
     <div class="has-background-light">
-      <h1 class="is-size-2"> ${ product.productName} </h1>
+      <h1 class="is-size-2 has-padding-10"> ${ product.productName} </h1>
       <span>Category: ${ getCategoryInfo(product) }</span>
     </div>
     <div class="has-background-grey-light">
-      <p> ${product.description} </p>
+      <p>Description: ${product.description ? product.description : 'none'} </p>
+    </div>
+    <div class="has-background-light is-size-6">
+      <p>${getPriceWithoutTaxString(product)}</p>
+      <p>${getPriceWithTaxString(product)}</p>
+    </div>
+    <div class="has-background-grey-light">
+      <p>Brand name: ${product.brandName ? product.brandName : 'none'}</p>
+    </div>
+    <div class="has-background-light is-size-6">
+      <p>Created at: ${product.createdStamp}</p>
+    </div>
+    <div class="has-background-grey-light">
+      <p>Shipping dimensions:</p>
+    </div>
+    <div class="has-background-light is-size-6 has-text-right has-padding-right-25">
+      <p>Weight: ${product.shippingWeight ? product.shippingWeight : 0}kg</p>
+      <p>Height: ${product.shippingHeight ? product.shippingHeight : 0}m</p>
+      <p>Width: ${product.shippingWidth ? product.shippingWidth : 0}m</p>
+      <p>Depth: ${product.shippingDepth ? product.shippingDepth : 0}m</p>
     </div>
   </div>
 </template>

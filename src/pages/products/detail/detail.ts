@@ -27,4 +27,26 @@ export class Detail {
     return "none"
   }
 
+  getPriceWithTaxString(product: Product): string {
+    let price = 0;
+    if (typeof product._toMany_ProductPrice !== "undefined") {
+      price = product._toMany_ProductPrice[0].priceWithTax;
+    }
+    if (price === null) {
+      price = 0;
+    }
+    return "Price with tax: " + price + "$"
+  }
+
+  getPriceWithoutTaxString(product: Product): string {
+    let price = 0;
+    if (typeof product._toMany_ProductPrice !== "undefined") {
+      price = product._toMany_ProductPrice[0].priceWithoutTax;
+    }
+    if (price === null) {
+      price = 0;
+    }
+    return "Price without tax: " + price + "$"
+  }
+
 }
