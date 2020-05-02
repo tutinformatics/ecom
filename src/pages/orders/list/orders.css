@@ -1,12 +1,16 @@
-td{
-  color: white !important;
-}
+
 .table-header{
   color: #bbdeea !important;
 }
 table{
+  border: 1px solid #D0D0D0;
   border-radius: 10px;
+  border-collapse:separate;
 }
-input.form-control{
-  background-color: darkslategrey;
+template{
+  background-color: #F1F6F6 !important;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
