@@ -1,6 +1,7 @@
 import {inject} from 'aurelia-framework';
 import {ProductsService} from "../../../service/products-service";
 import {Product} from "../../../model/product";
+import {ProductUtils} from "../../../util/product-utils";
 
 @inject(ProductsService)
 export class Products {
@@ -8,6 +9,7 @@ export class Products {
   // @ts-ignore
   products: Product[] = []
   sortAsc = true
+  utils = ProductUtils
 
   constructor(private productService: ProductsService) {
     this.loadProducts()
@@ -29,35 +31,6 @@ export class Products {
       if (propGetFunc(a) < propGetFunc(b)) return this.sortAsc ? -1 : 1;
       return 0;
     })
-  }
-
-  getPriceWithTaxString(product: Product): string {
-    let price = 0;
-    if (typeof product._toMany_ProductPrice !== "undefined") {
-      price = product._toMany_ProductPrice[0].priceWithTax;
-    }
-    if (price === null) {
-      price = 0;
-    }
-    return "Price with tax: " + price + "$"
-  }
-
-  getPriceWithoutTaxString(product: Product): string {
-    let price = 0;
-    if (typeof product._toMany_ProductPrice !== "undefined") {
-      price = product._toMany_ProductPrice[0].priceWithoutTax;
-    }
-    if (price === null) {
-      price = 0;
-    }
-    return "Price without tax: " + price + "$"
-  }
-
-  getCategoryInfo(product: Product): string {
-    if (typeof product._toOne_PrimaryProductCategory !== "undefined") {
-      return product._toOne_PrimaryProductCategory.categoryName
-    }
-    return "none"
   }
 
   private loadProducts() {

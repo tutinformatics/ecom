@@ -3,14 +3,14 @@
     <require from="./detail.css"></require>
     <div class="has-background-light">
       <h1 class="is-size-2 has-padding-10"> ${ product.productName} </h1>
-      <span>Category: ${ getCategoryInfo(product) }</span>
+      <span>Category: ${ utils.getCategoryInfo(product) }</span>
     </div>
     <div class="has-background-grey-light">
       <p>Description: ${product.description ? product.description : 'none'} </p>
     </div>
     <div class="has-background-light is-size-6">
-      <p>${getPriceWithoutTaxString(product)}</p>
-      <p>${getPriceWithTaxString(product)}</p>
+      <p>${utils.getPriceWithoutTaxString(product)}</p>
+      <p>${utils.getPriceWithTaxString(product)}</p>
     </div>
     <div class="has-background-grey-light">
       <p>Brand name: ${product.brandName ? product.brandName : 'none'}</p>
