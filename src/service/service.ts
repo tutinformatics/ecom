@@ -1,7 +1,6 @@
 import {autoinject} from "aurelia-framework";
 import {HttpClient, json} from "aurelia-fetch-client";
 import {Model} from "../model/model";
-import {Product} from "../model/product";
 
 /**
  * Copyright (C) Tavo Annus - All Rights Reserved
