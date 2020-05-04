@@ -1,6 +1,6 @@
 
 div .cards-container {
-  background: azure;
+  background: #cbcbcb;
 }
 
 smart-card {
@@ -17,7 +17,7 @@ smart-card.basic-card .card-action {
   box-sizing: border-box;
   padding: 10px;
   color: #1d1d1d;
-  background-color: #e5e5e5;
+  background-color: #f6f6f6;
   border-bottom: 1px solid rgba(160,160,160,0.2);
   border-radius: 2px 2px 2px 2px;
 }
@@ -27,7 +27,7 @@ smart-card.basic-card .card-title {
 }
 
 smart-card.basic-card a {
-  color: #296d00;
+  color: #3e3e3e;
   transition: color .3s ease;
   text-transform: uppercase;
   border-bottom: none;

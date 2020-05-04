@@ -1,6 +1,7 @@
 import {Service} from "./service";
 import {Product} from "../model/product";
 import {Model} from "../model/model";
+import {ProductCategory} from "../model/product-category";
 
 export class ProductsService extends Service<Product> {
 
@@ -11,11 +12,17 @@ export class ProductsService extends Service<Product> {
     );
   }
 
-  getSingle(id: string): Promise<Product> {
-    return this.get<Product>("/entities/Product",
-      (data) => Model.fromJson(data as Object, Product),
+  getSingle(id: string): Promise<Product[]> {
+    return this.get<Product[]>("/entities/Product",
+      (data) => Model.arrayFromJson(data as Object[], Product),
       {productId: id, _depth: 1}
-      )
+    );
   }
 
+  createProduct(product: Product): Promise<Product> {
+    return this.post("/services/createProduct",
+      product,
+      (data) => Model.fromJson(data as Object[], Product)
+    );
+  }
 }

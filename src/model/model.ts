@@ -23,7 +23,7 @@ export abstract class Model {
       const keys = Object.keys(json);
       for (const key of keys) {
         if (json.hasOwnProperty(key)) {
-          if (key.toLowerCase().includes('stamp') &&  typeof json[key] == 'number') {
+          if (key.toLowerCase().endsWith('stamp') && typeof json[key] == 'number') {
             obj[key] = new Date(json[key]);
           } else {
             obj[key] = json[key];

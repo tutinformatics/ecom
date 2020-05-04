@@ -33,7 +33,7 @@
                   <td>51€</td>
                 </tr>
                 <tr>
-                  <td>särk</td>
+                  <td>särk nr.2</td>
                   <td>2</td>
                   <td>25.5€</td>
                   <td>51€</td>
@@ -61,7 +61,7 @@
             <div class="row col-12 tab m-0 p-0">
               <div class="m-2 col-12">
                 <table class="paid">
-                  <tbody>
+                  <tbody class="border-bottom">
                   <tr>
                     <td width="15%">Vahesumma</td>
                     <td width="30%">3 toodet</td>
@@ -85,7 +85,7 @@
                   </tbody>
                 </table>
               </div>
-              <div class="m-2 col-12 border-top">
+              <div class="m-2 col-12">
                 <table class="paid">
                   <tbody>
                   <tr>
@@ -105,11 +105,11 @@
                   </tr>
                   </tbody>
                   <tfoot class="border-top">
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td>Võta tagasi</td>
-                    </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Võta tagasi</td>
+                  </tr>
                   </tfoot>
                 </table>
               </div>
@@ -120,30 +120,81 @@
         <div class="col-5">
           <div class="col-10 row border main-body mb-5">
             <div class="col-12 tab">
-              <div class="">All Customers</div>
+              <h3>Klient</h3>
             </div>
-            <div class="col-12 tab">
-              Search
-            </div>
-
             <div class="col-12 tab m-0 p-0">
-              <table class="table table-striped">
-                <thead>
+              <table class="table">
                 <tr>
-                  <td width="25%" class="table-header">Nimi</td>
-                  <td width="15%" class="table-header">Email</td>
-                  <td width="15%" class="table-header">Tellimusi</td>
+                  <td>kristopher@example.com</td>
                 </tr>
-                </thead>
-
-                <tbody>
-                <tr repeat.for="party of parties" click.delegate='onClickCustomer($event)'>
-                  <td>${party.partyName}</td>
-                  <td>${party.partyEmail}</td>
-                  <td>${party.partyOrders}</td>
-                </tr>
-                </tbody>
               </table>
+            </div>
+            <div class="row col-12 tab m-0 p-0">
+              <div class="m-2 col-12">
+                <table class="paid">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <h5 class="mb-4">
+                        <b>
+                          Shipping address
+                        </b>
+                      </h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100%">
+                      Kristopher Kristopher
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Tallin mnt 5232-7-44
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Eesti, Tallinn
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      +2341 4355
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="m-2 col-12 border-top">
+                <table class="paid mt-3 mb-4">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <h5 class="mb-4">
+                        <b>
+                          Billing address
+                        </b>
+                      </h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100%">
+                      Kristopher Kristopher
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Tallin mnt 5232-7-44
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Eesti, Tallinn
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -151,3 +202,5 @@
     </div>
   </div>
 </template>
+
+

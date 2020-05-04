@@ -28,7 +28,7 @@ export class Product extends Model {
   _DELEGATOR_NAME_: string;
   productRating?: any;
   createdByUserLogin: string;
-  brandName?: any;
+  brandName?: string;
   requireAmount: string;
   productId: string;
   smallImageUrl?: any;

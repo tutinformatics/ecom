@@ -1,7 +1,6 @@
 import {autoinject} from "aurelia-framework";
 import {HttpClient, json} from "aurelia-fetch-client";
 import {Model} from "../model/model";
-import {Product} from "../model/product";
 
 /**
  * Copyright (C) Tavo Annus - All Rights Reserved
@@ -57,6 +56,8 @@ export class Service<T extends Model> {
 
   post(url: string, data: T, converter: (json: Object) => T): Promise<T> {
     console.log("POST data:", json(data));
+    data['login.username'] = "admin";
+    data['login.password'] = "ofbiz";
     return this.http.fetch(url, {
       method: 'post',
       body: json(data.getPreparedJson()) // <- needed to remove related entities

@@ -1,8 +1,12 @@
 <template>
-  <div>
+  <div class="has-margin-top-25 has-margin-left-50 has-margin-right-50">
     <require from="./products.css"></require>
+    <div class="has-text-right">
+      <a class="button has-background-primary has-text-white has-margin-25 has-padding-10" href="/products/new">New</a>
+    </div>
     <div class="cards-container">
       <div class="columns has-margin-1">
+        <!-- <div class="column"><p class="has-text-centered" click.delegate="sortBy('productName')">Name</p></div> -->
         <div class="column"><p class="has-text-centered" click.delegate="sortBy('description')">Description</p></div>
         <div class="column"><p class="has-text-centered" click.delegate="sortByRelated(getCategoryInfo)">Category</p></div>
         <div class="column"><p class="has-text-centered" click.delegate="sortByRelated(getPriceWithoutTaxString)">Price without tax:</p></div>

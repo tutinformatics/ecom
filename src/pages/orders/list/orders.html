@@ -1,12 +1,14 @@
 <template>
   <div class="row justify-content-center mt-5">
     <h1 class="col-12 mb-5 ml-5 pl-5">
-      Orders
+      Tellimused
     </h1>
     <require from="./orders.css"></require>
     <div class="col-10 row border main-body">
       <div class="col-12 tab">
-        <div class="">Kõik tellimused</div>
+        <div class="">
+          <b>Kõik tellimused</b>
+        </div>
       </div>
       <div class="col-12 tab">
         Otsing
@@ -26,7 +28,7 @@
           </thead>
 
           <tbody>
-          <tr>
+          <tr id="0" click.delegate="detailView($event)">
             <td>#123.2</td>
             <td>10h tagasi</td>
             <td>Kristopher Kristopher</td>
