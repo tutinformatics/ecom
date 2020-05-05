@@ -1,14 +1,17 @@
 <template>
   <div class="row justify-content-center mt-5">
-    <h1 class="col-12 mb-5 ml-5 pl-5">
-      Tellimused
-    </h1>
     <require from="./orders.css"></require>
+    <div class="justify-content-between row col-12">
+      <h1 class="col-6 mb-5 ml-5 pl-5">
+        Tellimused
+      </h1>
+      <div class="col-2 mb-2">
+        <a class="btn btn-dark pull-right button m-2 mt-5" href="/orders">Uus tellimus</a>
+      </div>
+    </div>
     <div class="col-10 row border main-body">
       <div class="col-12 tab">
-        <div class="">
-          <b>Kõik tellimused</b>
-        </div>
+        Kõik tellimused
       </div>
       <div class="col-12 tab">
         Otsing
@@ -34,7 +37,7 @@
             <td>Kristopher Kristopher</td>
             <td>Makstud</td>
             <td>Kinnitamata</td>
-            <td>90.25€</td>
+            <td>112$</td>
           </tr>
           <tr>
             <td>#123.2</td>
@@ -42,7 +45,7 @@
             <td>Kristopher Kristopher</td>
             <td>Makstud</td>
             <td>Kinnitamata</td>
-            <td>90.25€</td>
+            <td>112$</td>
           </tr>
           </tbody>
         </table>
