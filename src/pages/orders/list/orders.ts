@@ -8,6 +8,6 @@ export class Orders{
   }
 
   detailView(event){
-    this.router.navigateToRoute('orders-detail', {id: 0})
+    this.router.navigateToRoute('detail', {id: 0})
   }
 }

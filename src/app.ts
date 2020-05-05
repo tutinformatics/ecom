@@ -16,10 +16,8 @@ export class app {
     config.map([
       {route:[ "", "home"], name: 'home', moduleId: PLATFORM.moduleName('pages/index/index'), nav: false, title:'Home'},
       {route:[ "dashboard", "dashboard"], name: 'dashboard', moduleId: PLATFORM.moduleName('pages/dashboard/dashboard'), nav: false, title:'Dashboard'},
-      {route:[ "products", "products"], name: 'products', moduleId: PLATFORM.moduleName('pages/products/list/products'), nav: false, title:'Products'},
-      {route:[ "products/detail", "detail"], name: 'products-detail', moduleId: PLATFORM.moduleName('pages/products/detail/detail'), nav: false, title:'Detail'},
-      {route:[ "orders", "orders"], name: 'orders', moduleId: PLATFORM.moduleName('pages/orders/list/orders'), nav: false, title:'Orders'},
-      {route:[ "orders/:id/detail", "detail"], name: 'orders-detail', moduleId: PLATFORM.moduleName('pages/orders/detail/orders-detail'), nav: false, title:'Detail'},
+      {route:[ "products", "products"], name: 'products', moduleId: PLATFORM.moduleName('pages/products/products'), nav: false, title:'Products'},
+      {route:[ "orders", "orders"], name: 'orders', moduleId: PLATFORM.moduleName('pages/orders/orders'), nav: false, title:'Orders'},
     ]);
 
     this.router = router;
