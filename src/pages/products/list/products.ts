@@ -1,16 +1,17 @@
 import {inject} from 'aurelia-framework';
+import {Router} from 'aurelia-router';
 import {ProductsService} from "../../../service/products-service";
 import {Product} from "../../../model/product";
 import {ProductUtils} from "../../../util/product-utils";
 
-@inject(ProductsService)
+@inject(ProductsService, Router)
 export class Products {
 
   // @ts-ignore
   products: Product[] = []
   sortAsc = true
 
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService, private router: Router) {
     this.loadProducts()
   }
 
@@ -47,5 +48,10 @@ export class Products {
   }
   getPriceWithTaxString(product: Product): string {
     return ProductUtils.getPriceWithTaxString(product);
+  }
+
+  onClickCustomer(event) {
+    const productId = event.path[1].id
+    this.router.navigateToRoute('detail', {id: productId})
   }
 }

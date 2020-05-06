@@ -11,7 +11,8 @@ export class Detail {
   }
 
   activate(params) {
-    this.loadProduct(params.productId);
+    this.loadProduct(params.id);
+
   }
 
   private loadProduct(id: string) {

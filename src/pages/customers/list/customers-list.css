@@ -1,9 +1,9 @@
+
+
 .top {
   box-sizing: inherit;
   display: block;
 }
-
-
 
 .border {
   border-radius: 5px !important;
@@ -35,9 +35,12 @@
   font-size: 30px;
 }
 
-tr :hover{
+
+table thead tr td :hover {
+  cursor: pointer !important;
+}
+tbody tr :hover {
   cursor: pointer;
 }
-
 
 
