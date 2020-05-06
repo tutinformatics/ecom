@@ -1,0 +1,109 @@
+<template>
+  <require from="./customers-detail.css"></require>
+
+  <div class="row justify-content-center">
+    <!-- BACK BUTTON -->
+    <div class="col-10 row head justify-content-between">
+      <div class="col-2 m-0 p-0 pb-4">
+        <a href="/customers">
+          <img src="/back-arrow.png">
+          <span>Kliendid</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- KLIENDI NIMI -->
+    <div class="col-10 row head justify-content-between">
+      <div class="col-2 m-0 p-0 pb-3">
+        <h3>Kliendi nimi</h3>
+      </div>
+
+    </div>
+
+    <div class="col-10">
+
+      <div class="row justify-content-center">
+        <div class="col-7">
+          <div class="col-11 row border main-body mb-5">
+            <div class="col-12 tab">
+              <div class=""><h3>Personal Informations</h3></div>
+            </div>
+            <div class="col-12 row tab">
+              <div class="col-12 pb-3"><h5>General Informations</h5></div>
+              <br>
+
+                <div class="col-6">
+                  <input type="text" class="form-control" placeholder="First Name">
+                </div>
+                <div class="col-6">
+                  <input type="text" class="form-control" placeholder="Last Name" >
+                </div>
+
+            </div>
+            <div class="col-12 row tab">
+              <div class="col-12 pb-3"><h5>Contact Informations</h5></div>
+              <div class="col-12"><input type="text" class="form-control" placeholder="Email"></div>
+
+            </div>
+
+          </div>
+
+          <div class="col-11 row border main-body">
+            <div class="col-12 tab">
+              <div>Tellimused</div>
+            </div>
+
+            <div class="col-12 tab m-0 p-0">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <td width="25%" class="table-header">Nr</td>
+                  <td width="15%" class="table-header">Kuupaev</td>
+                  <td width="15%" class="table-header">Seisund</td>
+                  <td width="15%" class="table-header">Kokku</td>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr repeat.for="party of parties" click.delegate='onClickCustomer($event)'>
+                  <td>${party.partyName}</td>
+                  <td>${party.partyEmail}</td>
+                  <td>${party.partyOrders}</td>
+                  <td>${party.partyOrders}</td>
+                </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-5">
+          <div class="col-11 row border main-body mb-5">
+            <div class="col-12 tab">
+              <div><h3>Address Information</h3></div>
+            </div>
+
+            <div class="col-12 tab m-0 p-0">
+              <div class="col-12 row justify-content-center tab">
+                <div class="col-10 pb-3"><h4>Address </h4></div>
+                <div class="col-10 pb-3"> <input type="text" class="form-control" placeholder="Address"></div>
+                <div class="col-10 pb-3"><input type="text" class="form-control" placeholder="Apartment(Optional)"></div>
+                <div class="col-10 pb-3"><input type="text" class="form-control" placeholder="City"></div>
+                <div class="col-5 pb-3"><input type="text" class="form-control" placeholder="Country"></div>
+                <div class="col-5 pb-3"><input type="text" class="form-control" placeholder="Postal code"></div>
+              </div>
+            </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</template>
