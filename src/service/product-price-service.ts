@@ -11,7 +11,7 @@ export class ProductPriceService extends Service<ProductPrice> {
       (data) => Model.fromJson(data as Object, ProductPrice));
   }
 
-  updateProductPrice(productPrice: ProductPrice): Promise<any> {
+  updateProductPrice(productPrice: ProductPrice): Promise<ProductPrice> {
     return this.post("/services/updateProductPrice",
       productPrice,
       (data) => Model.fromJson(data as Object, ProductPrice));

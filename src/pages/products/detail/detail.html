@@ -77,7 +77,7 @@
                 <div class="col-12 pt-4 pb-2 "><h5 class="bold">Price without tax</h5></div>
 
                 <div class="col-12">
-                  <input if.bind="isEditingMode" type="text" value.bind="product._toMany_ProductPrice[0].priceWithoutTax ? product._toMany_ProductPrice[0].priceWithoutTax : 0" class="form-control" placeholder="Last Name" >
+                  <input if.bind="isEditingMode" type="text" value.bind="productPrice.price" class="form-control" placeholder="Last Name" >
                   <span if.bind="!isEditingMode" class="">${getPriceWithoutTaxString(product)}</span>
 
                 </div>
@@ -87,7 +87,7 @@
                 <div class="col-12 pt-4 pb-2 "><h5 class="bold">Price with tax</h5></div>
 
                 <div class="col-12">
-                  <input if.bind="isEditingMode" type="text" value.bind="product._toMany_ProductPrice[0].priceWithTax ? product._toMany_ProductPrice[0].priceWithTax : 0" class="form-control" placeholder="Last Name" >
+                  <!--<input if.bind="isEditingMode" type="text" value.bind="product._toMany_ProductPrice[0].priceWithTax ? product._toMany_ProductPrice[0].priceWithTax : 0" class="form-control" placeholder="Last Name" >-->
                   <span if.bind="!isEditingMode" class="">${getPriceWithTaxString(product)}</span>
 
                 </div>
@@ -108,7 +108,7 @@
                 <div class="col-12 p-3 bold"><h5 class="bold">Width (m)</h5></div>
 
                 <div class="col-12">
-                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingWidth ? product.shippingWidth : 0" class="form-control" placeholder="First Name">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingWidth" class="form-control" placeholder="First Name">
                   <span if.bind="!isEditingMode" class="">${product.shippingWidth ? product.shippingWidth : 0}</span>
                 </div>
               </div>
@@ -117,7 +117,7 @@
                 <div class="col-12 p-3 bold"><h5 class="bold">Height (m)</h5></div>
 
                 <div class="col-12">
-                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingHeight ? product.shippingHeight : 0" class="form-control" placeholder="First Name">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingHeight" class="form-control" placeholder="First Name">
                   <span if.bind="!isEditingMode" class="">${product.shippingHeight ? product.shippingHeight : 0}</span>
                 </div>
               </div>
@@ -126,7 +126,7 @@
                 <div class="col-12 p-3 bold"><h5 class="bold">Weight (kg)</h5></div>
 
                 <div class="col-12">
-                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingWeight ? product.shippingWeight : 0" class="form-control" placeholder="First Name">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingWeight" class="form-control" placeholder="First Name">
                   <span if.bind="!isEditingMode" class="">${product.shippingWeight ? product.shippingWeight : 0}</span>
                 </div>
               </div>
@@ -135,7 +135,7 @@
                 <div class="col-12 p-3 bold"><h5 class="bold">Depth (m)</h5></div>
 
                 <div class="col-12">
-                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingDepth ? product.shippingDepth : 0" class="form-control" placeholder="First Name">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingDepth" class="form-control" placeholder="First Name">
                   <span if.bind="!isEditingMode" class="">${product.shippingDepth ? product.shippingDepth : 0}</span>
                 </div>
               </div>

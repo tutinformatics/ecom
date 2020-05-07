@@ -20,7 +20,7 @@ export class ProductPrice extends Model {
   taxPercentage?: number;
   lastUpdatedTxStamp: Date;
   thruDate?: Date;
-  fromDate: Date;
+  fromDate: Date = new Date();
   currencyUomId: string = "USD";
   createdDate: Date;
   priceWithoutTax?: number;
