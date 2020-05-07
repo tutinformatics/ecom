@@ -5,16 +5,20 @@ import {ProductCategory} from "../../../model/product-category";
 import {ProductCategoryService} from "../../../service/product-category-service";
 import {ProductTypeService} from "../../../service/product-type-service";
 import {ProductType} from "../../../model/product-type";
+import {ProductPrice} from "../../../model/product-price";
+import {ProductPriceService} from "../../../service/product-price-service";
 
-@inject(ProductsService, ProductCategoryService, ProductTypeService)
+@inject(ProductsService, ProductCategoryService, ProductTypeService, ProductPriceService)
 export class New {
   product = new Product();
+  productPrice = new ProductPrice();
   categories: ProductCategory[] = [];
   types: ProductType[] = [];
 
   constructor(private productService: ProductsService,
               private productCategoryService: ProductCategoryService,
-              private productTypeService: ProductTypeService)
+              private productTypeService: ProductTypeService,
+              private productPriceService: ProductPriceService)
   {
     this.loadCategories();
     this.loadTypes();
@@ -23,8 +27,14 @@ export class New {
   createProduct() {
     this.product.internalName = this.product.productName;
     this.productService.createProduct(this.product)
-      .then((product) => console.log(product))
+      .then((product) => this.createRelatedEntities(product))
       .then(() => this.product = new Product());
+  }
+
+  private createRelatedEntities(product: Product) {
+    this.productPrice.productId = product.productId;
+    this.productPriceService.createProductPrice(this.productPrice)
+      .then((res) => console.log(res));
   }
 
   private loadCategories() {

@@ -4,15 +4,17 @@ import {Product} from "../../../model/product";
 import {ProductUtils} from "../../../util/product-utils";
 import {ProductCategory} from "../../../model/product-category";
 import {ProductCategoryService} from "../../../service/product-category-service";
+import {ProductPriceService} from "../../../service/product-price-service";
 
-@inject(ProductsService, ProductCategoryService)
+@inject(ProductsService, ProductCategoryService, ProductPriceService)
 export class Detail {
   product?: Product = null;
   categories: ProductCategory[] = [];
   isEditingMode: boolean = false;
 
   constructor(private productService: ProductsService,
-              private productCategoryService: ProductCategoryService) {
+              private productCategoryService: ProductCategoryService,
+              private productPriceService: ProductPriceService) {
   }
 
   activate(params) {
@@ -22,7 +24,8 @@ export class Detail {
 
   updateData() {
     this.productService.updateProduct(this.product)
-      .then((product) => console.log(product));
+      .then((product) => console.log(product))
+      .then(() => this.loadProduct(this.product.productId)); // Back doesn't have functionality
     this.isEditingMode = false
   }
 

@@ -5,14 +5,13 @@ export class ProductPrice extends Model {
   termUomId?: any;
   priceWithTax?: number;
   createdStamp: Date;
-  // _ENTITY_NAME_: string;
-  productStoreGroupId: string;
+  productStoreGroupId: string = "_NA_";
   taxAuthPartyId: string;
   lastModifiedByUserLogin: string;
   customPriceCalcService?: Date;
   price: number;
   taxAuthGeoId: string;
-  productPricePurposeId: string;
+  productPricePurposeId: string = "COMPONENT_PRICE";
   createdByUserLogin: string;
   lastUpdatedStamp: Date;
   productId: string;
@@ -22,9 +21,9 @@ export class ProductPrice extends Model {
   lastUpdatedTxStamp: Date;
   thruDate?: Date;
   fromDate: Date;
-  currencyUomId: string;
+  currencyUomId: string = "USD";
   createdDate: Date;
   priceWithoutTax?: number;
   taxAmount?: number;
-  productPriceTypeId: string;
+  productPriceTypeId: string = "DEFAULT_PRICE";
 }
