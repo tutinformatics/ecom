@@ -1,20 +1,19 @@
 import {Service} from "./service";
 import {OrderContact} from "../model/order-contact";
 import {Model} from "../model/model";
-import {Party} from "../model/party";
 
-export class OrderContactService extends Service<Party> {
-  getAll(): Promise<Party[]> {
-    return this.get<Party[]>("/entities/OrderAndContactMech",
-      (data) => Model.arrayFromJson(data as Object[], Party),
+export class OrderContactService extends Service<OrderContact> {
+  getAll(): Promise<OrderContact[]> {
+    return this.get<OrderContact[]>("/entities/OrderAndContactMech",
+      (data) => Model.arrayFromJson(data as Object[], OrderContact),
       {_depth: 1}
     );
   }
 
-  // createOrderContact(party: Party): Promise<Party> {
+  // createOrderContact(orderContact: OrderContact): Promise<OrderContact> {
   //   return this.post("/services/createOrderAndContactMech",
-  //     party,
-  //     (data) => Model.fromJson(data as Object[], Party)
+  //     orderContact,
+  //     (data) => Model.fromJson(data as Object[], OrderContact)
   //   );
   // }
 }
