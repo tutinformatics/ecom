@@ -7,10 +7,20 @@ import {ProductCategory} from "../../../model/product-category";
 export class List {
 
   categories: ProductCategory[] = [];
+  sortAsc = true;
 
   constructor(private router: Router,
               private productCategoryService: ProductCategoryService) {
     this.loadCategories();
+  }
+
+  public sortBy(prop) {
+    this.sortAsc = !this.sortAsc;
+    this.categories = this.categories.sort((a, b) => {
+      if (a[prop] > b[prop]) return this.sortAsc ? 1 : -1;
+      if (a[prop] < b[prop]) return this.sortAsc ? -1 : 1;
+      return 0;
+    });
   }
 
   goToProducts() {

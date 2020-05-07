@@ -1,3 +1,85 @@
 <template>
-  <h1>${message}</h1>
+  <require from="./new.css"></require>
+
+  <div if.bind="category" class="row justify-content-center">
+    <!-- BACK BUTTON -->
+    <div class="col-8 row head justify-content-between">
+      <div class="col-10 m-0 p-0 pb-4">
+        <a href="/products">
+          <img src="/back-arrow.png">
+          <span>Back</span>
+        </a>
+      </div>
+      <div class="col-2">
+        <div click.delegate="createCategory()" class="col-2"><button class=" btn btn-dark float-right" >CREATE</button></div>
+
+      </div>
+    </div>
+
+    <div class="col-8">
+
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="col-11 row border main-body mb-5" style="min-width: 500px">
+            <div class="col-12 row tab">
+              <div class="col-10"><h3 class="bold">General Informations</h3></div>
+            </div>
+            <div class="col-12 row tab">
+
+              <div class="col-12 row">
+                <div class="col pt-4 pb-2 "><h5 class="bold">Name</h5></div>
+
+                <div class="col-12 mt-1">
+                  <input type="text" value.bind="category.categoryName" class="form-control" >
+
+                </div>
+              </div>
+            </div>
+            <div class="col-12 row tab">
+
+              <div class="col-6 row">
+                <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Parent category</h5></div>
+
+                <div class="col-12">
+                  <select class="form-control" value.bind="category.primaryParentCategoryId">
+                    <option model.bind="null">Choose...</option>
+                    <option repeat.for="category of categories" model.bind="category.productCategoryId">
+                      ${category.categoryName}
+                    </option>
+                  </select>
+
+                </div>
+              </div>
+              <div class="col-6 row">
+                <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Type</h5></div>
+
+                <div class="col-12">
+                  <select class="form-control" value.bind="category.productCategoryTypeId">
+                    <option model.bind="null">Choose...</option>
+                    <option repeat.for="type of types" model.bind="type.productCategoryTypeId">
+                      ${type.productCategoryTypeId}
+                    </option>
+                  </select>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-12 row tab">
+
+              <div class="col-12 row">
+                <div class="col-12 pt-4 pb-2 "><h5 class="bold">Description</h5></div>
+
+                <div class="col-12">
+                  <textarea value.bind="category.longDescription" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </template>
