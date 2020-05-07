@@ -1,40 +1,46 @@
 
-div .cards-container {
-  background: #cbcbcb;
+
+.top {
+  box-sizing: inherit;
+  display: block;
 }
 
-smart-card {
-  width: 95%;
-  margin: 8px;
+.border {
+  border-radius: 5px !important;
+  border-color: #EAEAEA !important;
 }
 
-table-head {
-  margin: 8px;
+.main-body {
+  background-color: white;
 }
 
-smart-card.basic-card .card-content,
-smart-card.basic-card .card-action {
-  box-sizing: border-box;
-  padding: 10px;
-  color: #1d1d1d;
-  background-color: #f6f6f6;
-  border-bottom: 1px solid rgba(160,160,160,0.2);
-  border-radius: 2px 2px 2px 2px;
+.tab {
+  display: flex;
+  overflow: hidden;
+  min-height: 48px;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px;
+  border-bottom: 1px solid #EAEAEA;
 }
 
-smart-card.basic-card .card-title {
-  font-size: 18px;
+.table-head {
+  padding-left: 24px;
+  border-bottom: 1px solid #EAEAEA;
+  display: flex;
+  overflow: hidden;
+  min-height: 48px;
+  box-sizing: inherit;
+  color: #3D3D3D;
+  font-weight: 400;
+  font-size: 30px;
 }
 
-smart-card.basic-card a {
-  color: #3e3e3e;
-  transition: color .3s ease;
-  text-transform: uppercase;
-  border-bottom: none;
-  text-decoration: none;
+
+table thead tr td :hover {
+  cursor: pointer !important;
+}
+tbody tr :hover {
+  cursor: pointer;
 }
 
-smart-card.basic-card a:hover {
-  color: #37bf08;
-}
 

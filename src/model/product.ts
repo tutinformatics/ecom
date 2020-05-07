@@ -9,7 +9,6 @@ export class Product extends Model {
   originGeoId?: any;
   detailScreen?: any;
   createdStamp: Date;
-  // _ENTITY_NAME_: string;
   requireInventory: string;
   quantityUomId: string;
   mediumImageUrl?: any;
@@ -25,7 +24,6 @@ export class Product extends Model {
   configId?: any;
   billOfMaterialLevel?: number;
   lotIdFilledIn?: any;
-  _DELEGATOR_NAME_: string;
   productRating?: any;
   createdByUserLogin: string;
   brandName?: string;

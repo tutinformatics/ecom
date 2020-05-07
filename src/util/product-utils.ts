@@ -7,9 +7,9 @@ export class ProductUtils {
       price = product._toMany_ProductPrice[0].priceWithoutTax;
     }
     if (price === null) {
-      price = 0;
+      price = product._toMany_ProductPrice[0].price;
     }
-    return "Price without tax: " + price + "$"
+    return (price ? price : 0) + " $"
   }
 
   static getPriceWithTaxString(product: Product): string {
@@ -18,9 +18,9 @@ export class ProductUtils {
       price = product._toMany_ProductPrice[0].priceWithTax;
     }
     if (price === null) {
-      price = 0;
+      price = Math.round(product._toMany_ProductPrice[0].price * 1.2 * 100) / 100;
     }
-    return "Price with tax: " + price + "$"
+    return (price ? price : 0) + " $"
   }
 
   static getCategoryInfo(product: Product): string {

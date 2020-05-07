@@ -1,6 +1,202 @@
 <template>
+  <require from="./detail.css"></require>
+
+  <div if.bind="product" class="row justify-content-center">
+    <!-- BACK BUTTON -->
+    <div class="col-10 row head justify-content-between back">
+      <div class="col-12 m-0 p-0 pb-4">
+        <a href="/products">
+          <img src="/back-arrow.png">
+          <span>Products</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PRODUCT -->
+    <div class="col-10 row head justify-content-between">
+      <div class="col-10 m-0 p-0 pb-3">
+        <h3>${ product.productName}</h3>
+      </div>
+      <div class="col-1">
+        <div if.bind="!isEditingMode" click.delegate="isEditingMode = true" class="col-2"><button class=" btn btn-dark float-right">EDIT</button></div>
+        <div if.bind="isEditingMode" click.delegate="updateData()" class="col-2"><button class=" btn btn-success float-right">SAVE</button></div>
+      </div>
+
+    </div>
+
+    <div class="col-10">
+
+      <div class="row justify-content-center">
+        <div class="col-7">
+          <div class="col-11 row border main-body mb-5" style="min-width: 500px">
+            <div class="col-12 row tab">
+              <div class="col-10"><h3 class="bold">General Informations</h3></div>
+            </div>
+            <div class="col-12 row tab">
+
+              <div class="col-6 row">
+                <div class="col pt-4 pb-2 "><h5 class="bold">Name</h5></div>
+
+                <div class="col-12 mt-1">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.productName" class="form-control" placeholder="First Name">
+                  <span if.bind="!isEditingMode" class="">${product.productName}</span>
+                </div>
+              </div>
+
+
+              <div class="col-6 row">
+                <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Category</h5></div>
+
+                <div class="col-12">
+                  <select if.bind="isEditingMode" type="text" value.bind="product.primaryProductCategoryId" class="form-control" placeholder="First Name">
+                      <option model.bind="null">Choose...</option>
+                      <option repeat.for="category of categories" model.bind="category.productCategoryId">
+                        ${category.categoryName}
+                      </option>
+                  </select>
+                  <span if.bind="!isEditingMode" class="">${product._toOne_PrimaryProductCategory.categoryName}</span>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-12 row tab">
+
+              <div class="col-12 row">
+                <div class="col-12 pt-4 pb-2 "><h5 class="bold">Description</h5></div>
+
+                <div class="col-12">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.description" class="form-control" placeholder="Last Name" >
+                  <span if.bind="!isEditingMode" class="">${product.description}</span>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-12 row tab">
+
+              <div class="col-6 row">
+                <div class="col-12 pt-4 pb-2 "><h5 class="bold">Price without tax</h5></div>
+
+                <div class="col-12">
+                  <input if.bind="isEditingMode" type="text" value.bind="productPrice.price" class="form-control" placeholder="Last Name" >
+                  <span if.bind="!isEditingMode" class="">${getPriceWithoutTaxString(product)}</span>
+
+                </div>
+              </div>
+
+              <div class="col-6 row">
+                <div class="col-12 pt-4 pb-2 "><h5 class="bold">Price with tax</h5></div>
+
+                <div class="col-12">
+                  <!--<input if.bind="isEditingMode" type="text" value.bind="product._toMany_ProductPrice[0].priceWithTax ? product._toMany_ProductPrice[0].priceWithTax : 0" class="form-control" placeholder="Last Name" >-->
+                  <span if.bind="!isEditingMode" class="">${getPriceWithTaxString(product)}</span>
+
+                </div>
+              </div>
+
+
+
+            </div>
+
+          </div>
+
+          <div class="col-11 row border main-body mb-5">
+            <div class="col-12 tab">
+              <div class=""><h3 class="bold">Shipping Informations</h3></div>
+            </div>
+            <div class="col-12 row tab">
+              <div class="col-6 row">
+                <div class="col-12 p-3 bold"><h5 class="bold">Width (m)</h5></div>
+
+                <div class="col-12">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingWidth" class="form-control" placeholder="First Name">
+                  <span if.bind="!isEditingMode" class="">${product.shippingWidth ? product.shippingWidth : 0}</span>
+                </div>
+              </div>
+
+              <div class="col-6 row">
+                <div class="col-12 p-3 bold"><h5 class="bold">Height (m)</h5></div>
+
+                <div class="col-12">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingHeight" class="form-control" placeholder="First Name">
+                  <span if.bind="!isEditingMode" class="">${product.shippingHeight ? product.shippingHeight : 0}</span>
+                </div>
+              </div>
+
+              <div class="col-6 row">
+                <div class="col-12 p-3 bold"><h5 class="bold">Weight (kg)</h5></div>
+
+                <div class="col-12">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingWeight" class="form-control" placeholder="First Name">
+                  <span if.bind="!isEditingMode" class="">${product.shippingWeight ? product.shippingWeight : 0}</span>
+                </div>
+              </div>
+
+              <div class="col-6 row">
+                <div class="col-12 p-3 bold"><h5 class="bold">Depth (m)</h5></div>
+
+                <div class="col-12">
+                  <input if.bind="isEditingMode" type="text" value.bind="product.shippingDepth" class="form-control" placeholder="First Name">
+                  <span if.bind="!isEditingMode" class="">${product.shippingDepth ? product.shippingDepth : 0}</span>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-5">
+          <div class="col-11 row border main-body mb-5">
+            <div class="col-12 tab">
+              <div><h3>Organize Product</h3></div>
+            </div>
+
+            <div class="col-12 row tab">
+
+              <div class="col-12 row">
+                <div class="col pt-4 pb-2 "><h5 class="bold">Product type</h5></div>
+
+                <div class="col-12 mt-1">
+                  <select if.bind="isEditingMode" class="form-control" value.bind="product.productTypeId">
+                    <option repeat.for="type of types" model.bind="type.productTypeId">
+                      ${type.productTypeId}
+                    </option>
+                  </select>
+                  <span if.bind="!isEditingMode" class="">${product.productTypeId}</span>
+                </div>
+              </div>
+
+
+              <div class="col-12 row">
+                <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Category</h5></div>
+
+                <div class="col-12">
+                  <select if.bind="isEditingMode" type="text" value.bind="product.primaryProductCategoryId" class="form-control" placeholder="First Name">
+                    <option model.bind="null">Choose...</option>
+                    <option repeat.for="category of categories" model.bind="category.productCategoryId">
+                      ${category.categoryName}
+                    </option>
+                  </select>
+                  <span if.bind="!isEditingMode" class="">${product._toOne_PrimaryProductCategory.categoryName}</span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+  <!--
   <div if.bind="product" class="is-size-5-desktop has-margin-50 has-padding-10">
-    <require from="./detail.css"></require>
+
     <div class="has-text-right">
       <a class="button has-background-primary has-text-white has-margin-10 has-padding-10" href="/products">Back</a>
     </div>
@@ -31,4 +227,5 @@
       <p>Depth: ${product.shippingDepth ? product.shippingDepth : 0}m</p>
     </div>
   </div>
+  -->
 </template>
