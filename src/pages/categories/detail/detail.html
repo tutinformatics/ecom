@@ -4,23 +4,18 @@
   <div if.bind="category" class="row justify-content-center">
     <!-- BACK BUTTON -->
     <div class="col-8 row head justify-content-between back">
-      <div class="col-10 m-0 p-0 pb-4">
-        <a href="/category">
-          <img src="/back-arrow.png">
-          <span>Back</span>
-        </a>
-      </div>
 
-      <div class="col-10 row head justify-content-between">
-        <div class="col-10 m-0 p-0 pb-3">
-          <h3>${ product.productName}</h3>
+
+        <div class="col-10 m-0 p-0 pb-4">
+          <a href="/categories">
+            <img src="/back-arrow.png">
+            <span>Back</span>
+          </a>
         </div>
-        <div class="col-1">
+        <div class="col-2">
           <div if.bind="!isEditingMode" click.delegate="isEditingMode = true" class="col-2"><button class=" btn btn-dark float-right">EDIT</button></div>
           <div if.bind="isEditingMode" click.delegate="updateData()" class="col-2"><button class=" btn btn-success float-right">SAVE</button></div>
         </div>
-      </div>
-
     </div>
 
     <div class="col-8">
