@@ -158,8 +158,12 @@
                 <div class="col pt-4 pb-2 "><h5 class="bold">Product type</h5></div>
 
                 <div class="col-12 mt-1">
-                  <input if.bind="isEditingMode" type="text" value.bind="product.productName" class="form-control" placeholder="First Name">
-                  <span if.bind="!isEditingMode" class="">${product.productName}</span>
+                  <select if.bind="isEditingMode" class="form-control" value.bind="product.productTypeId">
+                    <option repeat.for="type of types" model.bind="type.productTypeId">
+                      ${type.productTypeId}
+                    </option>
+                  </select>
+                  <span if.bind="!isEditingMode" class="">${product.productTypeId}</span>
                 </div>
               </div>
 
@@ -168,8 +172,13 @@
                 <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Category</h5></div>
 
                 <div class="col-12">
-                  <input if.bind="isEditingMode" type="text" value.bind="product.productName" class="form-control" placeholder="First Name">
-                  <span if.bind="!isEditingMode" class="">${product.productName}</span>
+                  <select if.bind="isEditingMode" type="text" value.bind="product.primaryProductCategoryId" class="form-control" placeholder="First Name">
+                    <option model.bind="null">Choose...</option>
+                    <option repeat.for="category of categories" model.bind="category.productCategoryId">
+                      ${category.categoryName}
+                    </option>
+                  </select>
+                  <span if.bind="!isEditingMode" class="">${product._toOne_PrimaryProductCategory.categoryName}</span>
 
                 </div>
               </div>
