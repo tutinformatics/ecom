@@ -6,6 +6,7 @@ import {ProductUtils} from "../../../util/product-utils";
 @inject(ProductsService)
 export class Detail {
   product?: Product = null;
+  isEditingMode: boolean = false
 
   constructor(private productService: ProductsService) {
   }
@@ -13,6 +14,10 @@ export class Detail {
   activate(params) {
     this.loadProduct(params.id);
 
+  }
+
+  updateData() {
+    this.isEditingMode = false
   }
 
   private loadProduct(id: string) {

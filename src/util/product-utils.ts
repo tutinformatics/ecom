@@ -9,7 +9,7 @@ export class ProductUtils {
     if (price === null) {
       price = 0;
     }
-    return "Price without tax: " + price + "$"
+    return price + " $"
   }
 
   static getPriceWithTaxString(product: Product): string {
@@ -20,7 +20,7 @@ export class ProductUtils {
     if (price === null) {
       price = 0;
     }
-    return "Price with tax: " + price + "$"
+    return price + " $"
   }
 
   static getCategoryInfo(product: Product): string {
