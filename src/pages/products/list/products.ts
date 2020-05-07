@@ -54,4 +54,8 @@ export class Products {
     const productId = event.path[1].id
     this.router.navigateToRoute('detail', {id: productId})
   }
+
+  goToCategories() {
+    this.router.navigateToRoute('categories')
+  }
 }
