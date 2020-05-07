@@ -30,11 +30,18 @@ export class Detail {
   }
 
   updateData() {
+    if (this.productPrice.productId !== undefined) {
+      this.productPriceService.updateProductPrice(this.productPrice)
+        .then((price) => console.log(price))
+        .then(() => this.loadProduct(this.product.productId)); // Back doesn't have functionality
+    } else {
+      this.productPrice.productId = this.product.productId;
+      this.productPriceService.createProductPrice(this.productPrice)
+        .then((price) => console.log(price));
+    }
+
     this.productService.updateProduct(this.product)
       .then((product) => console.log(product))
-      .then(() => this.loadProduct(this.product.productId)); // Back doesn't have functionality
-    this.productPriceService.updateProductPrice(this.productPrice)
-      .then((price) => console.log(price))
       .then(() => this.loadProduct(this.product.productId)); // Back doesn't have functionality
     this.isEditingMode = false
   }
@@ -48,9 +55,11 @@ export class Detail {
     this.productService.getSingle(id)
       .then((product) => this.product = product[0])
       .then(() => {
-        this.productPrice.price = this.product._toMany_ProductPrice[0].price;
-        this.productPrice.productId = this.product._toMany_ProductPrice[0].productId;
-        this.productPrice.fromDate = this.product._toMany_ProductPrice[0].fromDate;
+        if (this.product._toMany_ProductPrice !== undefined && this.product._toMany_ProductPrice[0] !== undefined) {
+          this.productPrice.price = this.product._toMany_ProductPrice[0].price;
+          this.productPrice.productId = this.product._toMany_ProductPrice[0].productId;
+          this.productPrice.fromDate = this.product._toMany_ProductPrice[0].fromDate;
+        }
       })
       .then(() => console.log(this.product));
   }

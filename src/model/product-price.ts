@@ -9,7 +9,7 @@ export class ProductPrice extends Model {
   taxAuthPartyId: string;
   lastModifiedByUserLogin: string;
   customPriceCalcService?: Date;
-  price: number;
+  price: number = 0;
   taxAuthGeoId: string;
   productPricePurposeId: string = "COMPONENT_PRICE";
   createdByUserLogin: string;
