@@ -22,21 +22,17 @@
         <table class="table table-striped">
           <thead>
           <tr class="bold">
-            <td width="15%" class="table-header" click.delegate="sortBy('productName')"><span>Name</span></td>
-            <td width="25%" class="table-header" click.delegate="sortBy('description')"><span>Description</span></td>
-            <td width="15%" class="table-header" click.delegate="sortByRelated(getCategoryInfo)"><span class="cursor-pointer">Category</span></td>
-            <td width="15%" class="table-header" click.delegate="sortByRelated(getPriceWithoutTaxString)"><span class="cursor-pointer">Price without tax</span></td>
-            <td width="15%" class="table-header" click.delegate="sortByRelated(getPriceWithTaxString)"><span class="cursor-pointer">Price with tax</span></td>
+            <td width="15%" class="table-header" click.delegate="sortBy('categoryName')"><span>Name</span></td>
+            <td width="25%" class="table-header" click.delegate="sortBy('productCategoryTypeId')"><span>Type</span></td>
+            <td width="15%" class="table-header" click.delegate="sortBy('primaryParentCategoryId')"><span class="cursor-pointer">Parent category</span></td>
           </tr>
           </thead>
 
           <tbody>
-          <tr  repeat.for="product of products" id="${ product.productId }" click.delegate='onClickCustomer($event)'>
-            <td>${ product.productName }</td>
-            <td>${ product.description }</td>
-            <td>${ getCategoryInfo(product) }</td>
-            <td>${ getPriceWithoutTaxString(product) }</td>
-            <td>${ getPriceWithTaxString(product) }</td>
+          <tr  repeat.for="category of categories" id="${ category.productCategoryId }" click.delegate='onClickCategory(category)'>
+            <td>${ category.categoryName }</td>
+            <td>${ category.productCategoryTypeId }</td>
+            <td>${ category.primaryParentCategoryId }</td>
           </tr>
           </tbody>
 

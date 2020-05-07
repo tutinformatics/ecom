@@ -1,8 +1,10 @@
 import { PLATFORM } from 'aurelia-pal';
 import {Router} from "aurelia-router";
+import {ProductCategory} from "../../model/product-category";
 
 export class Categories {
   router: Router;
+  category = new ProductCategory();
 
   configureRouter(config, router) {
     config.title = 'Categories';
