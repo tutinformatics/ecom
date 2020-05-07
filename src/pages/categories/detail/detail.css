@@ -3,8 +3,6 @@
   display: block;
 }
 
-
-
 .border {
   border-radius: 5px !important;
   border-color: #EAEAEA !important;
@@ -35,7 +33,7 @@
   font-size: 30px;
 }
 
-.row a {
+.back .row a {
   text-align: center;
   font-size: 25px;
   color:black;
@@ -44,7 +42,7 @@
   transition: .3s all ease;
 }
 
-.row a:hover {
+.back .row a:hover {
   color: grey;
 }
 
