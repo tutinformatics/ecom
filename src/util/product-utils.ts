@@ -18,7 +18,7 @@ export class ProductUtils {
       price = product._toMany_ProductPrice[0].priceWithTax;
     }
     if (price === null) {
-      price = product._toMany_ProductPrice[0].price;
+      price = Math.round(product._toMany_ProductPrice[0].price * 1.2 * 100) / 100;
     }
     return (price ? price : 0) + " $"
   }
