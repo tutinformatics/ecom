@@ -33,7 +33,7 @@
           </thead>
 
           <tbody>
-          <tr  repeat.for="product of products" id="${ product.productId }" click.delegate='onClickCustomer($event)'>
+          <tr  repeat.for="product of products" id="${ product.productId }" click.delegate="onClickProduct(product)">
             <td>${ product.productName }</td>
             <td>${ product.description }</td>
             <td>${ getCategoryInfo(product) }</td>

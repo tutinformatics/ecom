@@ -50,9 +50,8 @@ export class Products {
     return ProductUtils.getPriceWithTaxString(product);
   }
 
-  onClickCustomer(event) {
-    const productId = event.path[1].id
-    this.router.navigateToRoute('detail', {id: productId})
+  onClickProduct(product: Product) {
+    this.router.navigateToRoute('detail', {id: product.productId})
   }
 
   goToCategories() {
