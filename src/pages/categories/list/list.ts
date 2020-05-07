@@ -2,7 +2,6 @@ import {Router} from 'aurelia-router';
 import {inject} from 'aurelia-framework'
 import {ProductCategoryService} from "../../../service/product-category-service";
 import {ProductCategory} from "../../../model/product-category";
-import {Product} from "../../../model/product";
 
 @inject (Router, ProductCategoryService)
 export class List {

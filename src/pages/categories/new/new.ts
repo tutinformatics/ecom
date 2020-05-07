@@ -1,7 +1,16 @@
-export class New {
-  message: string;
+import {inject} from 'aurelia-framework'
+import {ProductCategoryService} from "../../../service/product-category-service";
+import {ProductCategory} from "../../../model/product-category";
 
-  constructor() {
-    this.message = 'Hello world';
+@inject(ProductCategoryService)
+export class New {
+  category = new ProductCategory();
+
+  constructor(private productCategoryService: ProductCategoryService) {
+  }
+
+  createCategory() {
+    this.productCategoryService.createProductCategory(this.category)
+      .then(() => this.category = new ProductCategory());
   }
 }

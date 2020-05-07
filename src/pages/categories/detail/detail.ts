@@ -1,7 +1,19 @@
-export class Detail {
-  message: string;
+import {inject} from 'aurelia-framework'
+import {ProductCategoryService} from "../../../service/product-category-service";
+import {ProductCategory} from "../../../model/product-category";
 
-  constructor() {
-    this.message = 'Hello world';
+@inject(ProductCategoryService)
+export class Detail {
+
+  category: ProductCategory;
+
+  constructor(private productCategoryService: ProductCategoryService) {
+
   }
+
+  activate(params) {
+    this.productCategoryService.getSingle(params.id)
+      .then((category) => this.category = category[0]);
+  }
+
 }
