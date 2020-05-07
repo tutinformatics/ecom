@@ -33,7 +33,7 @@
   font-size: 30px;
 }
 
-.row a {
+.back a {
   text-align: center;
   font-size: 25px;
   color:black;
@@ -42,7 +42,7 @@
   transition: .3s all ease;
 }
 
-.row a:hover {
+.back a:hover {
   color: grey;
 }
 
