@@ -40,12 +40,12 @@
             <td>112$</td>
           </tr>
           <tr repeat.for="orderReportView of orderReportViews" id="${ orderReportView.orderId }" click.delegate="detailView(orderReportView)">
-            <td>{{ orderReportView.orderId }}</td>
-            <td>{{ orderReportView.orderDate }}</td>
+            <td>${ orderReportView.orderId }</td>
+            <td>${ orderReportView.orderDate }</td>
             <td>-</td>
-            <td>{{ orderReportView.itemStatus }}</td>
-            <td>{{ orderReportView.orderStatus }}</td>
-            <td>{{ orderReportView.grandTotal }}</td>
+            <td>${ orderReportView.itemStatus }</td>
+            <td>${ orderReportView.orderStatus }</td>
+            <td>${ orderReportView.grandTotal }</td>
           </tr>
           </tbody>
         </table>
