@@ -22,7 +22,13 @@ export class ProductsService extends Service<Product> {
   createProduct(product: Product): Promise<Product> {
     return this.post("/services/createProduct",
       product,
-      (data) => Model.fromJson(data as Object[], Product)
+      (data) => Model.fromJson(data as Object, Product)
     );
+  }
+
+  updateProduct(product: Product): Promise<Product> {
+    return this.post("/services/updateProduct",
+      product,
+      (data) => Model.fromJson(data as Object, Product))
   }
 }

@@ -65,4 +65,16 @@ export class Service<T extends Model> {
       .then(response => response.json())
       .then((json) => converter(json));
   }
+
+  put(url: string, data: T, converter: (json: Object) => T): Promise<T> {
+    console.log("PUT data:", json(data));
+    data['login.username'] = "admin";
+    data['login.password'] = "ofbiz";
+    return this.http.fetch(url, {
+      method: 'put',
+      body: json(data.getPreparedJson()) // <- needed to remove related entities
+    })
+      .then(response => response.json())
+      .then((json) => converter(json));
+  }
 }

@@ -18,6 +18,8 @@ export class app {
       {route:[ "dashboard", "dashboard"], name: 'dashboard', moduleId: PLATFORM.moduleName('pages/dashboard/dashboard'), nav: false, title:'Dashboard'},
       {route:[ "products", "products"], name: 'products', moduleId: PLATFORM.moduleName('pages/products/products'), nav: false, title:'Products'},
       {route:[ "orders", "orders"], name: 'orders', moduleId: PLATFORM.moduleName('pages/orders/orders'), nav: false, title:'Orders'},
+      {route:[ "customers"], name: 'customers', moduleId: PLATFORM.moduleName('pages/customers/customers'), nav: false, title:'Customers'},
+      {route:[ "categories"], name: 'categories', moduleId: PLATFORM.moduleName('pages/categories/categories'), nav: false, title:'Categories'},
     ]);
 
     this.router = router;
