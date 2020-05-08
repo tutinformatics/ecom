@@ -12,25 +12,29 @@ export class Orders{
 
   constructor(private router: Router, private orderReportViewService: OrderReportViewService) {
     this.loadOrderReportView()
-    this.covertTime()
   }
 
-  covertTime(){
-    var i;
-    for (i in this.orderReportViews) {
-      console.log(i.orderDate)
-      i.orderDate = TimeUtils.parse(i.orderDate)
-    }
-  }
+
 
   loadOrderReportView() {
     this.orderReportViewService.getAll()
       .then((orderReportViews) => this.orderReportViews = orderReportViews)
-      .then(() => console.log(this.orderReportViews));
+      .then(() => this.covertTime());
   }
 
   detailView(orderReportView: OrderReportView){
     //this.router.navigateToRoute('detail', {id:0})
     this.router.navigateToRoute('detail', {id: orderReportView.orderId})
+  }
+
+  covertTime(){
+    var i;
+    console.log(this.orderReportViews)
+    for (i in this.orderReportViews) {
+      console.log(this.orderReportViews[i].orderDate)
+      //console.log(i.orderDate)
+      //i.orderDate = TimeUtils.parse(i.orderDate)
+      //console.log("HEREE!!!!!!!!!!!!!!!!!")
+    }
   }
 }
