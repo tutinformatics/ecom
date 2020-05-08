@@ -10,9 +10,9 @@ export class OrderContactService extends Service<OrderContact> {
     );
   }
 
-  // createOrderContact(orderContact: OrderContact): Promise<OrderContact> {
+  // createOrderContact(orderContacts: OrderContact): Promise<OrderContact> {
   //   return this.post("/services/createOrderAndContactMech",
-  //     orderContact,
+  //     orderContacts,
   //     (data) => Model.fromJson(data as Object[], OrderContact)
   //   );
   // }

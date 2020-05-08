@@ -1,13 +1,25 @@
 import {Router} from 'aurelia-router';
 import {inject} from 'aurelia-framework'
+import {OrderReportViewService} from '../../../service/order-report-view-service'
+import {OrderReportView} from '../../../model/order-report-view'
 
-@inject (Router)
+@inject (Router, OrderReportViewService)
 export class Orders{
 
-  constructor(private router: Router) {
+  orderReportViews: OrderReportView [] = []
+
+  constructor(private router: Router, private orderReportViewService: OrderReportViewService) {
+    this.loadProductAndPartyOrders()
   }
 
-  detailView(event){
-    this.router.navigateToRoute('detail', {id: 0})
+  loadProductAndPartyOrders() {
+    this.orderReportViewService.getAll()
+      .then((orderReportViews) => this.orderReportViews = orderReportViews)
+      .then(() => console.log(this.orderReportViews));
+  }
+
+  detailView(orderReportView: OrderReportView){
+
+    this.router.navigateToRoute('detail', {id: orderReportView.orderId})
   }
 }

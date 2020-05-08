@@ -1,22 +1,17 @@
 import {Model} from "./model";
 
 export class OrderProductAndParty extends Model{
-  unitPrice: number;
-  quantity: number;
-  productId: string;
+  contactThruDate?: any;
+  extension?: any;
+  comments?: any;
   orderId: string;
-  grandTotal: number;
   _ENTITY_NAME_: string;
-  orderTypeId: string;
-  orderStatus: string;
-  originFacilityId?: any;
-  groupName: string;
-  visitId: string;
-  currencyUom: string;
-  itemStatus: string;
-  paymentMethod: string;
-  itemDescription: string;
+  contactMechTypeId: string;
+  contactMechId: string;
+  allowSolicitation: string;
+  infoString?: any;
+  contactMechPurposeTypeId: string;
+  contactFromDate: number;
   _DELEGATOR_NAME_: string;
-  orderDate: number;
-  webSiteId: string;
+  partyId: string;
 }
