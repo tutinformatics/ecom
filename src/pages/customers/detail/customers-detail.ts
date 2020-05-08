@@ -8,6 +8,7 @@ import {PostalAddressService} from "../../../service/postal-address-service";
 export class CustomersDetail {
 
   party?: Party = null;
+  isEditingMode: boolean = false
 
   constructor(private partyService: PartyService,
               private contactMechService: ContactMechService,
@@ -33,5 +34,9 @@ export class CustomersDetail {
         this.party = party[0];
       })
       .then(() => console.log(this.party));
+  }
+
+  updateData() {
+    this.isEditingMode = false
   }
 }

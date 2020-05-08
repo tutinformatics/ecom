@@ -14,8 +14,13 @@
 
     <!-- KLIENDI NIMI -->
     <div class="col-10 row head justify-content-between">
-      <div class="col-2 m-0 p-0 pb-3">
+      <div class="col-10 m-0 p-0 pb-3">
         <h3>Kliendi nimi</h3>
+      </div>
+
+      <div class="col-1">
+        <div if.bind="!isEditingMode" click.delegate="isEditingMode = true" class="col-2"><button class=" btn btn-dark float-right">EDIT</button></div>
+        <div if.bind="isEditingMode" click.delegate="updateData()" class="col-2"><button class=" btn btn-success float-right">SAVE</button></div>
       </div>
 
     </div>
@@ -29,21 +34,24 @@
               <div class=""><h3>Personal Informations</h3></div>
             </div>
             <div class="col-12 row tab">
-              <div class="col-12 pb-3"><h5>General Informations</h5></div>
-              <br>
 
                 <div class="col-6">
-                  <input type="text" value.bind="party._toOne_Person.firstName" class="form-control" placeholder="First Name">
+                  <label class="bold">First name:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.firstName" class="form-control" >
+                  <span if.bind="!isEditingMode">${ party._toOne_Person.firstName }</span>
                 </div>
                 <div class="col-6">
-                  <input type="text" value.bind="party._toOne_Person.lastName" class="form-control" placeholder="Last Name" >
+                  <label class="bold">Email:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.lastName" class="form-control" >
+                  <span if.bind="!isEditingMode">${ party._toOne_Person.lastName }</span>
                 </div>
 
             </div>
             <div class="col-12 row tab">
-              <div class="col-12 pb-3"><h5>Contact Informations</h5></div>
               <div class="col-12">
-                <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_ContactMech.infoString" class="form-control" placeholder="Email">
+                <label class="bold">Last name:</label><br>
+                <input if.bind="isEditingMode" type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_ContactMech.infoString" class="form-control" >
+                <span if.bind="!isEditingMode">${ party._toMany_PartyContactMech[0]._toOne_ContactMech.infoString }</span>
               </div>
 
             </div>
@@ -88,21 +96,30 @@
 
             <div class="col-12 tab m-0 p-0">
               <div class="col-12 row justify-content-center tab">
-                <div class="col-10 pb-3"><h4>Address </h4></div>
                 <div class="col-10 pb-3">
-                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.address1" class="form-control" placeholder="Address">
+                  <label class="bold">Address:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.address1" class="form-control" >
+                  <span if.bind="!isEditingMode">${ party._toMany_PartyContactMech[0]._toOne_PostalAddress.address1 }</span>
                 </div>
                 <div class="col-10 pb-3">
-                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.address2" class="form-control" placeholder="Apartment(Optional)">
+                  <label class="bold">Apartment(optional):</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.address2" class="form-control" >
+                  <span if.bind="!isEditingMode">${ party._toMany_PartyContactMech[0]._toOne_PostalAddress.address2 }</span>
                 </div>
                 <div class="col-10 pb-3">
-                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.city" class="form-control" placeholder="City">
+                  <label class="bold">City:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.city" class="form-control" >
+                  <span if.bind="!isEditingMode">${ party._toMany_PartyContactMech[0]._toOne_PostalAddress.city }</span>
                 </div>
                 <div class="col-5 pb-3">
-                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.countryGeoId" class="form-control" placeholder="Country">
+                  <label class="bold">County:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.countryGeoId" class="form-control" >
+                  <span if.bind="!isEditingMode">${ party._toMany_PartyContactMech[0]._toOne_PostalAddress.countryGeoId }</span>
                 </div>
                 <div class="col-5 pb-3">
-                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.postalCode" class="form-control" placeholder="Postal code">
+                  <label class="bold">Postal code:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.postalCode" class="form-control" >
+                  <span if.bind="!isEditingMode">${ party._toMany_PartyContactMech[0]._toOne_PostalAddress.postalCode }</span>
                 </div>
               </div>
             </div>
