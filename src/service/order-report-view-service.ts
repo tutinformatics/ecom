@@ -10,6 +10,13 @@ export class OrderReportViewService extends Service<OrderReportView> {
     );
   }
 
+  getSingle(id: string): Promise<OrderReportView[]> {
+    return this.get<OrderReportView[]>("/entities/Product",
+      (data) => Model.arrayFromJson(data as Object[], OrderReportView),
+      {productId: id, _depth: 1}
+    );
+  }
+
   // createOrderReportViewService(orderReportView: OrderReportView): Promise<OrderReportView> {
   //   return this.post("/services/createOrderAndOrderReportViewContactMech",
   //     orderReportView,

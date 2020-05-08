@@ -28,3 +28,16 @@
   border-bottom: 1px solid #EAEAEA;
 }
 
+.back-arrow {
+  text-align: center;
+  font-size: 25px;
+  color:black;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  transition: .3s all ease;
+}
+
+.back-arrow:hover {
+  color: grey;
+}
+

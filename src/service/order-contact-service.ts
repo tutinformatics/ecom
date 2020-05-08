@@ -10,6 +10,13 @@ export class OrderContactService extends Service<OrderContact> {
     );
   }
 
+  getSingle(id: string): Promise<OrderContact[]> {
+    return this.get<OrderContact[]>("/entities/Product",
+      (data) => Model.arrayFromJson(data as Object[], OrderContact),
+      {productId: id, _depth: 1}
+    );
+  }
+
   // createOrderContact(orderContacts: OrderContact): Promise<OrderContact> {
   //   return this.post("/services/createOrderAndContactMech",
   //     orderContacts,
