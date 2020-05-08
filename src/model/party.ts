@@ -2,6 +2,7 @@ import {Model} from "./model";
 import {PartyType} from "./party-type";
 import {PartyRole} from "./party-role";
 import {PartyContactMech} from "./party-contact-mech";
+import {ContactMech} from "./contact-mech";
 
 export class Party extends Model{
   _toOne_Person: ToOnePerson;
