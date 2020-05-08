@@ -31,14 +31,14 @@
           </thead>
 
           <tbody>
-          <tr id="0" click.delegate="detailView($event)">
-            <td>#123.2</td>
-            <td>10h tagasi</td>
-            <td>Kristopher Kristopher</td>
-            <td>Makstud</td>
-            <td>Kinnitamata</td>
-            <td>112$</td>
-          </tr>
+          <!--<tr id="0" click.delegate="detailView($event)">-->
+            <!--<td>#123.2</td>-->
+            <!--<td>10h tagasi</td>-->
+            <!--<td>Kristopher Kristopher</td>-->
+            <!--<td>Makstud</td>-->
+            <!--<td>Kinnitamata</td>-->
+            <!--<td>112$</td>-->
+          <!--</tr>-->
           <tr repeat.for="orderReportView of orderReportViews" id="${ orderReportView.orderId }" click.delegate="detailView(orderReportView)">
             <td>${ orderReportView.orderId }</td>
             <td>${ orderReportView.orderDate }</td>
