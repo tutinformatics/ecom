@@ -9,7 +9,7 @@
         <h3>Kliendid</h3>
       </div>
       <div class="col-3 text-right m-0 p-0 pb-3">
-        <a href="/customers/new" class="btn btn-dark">CREATE CUSTOMER</a>
+        <button click.delegate="goToNewCustomer()" class="btn btn-dark">CREATE CUSTOMER</button>
       </div>
     </div>
     <div class="col-10 row border main-body">
@@ -34,7 +34,7 @@
             <tr repeat.for="party of parties" click.delegate='onClickCustomer(party)'>
               <td>${party.partyId}</td>
               <td>${party._toMany_PartyContactMech[0]._toOne_ContactMech.infoString }</td>
-              <td>${party.partyId}</td>
+              <td>0</td>
             </tr>
           </tbody>
 

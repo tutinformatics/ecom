@@ -36,4 +36,8 @@ export class CustomersList {
     this.router.navigateToRoute('customers-detail', {id: party.partyId})
   }
 
+  goToNewCustomer() {
+    this.router.navigateToRoute('customers-new')
+  }
+
 }
