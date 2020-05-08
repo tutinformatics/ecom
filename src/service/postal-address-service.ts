@@ -17,14 +17,14 @@ export class PostalAddressService extends Service<PostalAddress> {
     );
   }
 
-  /*createContactMech(contactMech: ContactMech): Promise<ContactMech> {
-    return this.post("/services/createContactMech",
-      contactMech,
-      (data) => Model.fromJson(data as Object, ContactMech)
+  createPartyPostalAddress(postalAddress: PostalAddress): Promise<PostalAddress> {
+    return this.post("/services/createPartyPostalAddress",
+      postalAddress,
+      (data) => Model.fromJson(data as Object, PostalAddress)
     );
   }
 
-  updateContactMech(contactMech: ContactMech): Promise<ContactMech> {
+  /*updateContactMech(contactMech: ContactMech): Promise<ContactMech> {
     return this.post("/services/updateContactMech",
       contactMech,
       (data) => Model.fromJson(data as Object, ContactMech))

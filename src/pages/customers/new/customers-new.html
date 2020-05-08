@@ -73,30 +73,33 @@
 
               <div class="col-10 pb-3">
                 <label class="bold">Address</label>
-                <input type="text" class="form-control" >
+                <input type="text" value.bind="postalAddress.address1" class="form-control" >
               </div>
 
               <div class="col-10 pb-3">
                 <label class="bold">Apartment(Optional)</label>
-                <input type="text" class="form-control" >
+                <input type="text" value.bind="postalAddress.address2" class="form-control" >
               </div>
 
               <div class="col-10 pb-3">
                 <label class="bold">City</label>
-                <input type="text" class="form-control" >
+                <input type="text" value.bind="postalAddress.city" class="form-control" >
               </div>
 
               <div class="col-5 pb-3">
                 <label class="bold">Country</label>
-                <input type="text" class="form-control" >
+                <select class="form-control" value.bind="postalAddress.countryGeoId">
+                  <option model.bind="null">Choose...</option>
+                  <option repeat.for="country of countryCodes" model.bind="country.countryAbbr">
+                    ${country.countryName}
+                  </option>
+                </select>
               </div>
 
               <div class="col-5 pb-3">
                 <label class="bold">Postal code</label>
-                <input type="text" class="form-control" >
+                <input type="text" value.bind="postalAddress.postalCode" class="form-control" >
               </div>
-
-
             </div>
 
           </div>

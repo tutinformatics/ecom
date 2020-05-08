@@ -12,7 +12,6 @@ export class PostalAddress extends Model {
   postalCodeGeoId?: any;
   createdStamp: any;
   houseNumber?: any;
-  _ENTITY_NAME_: string;
   lastUpdatedTxStamp: any;
   postalCodeExt?: any;
   contactMechId: string;
@@ -23,6 +22,10 @@ export class PostalAddress extends Model {
   cityGeoId?: any;
   municipalityGeoId?: any;
   stateProvinceGeoId: string;
-  _DELEGATOR_NAME_: string;
   geoPointId: string;
+
+  /**
+   * Only used in POST, cannot GET this variable!
+   */
+  partyId: string;
 }

@@ -5,17 +5,27 @@ import {Person} from "../../../model/person";
 import {PersonService} from "../../../service/person-service";
 import {ContactMech} from "../../../model/contact-mech";
 import {ContactMechService} from "../../../service/contact-mech-service";
+import {PostalAddress} from "../../../model/postal-address";
+import {PostalAddressService} from "../../../service/postal-address-service";
+import {CountryCodeService} from "../../../service/country-code-service";
+import {CountryCode} from "../../../model/country-code";
 
-@inject(PartyService, PersonService, ContactMechService)
+@inject(PartyService, PersonService, ContactMechService, PostalAddressService, CountryCodeService)
 export class CustomersNew {
   party = new Party();
   person = new Person();
   emailContact = new ContactMech();
   phoneContact = new ContactMech();
+  postalAddress = new PostalAddress();
+  countryCodes: CountryCode[] = [];
 
   constructor(private partyService: PartyService,
               private personService: PersonService,
-              private contactMechService: ContactMechService) {
+              private contactMechService: ContactMechService,
+              private postalAddressService: PostalAddressService,
+              private countryCodeService: CountryCodeService) {
+    this.countryCodeService.getAll()
+      .then((codes) => this.countryCodes = codes);
   }
 
   createParty() {
@@ -33,6 +43,10 @@ export class CustomersNew {
           .then((resp) => console.log(resp));
 
         this.contactMechService.createPartyContactMech(this.phoneContact)
+          .then((resp) => console.log(resp));
+
+        this.postalAddress.partyId = res.partyId;
+        this.postalAddressService.createPartyPostalAddress(this.postalAddress)
           .then((resp) => console.log(resp));
       });
   }
