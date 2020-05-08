@@ -35,16 +35,10 @@
 
                 <tbody>
                 <tr>
-                  <td>särk</td>
-                  <td>2</td>
-                  <td>25.5$</td>
-                  <td>51$</td>
-                </tr>
-                <tr>
-                  <td>särk nr.2</td>
-                  <td>2</td>
-                  <td>25.5$</td>
-                  <td>51$</td>
+                  <td>${ orderReportView[0].productId }</td>
+                  <td>${ orderReportView[0].quantity }</td>
+                  <td>${ orderReportView[0].unitPrice }</td>
+                  <td>${ orderReportView.quantity[0] * orderReportView[0].unitPrice }</td>
                 </tr>
                 <tr>
                   <td></td>
@@ -61,7 +55,7 @@
             <div class="col-12 tab">
               <div>
                 <h3>
-                  Makstud
+                  ${ orderReportView[0].itemStatus }
                 </h3>
               </div>
             </div>
@@ -72,8 +66,8 @@
                   <tbody class="border-bottom">
                   <tr>
                     <td width="15%">Vahesumma</td>
-                    <td width="30%">3 toodet</td>
-                    <td width="10%">102$</td>
+                    <td width="30%">{ orderReportView[0].quantity } toodet</td>
+                    <td width="10%">{ orderReportView.quantity[0] * orderReportView[0].unitPrice } $</td>
                   </tr>
                   <tr class="">
                     <td width="15%">Maksud</td>
@@ -83,12 +77,12 @@
                   <tr>
                     <td width="15%">Tarne</td>
                     <td width="30%"></td>
-                    <td width="10%">10$</td>
+                    <td width="10%">${ (orderReportView[0].grandTotal - orderReportView.quantity[0] * orderReportView[0].unitPrice).toFixed(2) }</td>
                   </tr>
                   <tr>
                     <td width="15%">Kokku</td>
                     <td width="30%"></td>
-                    <td width="10%">${ orderReportViews.grandTotal }</td>
+                    <td width="10%">${ orderReportViews[0].grandTotal } $</td>
                   </tr>
                   </tbody>
                 </table>
