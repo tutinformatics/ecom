@@ -21,8 +21,8 @@ export class CustomersList {
   //  return TimeUtils.convertDate(ms);
   //}
 
-  onClickCustomer(event) {
-    this.router.navigateToRoute('customers-detail', {id: this.parties[0].partyId})
+  onClickCustomer(party) {
+    this.router.navigateToRoute('customers-detail', {id: party.partyId})
   }
 
 }
