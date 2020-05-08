@@ -8,4 +8,9 @@ export class ContactMech extends Model {
   lastUpdatedTxStamp: any;
   contactMechTypeId: string;
   contactMechId: string;
+
+  /**
+   * Only in POST, never returned with get
+   */
+  partyId: string
 }

@@ -1,9 +1,9 @@
 import {Service} from "./service";
 import {Party} from "../model/party";
 import {Model} from "../model/model";
-import {OnePerson} from "../model/one-person";
+import {Person} from "../model/person";
 
-export class OnePersonService extends Service<OnePerson> {
+export class OnePersonService extends Service<Person> {
   //getAll(): Promise<Party[]> {
   //  return this.get<Party[]>("/entities/Party",
   //    (data) => Model.arrayFromJson(data as Object[], Party),
@@ -11,10 +11,10 @@ export class OnePersonService extends Service<OnePerson> {
   //  );
   //}
 
-  createOnePerson(onePerson: OnePerson): Promise<OnePerson> {
+  createOnePerson(onePerson: Person): Promise<Person> {
     return this.post("/services/createPerson",
       onePerson,
-      (data) => Model.fromJson(data as Object[], OnePerson)
+      (data) => Model.fromJson(data as Object[], Person)
     );
   }
 

@@ -3,10 +3,15 @@ import {PartyService} from "../../../service/party-service";
 import {inject} from 'aurelia-framework';
 import {ContactMechService} from "../../../service/contact-mech-service";
 import {PostalAddressService} from "../../../service/postal-address-service";
+import {ContactMech} from "../../../model/contact-mech";
+import {PostalAddress} from "../../../model/postal-address";
 
 @inject (PartyService, ContactMechService, PostalAddressService)
 export class CustomersDetail {
 
+  emailContact? = new ContactMech();
+  phoneContact? = new ContactMech();
+  postalAddress? = new PostalAddress();
   party?: Party = null;
   isEditingMode: boolean = false
 
@@ -26,9 +31,16 @@ export class CustomersDetail {
         if (party[0]._toMany_PartyContactMech) {
           party[0]._toMany_PartyContactMech.forEach((contact) => {
             this.contactMechService.getById(contact.contactMechId)
-              .then((contactJson) => contact._toOne_ContactMech = contactJson[0]);
-            this.postalAddressService.getByContactMechId(contact.contactMechId)
-              .then((address) => contact._toOne_PostalAddress = address[0]);
+              .then((contactJson) => {
+                if (contactJson[0].contactMechTypeId === "EMAIL_ADDRESS") {
+                  this.emailContact = contactJson[0];
+                } else if (contactJson[0].contactMechTypeId === "TELECOM_NUMBER") {
+                  this.phoneContact = contactJson[0];
+                } else if (contactJson[0].contactMechTypeId === "POSTAL_ADDRESS") {
+                  this.postalAddressService.getByContactMechId(contact.contactMechId)
+                    .then((address) => this.postalAddress = address[0]);
+                }
+              });
           });
         }
         this.party = party[0];

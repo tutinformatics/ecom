@@ -12,12 +12,12 @@ export class ContactMechService extends Service<ContactMech> {
   getById(id: string): Promise<ContactMech[]> {
     return this.get<ContactMech[]>("/entities/ContactMech",
       (data) => Model.arrayFromJson(data as Object[], ContactMech),
-      {contactMechId: id, contactMechTypeId: "EMAIL_ADDRESS"}
+      {contactMechId: id}
     );
   }
 
-  createContactMech(contactMech: ContactMech): Promise<ContactMech> {
-    return this.post("/services/createContactMech",
+  createPartyContactMech(contactMech: ContactMech): Promise<ContactMech> {
+    return this.post("/services/createPartyContactMech",
       contactMech,
       (data) => Model.fromJson(data as Object, ContactMech)
     );

@@ -1,6 +1,6 @@
 import {Model} from "./model";
 
-export class OnePerson extends Model {
+export class Person extends Model {
   yearsWithEmployer?: any;
   lastName: string;
   occupation?: any;

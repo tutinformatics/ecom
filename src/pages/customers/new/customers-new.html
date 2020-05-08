@@ -11,7 +11,7 @@
         </a>
       </div>
       <div class="col-2">
-        <div click.delegate="createProduct()" class="col-2"><button class=" btn btn-dark float-right" >CREATE</button></div>
+        <div click.delegate="createParty()" class="col-2"><button class=" btn btn-dark float-right" >CREATE</button></div>
 
       </div>
     </div>
@@ -30,7 +30,7 @@
                 <div class="col pt-4 pb-2 "><h5 class="bold">First name</h5></div>
 
                 <div class="col-12 mt-1">
-                  <input type="text" value.bind="onePerson.firstName" class="form-control" >
+                  <input type="text" value.bind="person.firstName" class="form-control" >
 
                 </div>
               </div>
@@ -38,7 +38,7 @@
                 <div class="col pt-4 pb-2 "><h5 class="bold">Last name</h5></div>
 
                 <div class="col-12 mt-1">
-                  <input type="text" value.bind="onePerson.lastName" class="form-control" >
+                  <input type="text" value.bind="person.lastName" class="form-control" >
 
                 </div>
               </div>
@@ -49,7 +49,7 @@
                 <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Email</h5></div>
 
                 <div class="col-12">
-                  <input type="text" value.bind="product.productName" class="form-control" >
+                  <input type="text" value.bind="emailContact.infoString" class="form-control" >
 
                 </div>
               </div>
@@ -57,7 +57,7 @@
                 <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Phone</h5></div>
 
                 <div class="col-12">
-                  <input type="text" value.bind="product.productName" class="form-control" >
+                  <input type="text" value.bind="phoneContact.infoString" class="form-control" >
 
                 </div>
               </div>
