@@ -37,7 +37,7 @@
                   <td>${ orderReportViews[0].productId }</td>
                   <td>${ orderReportViews[0].quantity }</td>
                   <td>${ orderReportViews[0].unitPrice }</td>
-                  <td>${ orderReportViews.quantity[0] * orderReportViews[0].unitPrice }</td>
+                  <td>${ orderReportViews.quantity[0] * orderReportViews[0].unitPrice } $</td>
                 </tr>
                 <tr>
                   <td></td>
@@ -66,7 +66,7 @@
                   <tr>
                     <td width="15%">Vahesumma</td>
                     <td width="30%">${ orderReportViews[0].quantity } toodet</td>
-                    <td width="10%">${ orderReportView.quantity[0] * orderReportViews[0].unitPrice } $</td>
+                    <td width="10%">${ orderReportViews.quantity[0] * orderReportViews[0].unitPrice } $</td>
                   </tr>
                   <tr class="">
                     <td width="15%">Maksud</td>
@@ -76,7 +76,7 @@
                   <tr>
                     <td width="15%">Tarne</td>
                     <td width="30%"></td>
-                    <td width="10%">${ (orderReportViews[0].grandTotal - orderReportViews.quantity[0] * orderReportViews[0].unitPrice).toFixed(2) } $</td>
+                    <td width="10%">${ (orderReportViews[0].grandTotal - (orderReportViews.quantity[0] * orderReportViews[0].unitPrice)).toFixed(2) } $</td>
                   </tr>
                   <tr>
                     <td width="15%">Kokku</td>
@@ -138,29 +138,29 @@
                     <td>
                       <h5 class="mb-4">
                         <b>
-                          Shipping address
+                          Postal address
                         </b>
                       </h5>
                     </td>
                   </tr>
                   <tr>
                     <td width="100%">
-                      Kristopher Kristopher
+                      ${ orderContacts[0].paToName }
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      Tallin mnt 5232-7-44
+                      ${ orderContacts[0].paCountryGeoId }, ${ orderContacts[0].paCity }
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      Eesti, Tallinn
+                      ${ orderContacts[0].paAddress1 }
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      +2341 4355
+                      ${ orderContacts[0].paPostalCode }
                     </td>
                   </tr>
                   </tbody>
@@ -173,24 +173,24 @@
                     <td>
                       <h5 class="mb-4">
                         <b>
-                          Billing address
+                          Shipping address
                         </b>
                       </h5>
                     </td>
                   </tr>
                   <tr>
                     <td width="100%">
-                      Kristopher Kristopher
+                      ${ orderContacts[0].paToName }
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      Tallin mnt 5232-7-44
+                      ${ orderContacts[0].paDirections }
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      Eesti, Tallinn
+                      ${ orderContacts[0].paPostalCode }
                     </td>
                   </tr>
                   </tbody>
