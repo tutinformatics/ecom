@@ -1,6 +1,7 @@
 import {Model} from "./model";
 import {Party, ToManyPartyContactMechPurpose} from "./party";
 import {ContactMech} from "./contact-mech";
+import {PostalAddress} from "./postal-address";
 
 export class PartyContactMech extends Model {
   _toOne_Person: ToOnePerson;
@@ -22,7 +23,7 @@ export class PartyContactMech extends Model {
   _toOne_Party: Party;
   _toOne_ContactMech?: ContactMech;
   partyId: string;
-  _toOne_PostalAddress: ToOnePostalAddress;
+  _toOne_PostalAddress: PostalAddress;
   _toOne_PartyGroup: ToOnePartyGroup;
   _toOne_TelecomNumber: ToOneTelecomNumber;
   _toOne_RoleType: ToOneRoleType;
@@ -67,66 +68,6 @@ export interface ToOnePerson {
   personalTitle: string;
   deceasedDate?: any;
   totalYearsWorkExperience?: any;
-}
-
-export interface ToOneParty {
-  lastUpdatedStamp: any;
-  lastModifiedDate?: any;
-  createdTxStamp: any;
-  createdStamp: any;
-  _ENTITY_NAME_: string;
-  externalId?: any;
-  description?: any;
-  lastUpdatedTxStamp: any;
-  isUnread?: any;
-  partyTypeId: string;
-  lastModifiedByUserLogin?: any;
-  dataSourceId?: any;
-  createdDate?: any;
-  statusId: string;
-  preferredCurrencyUomId: string;
-  _DELEGATOR_NAME_: string;
-  partyId: string;
-  createdByUserLogin?: any;
-}
-
-export interface ToOneContactMech {
-  lastUpdatedStamp: any;
-  infoString: string;
-  createdTxStamp: any;
-  createdStamp: any;
-  _ENTITY_NAME_: string;
-  lastUpdatedTxStamp: any;
-  contactMechTypeId: string;
-  _DELEGATOR_NAME_: string;
-  contactMechId: string;
-}
-
-export interface ToOnePostalAddress {
-  countryGeoId: string;
-  houseNumberExt?: any;
-  lastUpdatedStamp: any;
-  address2: string;
-  city: string;
-  address1: string;
-  createdTxStamp: any;
-  postalCode: string;
-  postalCodeGeoId?: any;
-  createdStamp: any;
-  houseNumber?: any;
-  _ENTITY_NAME_: string;
-  lastUpdatedTxStamp: any;
-  postalCodeExt?: any;
-  contactMechId: string;
-  attnName?: any;
-  directions?: any;
-  countyGeoId?: any;
-  toName: string;
-  cityGeoId?: any;
-  municipalityGeoId?: any;
-  stateProvinceGeoId: string;
-  _DELEGATOR_NAME_: string;
-  geoPointId: string;
 }
 
 export interface ToOnePartyGroup {

@@ -1,13 +1,17 @@
 import {Party} from "../../../model/party";
 import {PartyService} from "../../../service/party-service";
 import {inject} from 'aurelia-framework';
+import {ContactMechService} from "../../../service/contact-mech-service";
+import {PostalAddressService} from "../../../service/postal-address-service";
 
-@inject (PartyService)
+@inject (PartyService, ContactMechService, PostalAddressService)
 export class CustomersDetail {
 
   party?: Party = null;
 
-  constructor(private partyService: PartyService) {
+  constructor(private partyService: PartyService,
+              private contactMechService: ContactMechService,
+              private postalAddressService: PostalAddressService) {
   }
 
   activate(params) {
@@ -17,16 +21,17 @@ export class CustomersDetail {
   private loadParty(id: string) {
     console.log(id)
     this.partyService.getSingle(id)
-      .then((product) => this.party = product[0])
-      //.then(() => {
-      //  if (this.product._toMany_ProductPrice !== undefined && this.product._toMany_ProductPrice[0] !== undefined) {
-      //    this.productPrice.price = this.product._toMany_ProductPrice[0].price;
-      //    this.productPrice.productId = this.product._toMany_ProductPrice[0].productId;
-      //    this.productPrice.fromDate = this.product._toMany_ProductPrice[0].fromDate;
-      //  }
-      //})
+      .then((party) => {
+        if (party[0]._toMany_PartyContactMech) {
+          party[0]._toMany_PartyContactMech.forEach((contact) => {
+            this.contactMechService.getById(contact.contactMechId)
+              .then((contactJson) => contact._toOne_ContactMech = contactJson[0]);
+            this.postalAddressService.getByContactMechId(contact.contactMechId)
+              .then((address) => contact._toOne_PostalAddress = address[0]);
+          });
+        }
+        this.party = party[0];
+      })
       .then(() => console.log(this.party));
   }
-
-
 }

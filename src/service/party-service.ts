@@ -20,7 +20,7 @@ export class PartyService extends Service<Party> {
   getSingle(id: string): Promise<Party[]> {
     return this.get<Party[]>("/entities/Party",
       (data) => Model.arrayFromJson(data as Object[], Party),
-      {productId: id, _depth: 1}
+      {partyId: id, _depth: 1}
     );
   }
 }

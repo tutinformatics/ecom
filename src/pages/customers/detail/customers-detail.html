@@ -33,16 +33,18 @@
               <br>
 
                 <div class="col-6">
-                  <input type="text" class="form-control" placeholder="First Name">
+                  <input type="text" value.bind="party._toOne_Person.firstName" class="form-control" placeholder="First Name">
                 </div>
                 <div class="col-6">
-                  <input type="text" class="form-control" placeholder="Last Name" >
+                  <input type="text" value.bind="party._toOne_Person.lastName" class="form-control" placeholder="Last Name" >
                 </div>
 
             </div>
             <div class="col-12 row tab">
               <div class="col-12 pb-3"><h5>Contact Informations</h5></div>
-              <div class="col-12"><input type="text" class="form-control" placeholder="Email"></div>
+              <div class="col-12">
+                <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_ContactMech.infoString" class="form-control" placeholder="Email">
+              </div>
 
             </div>
 
@@ -87,11 +89,21 @@
             <div class="col-12 tab m-0 p-0">
               <div class="col-12 row justify-content-center tab">
                 <div class="col-10 pb-3"><h4>Address </h4></div>
-                <div class="col-10 pb-3"> <input type="text" class="form-control" placeholder="Address"></div>
-                <div class="col-10 pb-3"><input type="text" class="form-control" placeholder="Apartment(Optional)"></div>
-                <div class="col-10 pb-3"><input type="text" class="form-control" placeholder="City"></div>
-                <div class="col-5 pb-3"><input type="text" class="form-control" placeholder="Country"></div>
-                <div class="col-5 pb-3"><input type="text" class="form-control" placeholder="Postal code"></div>
+                <div class="col-10 pb-3">
+                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.address1" class="form-control" placeholder="Address">
+                </div>
+                <div class="col-10 pb-3">
+                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.address2" class="form-control" placeholder="Apartment(Optional)">
+                </div>
+                <div class="col-10 pb-3">
+                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.city" class="form-control" placeholder="City">
+                </div>
+                <div class="col-5 pb-3">
+                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.countryGeoId" class="form-control" placeholder="Country">
+                </div>
+                <div class="col-5 pb-3">
+                  <input type="text" value.bind="party._toMany_PartyContactMech[0]._toOne_PostalAddress.postalCode" class="form-control" placeholder="Postal code">
+                </div>
               </div>
             </div>
             </div>
