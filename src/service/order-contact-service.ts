@@ -11,7 +11,7 @@ export class OrderContactService extends Service<OrderContact> {
   }
 
   getSingle(id: string): Promise<OrderContact[]> {
-    return this.get<OrderContact[]>("/entities/Product",
+    return this.get<OrderContact[]>("/entities/OrderAndContactMech",
       (data) => Model.arrayFromJson(data as Object[], OrderContact),
       {productId: id, _depth: 1}
     );
