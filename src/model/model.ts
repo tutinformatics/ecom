@@ -5,9 +5,11 @@ export abstract class Model {
         let fields = Object.entries(this)
         let jsonObj = {}
         for (let [field, value] of fields) {
-            if (field.startsWith('_to') && !field.endsWith('_'))  { // Cus entity name
+            if (field.startsWith('_to') || !field.startsWith('__to'))  {
                 continue;
             }
+
+            if (value === null || value === undefined) continue;
 
             if (value instanceof Date) {
                 jsonObj[field] = value.getTime();

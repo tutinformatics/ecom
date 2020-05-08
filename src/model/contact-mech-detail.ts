@@ -8,7 +8,6 @@ export class OnePerson extends Model {
   employmentStatusEnumId?: any;
   socialSecurityNumber?: any;
   createdStamp: any;
-  _ENTITY_NAME_: string;
   suffix?: any;
   mothersMaidenName?: any;
   middleNameLocal?: any;

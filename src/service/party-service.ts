@@ -3,10 +3,10 @@ import {Party} from "../model/party";
 import {Model} from "../model/model";
 
 export class PartyService extends Service<Party> {
-  getAll(): Promise<Party[]> {
+  getAllPersons(): Promise<Party[]> {
     return this.get<Party[]>("/entities/Party",
       (data) => Model.arrayFromJson(data as Object[], Party),
-      {_depth: 1}
+      { partyTypeId: 'PERSON', _depth: 1}
     );
   }
 
