@@ -6,6 +6,8 @@ import {TimeUtils} from "../../../util/time-utils";
 
 @inject (Router, OrderReportViewService)
 export class Orders{
+  date: Date;
+  dateDict: Map<String, String> = new Map<String, String>()
 
   orderReportViews: OrderReportView [] = []
   orderDate = null
@@ -29,12 +31,11 @@ export class Orders{
 
   covertTime(){
     var i;
-    console.log(this.orderReportViews)
     for (i in this.orderReportViews) {
-      console.log(this.orderReportViews[i].orderDate)
-      //console.log(i.orderDate)
-      //i.orderDate = TimeUtils.parse(i.orderDate)
-      //console.log("HEREE!!!!!!!!!!!!!!!!!")
+      this.date = TimeUtils.parse(this.orderReportViews[i].orderDate.toString())
+      var newDate = this.date.toString().split(" ")
+      var toUseDate = newDate[1] + " " + newDate[2] + " " + newDate[3]
+      this.dateDict[this.orderReportViews[i].orderId.toString()] = toUseDate
     }
   }
 }
