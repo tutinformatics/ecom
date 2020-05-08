@@ -98,6 +98,11 @@ export class Party extends Model{
   _toMany_FromCustRequest: ToManyFromCustRequest[];
   _toMany_Quote: ToManyQuote[];
   _toMany_ToShipment: ToManyToShipment[];
+
+  /**
+   * Does not come with get
+   */
+  __toOne_EmailAddress: ContactMech;
 }
 
 

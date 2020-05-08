@@ -20,7 +20,12 @@ export class CustomersList {
           if (party._toMany_PartyContactMech) {
             party._toMany_PartyContactMech.forEach((contact) => {
               this.contactMechService.getById(contact.contactMechId)
-                .then((contactJson) => contact._toOne_ContactMech = contactJson[0]);
+                .then((contactJson) => {
+                  if (contactJson[0].contactMechTypeId === "EMAIL_ADDRESS"){
+                    contact._toOne_ContactMech = contactJson[0];
+                    party.__toOne_EmailAddress = contactJson[0] // Cuz aurelia
+                  }
+                });
             });
           }
         });
