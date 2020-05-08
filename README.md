@@ -1,5 +1,7 @@
 # `ecom`
 
+_Currently deployed at: [http://18.191.26.144/](http://18.191.26.144/)_
+
 This project is bootstrapped by [aurelia-cli](https://github.com/aurelia/cli).
 
 For more information, go to https://aurelia.io/docs/cli/webpack
