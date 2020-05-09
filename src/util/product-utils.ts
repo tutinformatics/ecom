@@ -3,7 +3,7 @@ import {Product} from "../model/product";
 export class ProductUtils {
   static getPriceWithoutTaxString(product: Product): string {
     let price = 0;
-    if (typeof product._toMany_ProductPrice !== "undefined") {
+    if (typeof product._toMany_ProductPrice !== "undefined" && product._toMany_ProductPrice.length > 0) {
       price = product._toMany_ProductPrice[0].priceWithoutTax;
     }
     if (price === null) {
@@ -14,7 +14,7 @@ export class ProductUtils {
 
   static getPriceWithTaxString(product: Product): string {
     let price = 0;
-    if (typeof product._toMany_ProductPrice !== "undefined") {
+    if (typeof product._toMany_ProductPrice !== "undefined" && product._toMany_ProductPrice.length > 0) {
       price = product._toMany_ProductPrice[0].priceWithTax;
     }
     if (price === null) {
