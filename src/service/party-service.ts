@@ -11,7 +11,7 @@ export class PartyService extends Service<Party> {
   }*/
 
   getAllPersons(): Promise<Party[]> {
-    return this.retardedGet<Party[]>("/entityquery/Party",
+    return this.entityquery<Party[]>("/entityquery/Party",
       (data) => Model.arrayFromJson(data as Object[], Party),
       {
         "inputFields": {
@@ -41,10 +41,35 @@ export class PartyService extends Service<Party> {
     );
   }
 
-  getSingle(id: string): Promise<Party[]> {
+  /*getSingle(id: string): Promise<Party[]> {
     return this.get<Party[]>("/entities/Party",
       (data) => Model.arrayFromJson(data as Object[], Party),
       {partyId: id, _depth: 1}
     );
+  }*/
+
+  getSingle(id: string): Promise<Party[]> {
+    return this.entityquery<Party[]>("/entityquery/Party",
+      (data) => Model.arrayFromJson(data as Object[], Party),
+      {
+        "inputFields": {
+          "partyId": id
+        },
+        "fieldList": ["partyId", "createdStamp", "status", "partyTypeId"],
+        "entityRelations": {
+          "_toOne_Person": {
+            "fieldList": ["lastName", "firstName"]
+          },
+          "_toMany_PartyContactMech": {
+            "entityRelations" : {
+              "_toOne_ContactMech": {
+                "fieldList": ["contactMechTypeId", "infoString"]
+              }
+            }
+          }
+        }
+      }
+    );
   }
+
 }

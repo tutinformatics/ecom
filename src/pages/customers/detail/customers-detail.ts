@@ -30,17 +30,17 @@ export class CustomersDetail {
       .then((party) => {
         if (party[0]._toMany_PartyContactMech) {
           party[0]._toMany_PartyContactMech.forEach((contact) => {
-            this.contactMechService.getById(contact.contactMechId)
-              .then((contactJson) => {
-                if (contactJson[0].contactMechTypeId === "EMAIL_ADDRESS") {
-                  this.emailContact = contactJson[0];
-                } else if (contactJson[0].contactMechTypeId === "TELECOM_NUMBER") {
-                  this.phoneContact = contactJson[0];
-                } else if (contactJson[0].contactMechTypeId === "POSTAL_ADDRESS") {
+            // this.contactMechService.getById(contact.contactMechId)
+            //   .then((contactJson) => {
+                if (contact._toOne_ContactMech.contactMechTypeId === "EMAIL_ADDRESS") {
+                  this.emailContact = contact._toOne_ContactMech;
+                } else if (contact._toOne_ContactMech.contactMechTypeId === "TELECOM_NUMBER") {
+                  this.phoneContact = contact._toOne_ContactMech;
+                } else if (contact._toOne_ContactMech.contactMechTypeId === "POSTAL_ADDRESS") {
                   this.postalAddressService.getByContactMechId(contact.contactMechId)
                     .then((address) => this.postalAddress = address[0]);
                 }
-              });
+            //   });
           });
         }
         this.party = party[0];

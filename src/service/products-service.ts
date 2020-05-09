@@ -12,7 +12,7 @@ export class ProductsService extends Service<Product> {
   }*/
 
   getAll(): Promise<Product[]> {
-    return this.retardedGet<Product[]>("/entityquery/Product",
+    return this.entityquery<Product[]>("/entityquery/Product",
       (data) => Model.arrayFromJson(data as Object[], Product),
       {
         "fieldList": ["productId", "productName", "description", ""],
