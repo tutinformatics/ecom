@@ -19,13 +19,12 @@ export class CustomersList {
         res.map((party) => {
           if (party._toMany_PartyContactMech) {
             party._toMany_PartyContactMech.forEach((contact) => {
-              this.contactMechService.getById(contact.contactMechId)
-                .then((contactJson) => {
-                  if (contactJson[0].contactMechTypeId === "EMAIL_ADDRESS"){
-                    contact._toOne_ContactMech = contactJson[0];
-                    party.__toOne_EmailAddress = contactJson[0] // Cuz aurelia
+              // this.contactMechService.getById(contact.contactMechId)
+              //   .then((contactJson) => {
+                  if (contact._toOne_ContactMech.contactMechTypeId === "EMAIL_ADDRESS"){
+                    party.__toOne_EmailAddress = contact._toOne_ContactMech // Cuz aurelia
                   }
-                });
+              //  });
             });
           }
         });

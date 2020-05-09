@@ -3,10 +3,34 @@ import {Party} from "../model/party";
 import {Model} from "../model/model";
 
 export class PartyService extends Service<Party> {
-  getAllPersons(): Promise<Party[]> {
+  /*getAllPersons(): Promise<Party[]> {
     return this.get<Party[]>("/entities/Party",
       (data) => Model.arrayFromJson(data as Object[], Party),
       { partyTypeId: 'PERSON', _depth: 1}
+    );
+  }*/
+
+  getAllPersons(): Promise<Party[]> {
+    return this.retardedGet<Party[]>("/entityquery/Party",
+      (data) => Model.arrayFromJson(data as Object[], Party),
+      {
+        "inputFields": {
+          "partyTypeId": "PERSON"
+        },
+        "fieldList": ["partyId", "createdStamp", "status"],
+        "entityRelations": {
+          "_toOne_Person": {
+            "fieldList": ["lastName", "firstName"]
+          },
+          "_toMany_PartyContactMech": {
+            "entityRelations" : {
+              "_toOne_ContactMech": {
+                "fieldList": ["contactMechTypeId", "infoString"]
+              }
+            }
+          }
+        }
+      }
     );
   }
 
