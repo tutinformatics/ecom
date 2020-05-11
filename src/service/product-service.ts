@@ -1,8 +1,10 @@
 import {Service} from "./service";
 import {Product} from "../model/product";
 import {Model} from "../model/model";
+import {ProductCategory} from "../model/product-category";
+import {ProductCategoryMember} from "../model/product-category-member";
 
-export class ProductsService extends Service<Product> {
+export class ProductService extends Service<Product> {
 
   /*getAll(): Promise<Product[]> {
     return this.get<Product[]>("/entities/Product",
@@ -29,9 +31,27 @@ export class ProductsService extends Service<Product> {
   }
 
   getSingle(id: string): Promise<Product[]> {
-    return this.get<Product[]>("/entities/Product",
+    return this.entityQuery<Product[]>("/entityquery/Product",
       (data) => Model.arrayFromJson(data as Object[], Product),
-      {productId: id, _depth: 1}
+      {
+        "fieldList": ["productId", "productName", "description", "longDescription"],
+        "entityRelations": {
+          "_toOne_PrimaryProductCategory": {
+            "fieldList": ["categoryName"]
+          },
+          "_toMany_ProductPrice": {
+            "fieldList": ["price", "priceWithTax", "priceWithoutTax", "productId", "fromDate"]
+          },
+          "_toMany_ProductCategoryMember": {
+            "fieldList": ["productId", "productCategoryId"],
+            "entityRelations": {
+              "_toOne_ProductCategory": {
+                "fieldList": ["categoryName", "productCategoryTypeId", "productCategoryId"]
+              }
+            }
+          }
+        }
+      }
     );
   }
 

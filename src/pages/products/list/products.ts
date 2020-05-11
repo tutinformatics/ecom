@@ -1,17 +1,17 @@
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import {ProductsService} from "../../../service/products-service";
+import {ProductService} from "../../../service/product-service";
 import {Product} from "../../../model/product";
 import {ProductUtils} from "../../../util/product-utils";
 
-@inject(ProductsService, Router)
+@inject(ProductService, Router)
 export class Products {
 
   // @ts-ignore
   products: Product[] = []
   sortAsc = true
 
-  constructor(private productService: ProductsService, private router: Router) {
+  constructor(private productService: ProductService, private router: Router) {
     this.loadProducts()
   }
 

@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-framework';
-import {ProductsService} from "../../../service/products-service";
+import {ProductService} from "../../../service/product-service";
 import {Product} from "../../../model/product";
 import {ProductUtils} from "../../../util/product-utils";
 import {ProductCategory} from "../../../model/product-category";
@@ -8,8 +8,10 @@ import {ProductPriceService} from "../../../service/product-price-service";
 import {ProductPrice} from "../../../model/product-price";
 import {ProductType} from "../../../model/product-type";
 import {ProductTypeService} from "../../../service/product-type-service";
+import {ProductCategoryMemberService} from "../../../service/product-category-member-service";
+import {ProductCategoryMember} from "../../../model/product-category-member";
 
-@inject(ProductsService, ProductCategoryService, ProductPriceService, ProductTypeService)
+@inject(ProductService, ProductCategoryService, ProductPriceService, ProductTypeService, ProductCategoryMemberService)
 export class Detail {
   product?: Product = null;
   productPrice: ProductPrice = new ProductPrice();
@@ -17,10 +19,11 @@ export class Detail {
   types: ProductType[] = [];
   isEditingMode: boolean = false;
 
-  constructor(private productService: ProductsService,
+  constructor(private productService: ProductService,
               private productCategoryService: ProductCategoryService,
               private productPriceService: ProductPriceService,
-              private productTypeService: ProductTypeService) {
+              private productTypeService: ProductTypeService,
+              private productCategoryMemberService: ProductCategoryMemberService) {
   }
 
   activate(params) {
@@ -62,6 +65,20 @@ export class Detail {
         }
       })
       .then(() => console.log(this.product));
+  }
+
+  addProductToCategory(categoryId: string) {
+    const categoryMember = new ProductCategoryMember();
+    categoryMember.productId = this.product.productId;
+    categoryMember.productCategoryId = categoryId;
+
+    this.productCategoryMemberService.addProductToCategory(categoryMember)
+      .then((res) => console.log(res));
+  }
+
+  removeProductFromCategory(categoryMember: ProductCategoryMember) {
+    this.productCategoryMemberService.removeProductFromCategory(categoryMember)
+      .then((res) => console.log(res));
   }
 
   private loadCategories() {

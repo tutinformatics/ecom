@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-framework';
-import {ProductsService} from "../../../service/products-service";
+import {ProductService} from "../../../service/product-service";
 import {Product} from "../../../model/product";
 import {ProductCategory} from "../../../model/product-category";
 import {ProductCategoryService} from "../../../service/product-category-service";
@@ -8,14 +8,14 @@ import {ProductType} from "../../../model/product-type";
 import {ProductPrice} from "../../../model/product-price";
 import {ProductPriceService} from "../../../service/product-price-service";
 
-@inject(ProductsService, ProductCategoryService, ProductTypeService, ProductPriceService)
+@inject(ProductService, ProductCategoryService, ProductTypeService, ProductPriceService)
 export class New {
   product = new Product();
   productPrice = new ProductPrice();
   categories: ProductCategory[] = [];
   types: ProductType[] = [];
 
-  constructor(private productService: ProductsService,
+  constructor(private productService: ProductService,
               private productCategoryService: ProductCategoryService,
               private productTypeService: ProductTypeService,
               private productPriceService: ProductPriceService)
