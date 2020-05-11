@@ -50,17 +50,11 @@
 
 
               <div class="col-6 row">
-                <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Category</h5></div>
+                <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Facility ID</h5></div>
 
                 <div class="col-12">
-                  <select if.bind="isEditingMode" type="text" value.bind="product.primaryProductCategoryId"
-                          class="form-control" placeholder="First Name">
-                    <option model.bind="null">Choose...</option>
-                    <option repeat.for="category of categories" model.bind="category.productCategoryId">
-                      ${category.categoryName}
-                    </option>
-                  </select>
-                  <span if.bind="!isEditingMode" class="">${product._toOne_PrimaryProductCategory.categoryName}</span>
+                  <input if.bind="isEditingMode" type="text" value.bind="product.facilityId" class="form-control" placeholder="Facility id">
+                  <span if.bind="!isEditingMode" class="">${product.facilityId}</span>
 
                 </div>
               </div>
@@ -119,7 +113,7 @@
 
                 <div class="col-12">
                   <input if.bind="isEditingMode" type="text" value.bind="product.shippingWidth" class="form-control"
-                         placeholder="First Name">
+                         placeholder="0">
                   <span if.bind="!isEditingMode" class="">${product.shippingWidth ? product.shippingWidth : 0}</span>
                 </div>
               </div>
@@ -129,7 +123,7 @@
 
                 <div class="col-12">
                   <input if.bind="isEditingMode" type="text" value.bind="product.shippingHeight" class="form-control"
-                         placeholder="First Name">
+                         placeholder="0">
                   <span if.bind="!isEditingMode" class="">${product.shippingHeight ? product.shippingHeight : 0}</span>
                 </div>
               </div>
@@ -139,7 +133,7 @@
 
                 <div class="col-12">
                   <input if.bind="isEditingMode" type="text" value.bind="product.shippingWeight" class="form-control"
-                         placeholder="First Name">
+                         placeholder="0">
                   <span if.bind="!isEditingMode" class="">${product.shippingWeight ? product.shippingWeight : 0}</span>
                 </div>
               </div>
@@ -149,7 +143,7 @@
 
                 <div class="col-12">
                   <input if.bind="isEditingMode" type="text" value.bind="product.shippingDepth" class="form-control"
-                         placeholder="First Name">
+                         placeholder="0">
                   <span if.bind="!isEditingMode" class="">${product.shippingDepth ? product.shippingDepth : 0}</span>
                 </div>
               </div>
@@ -181,6 +175,19 @@
                 </div>
               </div>
 
+              <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Primary Category</h5></div>
+
+              <div class="col-12">
+                <select if.bind="isEditingMode" type="text" value.bind="product.primaryProductCategoryId"
+                        class="form-control" placeholder="First Name">
+                  <option model.bind="null">Choose...</option>
+                  <option repeat.for="category of categories" model.bind="category.productCategoryId">
+                    ${category.categoryName}
+                  </option>
+                </select>
+                <span if.bind="!isEditingMode" class="">${product._toOne_PrimaryProductCategory.categoryName}</span>
+
+              </div>
 
               <div class="col-12 row">
                 <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Sub-Categories</h5></div>
