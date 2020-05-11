@@ -71,9 +71,16 @@
                 <div class="col-12 pt-4 pb-2 "><h5 class="bold">Description</h5></div>
 
                 <div class="col-12">
-                  <input if.bind="isEditingMode" type="text" value.bind="product.description" class="form-control"
-                         placeholder="Last Name">
-                  <span if.bind="!isEditingMode" class="">${product.description}</span>
+                  <textarea if.bind="isEditingMode" type="text" value.bind="product.description" class="form-control"
+                            placeholder="Last Name" rows="4"></textarea>
+                  <p if.bind="!isEditingMode" class="">${product.description}</p>
+
+                </div>
+                <div class="col-12 pt-4 pb-2 "><h5 class="bold">Long Description</h5></div>
+                <div class="col-12">
+                  <textarea if.bind="isEditingMode" type="text" value.bind="product.longDescription" class="form-control"
+                            placeholder="Last Name" rows="12"></textarea>
+                  <p if.bind="!isEditingMode" class="">${product.longDescription}</p>
 
                 </div>
               </div>
