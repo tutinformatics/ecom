@@ -82,13 +82,13 @@ export class Service<T extends Model> {
 
   /**
    * Gives way more power than normal get. WE DO NOT RECOMMEND TO USE as this is more of a bad practice.
-   * Use PHP instead. Only here cuz Ahto insists.
+   * Use PHP instead. Only here cuz Ahto insists. (And well, it is easy to use)
    *
    * @param url Url of data source
    * @param converter Either array or single object converter (see @Model)
    * @param params So-called REST params, aka fields to fetch / related entities
    */
-  entityquery<U extends T | T[]>(url: string, converter: (json: Object | Object[]) => U, params: Object = {}): Promise<U> {
+  entityQuery<U extends T | T[]>(url: string, converter: (json: Object | Object[]) => U, params: Object = {}): Promise<U> {
     return this.http.fetch(url, {
       method: 'post',
       body: json(params)

@@ -11,7 +11,7 @@ export class PartyService extends Service<Party> {
   }*/
 
   getAllPersons(): Promise<Party[]> {
-    return this.entityquery<Party[]>("/entityquery/Party",
+    return this.entityQuery<Party[]>("/entityquery/Party",
       (data) => Model.arrayFromJson(data as Object[], Party),
       {
         "inputFields": {
@@ -49,7 +49,7 @@ export class PartyService extends Service<Party> {
   }*/
 
   getSingle(id: string): Promise<Party[]> {
-    return this.entityquery<Party[]>("/entityquery/Party",
+    return this.entityQuery<Party[]>("/entityquery/Party",
       (data) => Model.arrayFromJson(data as Object[], Party),
       {
         "inputFields": {
