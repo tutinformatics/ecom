@@ -4,9 +4,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const project = require('./aurelia_project/aurelia.json');
-const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {AureliaPlugin, ModuleDependenciesPlugin} = require('aurelia-webpack-plugin');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+
+const webpack = require('webpack')
 
 // config helpers:
 const ensureArray = (config) => config && (Array.isArray(config) ? config : [config]) || [];
@@ -21,11 +23,11 @@ const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const baseUrl = '/';
 
 const cssRules = [
-  { loader: 'css-loader' },
+  {loader: 'css-loader'},
 ];
 
 
-module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, host } = {}) => ({
+module.exports = ({production} = {}, {extractCss, analyze, tests, hmr, port, host} = {}) => ({
   resolve: {
     extensions: ['.ts', '.js'],
     modules: [srcDir, 'node_modules'],
@@ -38,8 +40,9 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       // https://github.com/aurelia/binding/issues/702
       // Enforce single aurelia-binding, to avoid v1/v2 duplication due to
       // out-of-date dependencies on 3rd party aurelia plugins
-      'aurelia-binding': path.resolve(__dirname, 'node_modules/aurelia-binding')
-    }
+      'aurelia-binding': path.resolve(__dirname, 'node_modules/aurelia-binding'),
+      'jquery': path.join(__dirname, 'node_modules/jquery/src/jquery')
+    },
   },
   entry: {
     app: [
@@ -113,7 +116,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       }
     }
   },
-  performance: { hints: false },
+  performance: {hints: false},
   devServer: {
     contentBase: outDir,
     // serve index.html for all 404 (required for push-state)
@@ -129,7 +132,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
       {
         test: /\.css$/i,
-        issuer: [{ not: [{ test: /\.html$/i }] }],
+        issuer: [{not: [{test: /\.html$/i}]}],
         use: extractCss ? [{
           loader: MiniCssExtractPlugin.loader
         }, ...cssRules
@@ -137,26 +140,36 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       },
       {
         test: /\.css$/i,
-        issuer: [{ test: /\.html$/i }],
+        issuer: [{test: /\.html$/i}],
         // CSS required in templates cannot be extracted safely
         // because Aurelia would try to require it again in runtime
         use: cssRules
       },
-      { test: /\.html$/i, loader: 'html-loader' },
-      { test: /\.ts$/, loader: "ts-loader" },
+      {test: /\.html$/i, loader: 'html-loader'},
+      {test: /\.ts$/, loader: "ts-loader"},
       // embed small svg and fonts as Data Urls and larger ones as files:
-      { test: /\.(png|gif|jpg|cur)$/i, loader: 'url-loader', options: { limit: 8192 } },
-      { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
-      { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
+      {test: /\.(png|gif|jpg|cur)$/i, loader: 'url-loader', options: {limit: 8192}},
+      {
+        test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+        loader: 'url-loader',
+        options: {limit: 10000, mimetype: 'application/font-woff2'}
+      },
+      {
+        test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+        loader: 'url-loader',
+        options: {limit: 10000, mimetype: 'application/font-woff'}
+      },
       // load these fonts normally, as files:
-      { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' },
-      { test: /environment\.json$/i, use: [
-        {loader: "app-settings-loader", options: {env: production ? 'production' : 'development' }},
-      ]},
+      {test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader'},
+      {
+        test: /environment\.json$/i, use: [
+          {loader: "app-settings-loader", options: {env: production ? 'production' : 'development'}},
+        ]
+      },
       ...when(tests, {
         test: /\.[jt]s$/i, loader: 'istanbul-instrumenter-loader',
         include: srcDir, exclude: [/\.(spec|test)\.[jt]s$/i],
-        enforce: 'post', options: { esModules: true },
+        enforce: 'post', options: {esModules: true},
       })
     ]
   },
@@ -179,7 +192,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       chunkFilename: production ? 'css/[name].[contenthash].chunk.css' : 'css/[name].[hash].chunk.css'
     })),
     ...when(!tests, new CopyWebpackPlugin([
-      { from: 'static', to: outDir, ignore: ['.*'] }])), // ignore dot (hidden) files
+      {from: 'static', to: outDir, ignore: ['.*']}])), // ignore dot (hidden) files
     ...when(analyze, new BundleAnalyzerPlugin()),
     /**
      * Note that the usage of following plugin cleans the webpack output directory before build.
@@ -187,6 +200,13 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
      * remove those before the webpack build. In that case consider disabling the plugin, and instead use something like
      * `del` (https://www.npmjs.com/package/del), or `rimraf` (https://www.npmjs.com/package/rimraf).
      */
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      'window.jQuery': 'jquery',
+      'window.Tether': 'tether',
+      Tether: 'tether'
+    }),
   ]
 });

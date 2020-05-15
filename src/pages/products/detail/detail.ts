@@ -10,6 +10,7 @@ import {ProductType} from "../../../model/product-type";
 import {ProductTypeService} from "../../../service/product-type-service";
 import {ProductCategoryMemberService} from "../../../service/product-category-member-service";
 import {ProductCategoryMember} from "../../../model/product-category-member";
+//import $ from 'jquery'
 
 @inject(ProductService, ProductCategoryService, ProductPriceService, ProductTypeService, ProductCategoryMemberService)
 export class Detail {
@@ -18,6 +19,13 @@ export class Detail {
   categories: ProductCategory[] = [];
   types: ProductType[] = [];
   isEditingMode: boolean = false;
+
+  condimentItem;
+  condimentValue;
+  myCollection = [
+    { id: 1, option: 'Ketchup', company: 'Heinz' },
+    { id: 2, option: 'Mustard', company: 'French\'s' }
+  ];
 
   constructor(private productService: ProductService,
               private productCategoryService: ProductCategoryService,
