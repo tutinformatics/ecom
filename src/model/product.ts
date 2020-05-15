@@ -3,13 +3,13 @@ import {ProductType} from "./product-type";
 import {ProductPrice} from "./product-price";
 import {ProductCategory} from "./product-category";
 import {ProductKeyword} from "./product-keyword";
+import {ProductCategoryMember} from "./product-category-member";
 
 export class Product extends Model {
 
   originGeoId?: any;
   detailScreen?: any;
   createdStamp: Date;
-  // _ENTITY_NAME_: string;
   requireInventory: string;
   quantityUomId: string;
   mediumImageUrl?: any;
@@ -25,7 +25,6 @@ export class Product extends Model {
   configId?: any;
   billOfMaterialLevel?: number;
   lotIdFilledIn?: any;
-  _DELEGATOR_NAME_: string;
   productRating?: any;
   createdByUserLogin: string;
   brandName?: string;
@@ -97,7 +96,7 @@ export class Product extends Model {
   _toMany_AssocProductAssoc: ToManyAssocProductAssoc[];
   _toMany_ProductContent: ToManyProductContent[];
   _toMany_QuoteItem: ToManyQuoteItem[];
-  _toMany_ProductCategoryMember: ToManyProductCategoryMember[];
+  _toMany_ProductCategoryMember: ProductCategoryMember[];
   _toMany_ProductFacilityLocation: ToManyProductFacilityLocation[];
   _toMany_AgreementProductAppl: ToManyAgreementProductAppl[];
   _toOne_CreatedByUserLogin: ToOneCreatedByUserLogin;
@@ -381,20 +380,6 @@ export interface ToManyQuoteItem {
   custRequestItemSeqId?: any;
   skillTypeId?: any;
   leadTimeDays?: any;
-}
-
-export interface ToManyProductCategoryMember {
-  lastUpdatedStamp: any;
-  comments: string;
-  quantity?: any;
-  productId: string;
-  sequenceNum?: number;
-  createdTxStamp: any;
-  createdStamp: any;
-  lastUpdatedTxStamp: any;
-  thruDate?: any;
-  fromDate: any;
-  productCategoryId: string;
 }
 
 export interface ToManyProductFacilityLocation {

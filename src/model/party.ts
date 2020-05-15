@@ -2,6 +2,7 @@ import {Model} from "./model";
 import {PartyType} from "./party-type";
 import {PartyRole} from "./party-role";
 import {PartyContactMech} from "./party-contact-mech";
+import {ContactMech} from "./contact-mech";
 
 export class Party extends Model{
   _toOne_Person: ToOnePerson;
@@ -97,6 +98,11 @@ export class Party extends Model{
   _toMany_FromCustRequest: ToManyFromCustRequest[];
   _toMany_Quote: ToManyQuote[];
   _toMany_ToShipment: ToManyToShipment[];
+
+  /**
+   * Does not come with get
+   */
+  __toOne_EmailAddress: ContactMech;
 }
 
 
