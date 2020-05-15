@@ -21,7 +21,8 @@ export class Detail {
   types: ProductType[] = [];
   isEditingMode: boolean = false;
 
-  selectedSubCategories = [];
+  private prevSelectedSubCategories: any[] = [];
+  selectedSubCategories: any[] = [];
   categoryMappings = {
     option: 'categoryName',
     id: 'productCategoryId'
@@ -58,10 +59,24 @@ export class Detail {
 
     if (this.selectedSubCategories) {
       this.selectedSubCategories.forEach((cat) => {
-        cat.productId = this.product.productId;
-        this.productCategoryMemberService.addProductToCategory(cat)
-          .then((res) => console.log(res));
-      })
+        if (this.prevSelectedSubCategories.filter((p) => p.productCategoryId === cat.productCategoryId).length === 0) {
+          cat.productId = this.product.productId;
+          this.productCategoryMemberService.addProductToCategory(cat)
+            .then((res) => console.log(res));
+        }
+      });
+      this.prevSelectedSubCategories.forEach((cat) => {
+        if (this.selectedSubCategories.filter((p) => p.productCategoryId === cat.productCategoryId).length === 0) {
+          const tmp = new ProductCategoryMember();
+          tmp.productId = this.product.productId;
+          tmp.productCategoryId = cat.productCategoryId;
+          tmp.fromDate = new Date();
+          console.log(0, tmp.getPreparedJson()) // TODO: Backend seems to be broken, maybe id's have bait names?
+          this.productCategoryMemberService.removeProductFromCategory(tmp)
+            .then((res) => console.log(res));
+        }
+      });
+      this.prevSelectedSubCategories = this.selectedSubCategories;
     }
 
     this.productService.updateProduct(this.product)
@@ -93,7 +108,8 @@ export class Detail {
               .filter((pc) => pc.productCategoryId === c.productCategoryId).length > 0) {
               this.selectedSubCategories.push(c);
             }
-          })
+          });
+          this.prevSelectedSubCategories = this.selectedSubCategories;
         }
       });
   }
@@ -123,7 +139,8 @@ export class Detail {
               .filter((pc) => pc.productCategoryId === c.productCategoryId).length > 0) {
               this.selectedSubCategories.push(c);
             }
-          })
+          });
+          this.prevSelectedSubCategories = this.selectedSubCategories;
         }
       });
   }
