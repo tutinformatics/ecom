@@ -5,7 +5,7 @@ export class ProductKeyword extends Model {
   lastUpdatedStamp: Date;
   productId: string;
   statusId: string;
-  keywordTypeId: string;
+  keywordTypeId: string = 'KWT_KEYWORD';
   createdTxStamp: Date;
   createdStamp: Date;
   // _ENTITY_NAME_: string;
