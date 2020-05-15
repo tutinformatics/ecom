@@ -1,0 +1,138 @@
+<template>
+  <require from="./customers-detail.css"></require>
+
+  <div class="row justify-content-center">
+    <!-- BACK BUTTON -->
+    <div class="col-10 row head justify-content-between back">
+      <div class="col-2 m-0 p-0 pb-4">
+        <a href="/customers">
+          <img src="/back-arrow.png">
+          <span>Kliendid</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- KLIENDI NIMI -->
+    <div class="col-10 row head justify-content-between">
+      <div class="col-10 m-0 p-0 pb-3">
+        <h3>Kliendi nimi</h3>
+      </div>
+
+      <div class="col-1">
+        <div if.bind="!isEditingMode" click.delegate="isEditingMode = true" class="col-2"><button class=" btn btn-dark float-right">EDIT</button></div>
+        <div if.bind="isEditingMode" click.delegate="updateData()" class="col-2"><button class=" btn btn-success float-right">SAVE</button></div>
+      </div>
+
+    </div>
+
+    <div class="col-10">
+
+      <div class="row justify-content-center">
+        <div class="col-7">
+          <div class="col-11 row border main-body mb-5">
+            <div class="col-12 tab">
+              <div class=""><h3>Personal Informations</h3></div>
+            </div>
+            <div class="col-12 row tab">
+
+                <div class="col-6">
+                  <label class="bold">First name:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.firstName" class="form-control" >
+                  <span if.bind="!isEditingMode">${ party._toOne_Person.firstName }</span>
+                </div>
+                <div class="col-6">
+                  <label class="bold">Email:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="emailContact.infoString" class="form-control" >
+                  <span if.bind="!isEditingMode">${ emailContact.infoString }</span>
+                </div>
+
+            </div>
+            <div class="col-12 row tab">
+              <div class="col-12">
+                <label class="bold">Last name:</label><br>
+                <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.lastName" class="form-control" >
+                <span if.bind="!isEditingMode">${ party._toOne_Person.lastName }</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-11 row border main-body">
+            <div class="col-12 tab">
+              <div>Tellimused</div>
+            </div>
+
+            <div class="col-12 tab m-0 p-0">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <td width="25%" class="table-header">Nr</td>
+                  <td width="15%" class="table-header">Kuupaev</td>
+                  <td width="15%" class="table-header">Seisund</td>
+                  <td width="15%" class="table-header">Kokku</td>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr repeat.for="party of parties" click.delegate='onClickCustomer($event)'>
+                  <td>${party.partyName}</td>
+                  <td>${party.partyEmail}</td>
+                  <td>${party.partyOrders}</td>
+                  <td>${party.partyOrders}</td>
+                </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-5">
+          <div class="col-11 row border main-body mb-5">
+            <div class="col-12 tab">
+              <div><h3>Address Information</h3></div>
+            </div>
+
+            <div class="col-12 tab m-0 p-0">
+              <div class="col-12 row justify-content-center tab">
+                <div class="col-10 pb-3">
+                  <label class="bold">Address:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="postalAddress.address1" class="form-control" >
+                  <span if.bind="!isEditingMode">${ postalAddress.address1 }</span>
+                </div>
+                <div class="col-10 pb-3">
+                  <label class="bold">Apartment(optional):</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="postalAddress.address2" class="form-control" >
+                  <span if.bind="!isEditingMode">${ postalAddress.address2 }</span>
+                </div>
+                <div class="col-10 pb-3">
+                  <label class="bold">City:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="postalAddress.city" class="form-control" >
+                  <span if.bind="!isEditingMode">${ postalAddress.city }</span>
+                </div>
+                <div class="col-5 pb-3">
+                  <label class="bold">County:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="postalAddress.countryGeoId" class="form-control" >
+                  <span if.bind="!isEditingMode">${ postalAddress.countryGeoId }</span>
+                </div>
+                <div class="col-5 pb-3">
+                  <label class="bold">Postal code:</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="postalAddress.postalCode" class="form-control" >
+                  <span if.bind="!isEditingMode">${ postalAddress.postalCode }</span>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</template>

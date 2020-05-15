@@ -55,7 +55,7 @@ export class Service<T extends Model> {
   }
 
   post(url: string, data: T, converter: (json: Object) => T): Promise<T> {
-    console.log("POST data:", json(data));
+    console.log("POST data:", json(data.getPreparedJson()), url);
     data['login.username'] = "admin";
     data['login.password'] = "ofbiz";
     return this.http.fetch(url, {
@@ -63,6 +63,37 @@ export class Service<T extends Model> {
       body: json(data.getPreparedJson()) // <- needed to remove related entities
     })
       .then(response => response.json())
+      .then((json) => converter(json));
+  }
+
+  put(url: string, data: T, converter: (json: Object) => T): Promise<T> {
+    console.log("PUT data:", json(data));
+    data['login.username'] = "admin";
+    data['login.password'] = "ofbiz";
+    return this.http.fetch(url, {
+      method: 'put',
+      body: json(data.getPreparedJson()) // <- needed to remove related entities
+    })
+      .then(response => response.json())
+      .then((json) => converter(json));
+  }
+
+  // ==================================== NOT RECOMMENDED SECTION ======================================
+
+  /**
+   * Gives way more power than normal get. WE DO NOT RECOMMEND TO USE as this is more of a bad practice.
+   * Use PHP instead. Only here cuz Ahto insists. (And well, it is easy to use)
+   *
+   * @param url Url of data source
+   * @param converter Either array or single object converter (see @Model)
+   * @param params So-called REST params, aka fields to fetch / related entities
+   */
+  entityQuery<U extends T | T[]>(url: string, converter: (json: Object | Object[]) => U, params: Object = {}): Promise<U> {
+    return this.http.fetch(url, {
+      method: 'post',
+      body: json(params)
+    })
+      .then((response) => response.json())
       .then((json) => converter(json));
   }
 }
