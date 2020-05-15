@@ -16,6 +16,23 @@ export class NewOrder {
     this.initData()
   }
 
+  pickerOptions = {
+    actionsBox: true,
+    dropupAuto: true,
+    liveSearch: true
+  };
+
+  partyMappings = {
+    option: 'partyId',
+    id: 'partyId'
+  };
+
+  productMappings = {
+    option: 'productId',
+    id: 'productId'
+  };
+
+
   attached() {
     this.initData();
   }

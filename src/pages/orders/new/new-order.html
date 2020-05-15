@@ -32,14 +32,16 @@
 
         <div class="col-7">
 
-          <select class="form-control header-input">
-            <option model.bind="null">Choose...</option>
-            <option repeat.for="party of parties" model.bind="party.partyId">
-              ${party.partyId}
-            </option>
-          </select>
+          <abp-select class="mb-2"
+                      picker-options.bind="pickerOptions"
+                      data-mapping-structure.bind="partyMappings"
+                      collection.bind="parties"
+                      object-key="partyId">
+          </abp-select>
 
-          <input type="text" aria-label="First name" class="form-control header-input">
+          <fieldset disabled>
+            <input type="text" aria-label="First name" class="form-control header-input">
+          </fieldset>
 
           <input type="text" aria-label="First name" class="form-control header-input">
 
@@ -100,12 +102,12 @@
         <tr repeat.for="row of rows">
           <td>${ $index + 1}</td>
           <td>
-            <select class="form-control header-input">
-              <option model.bind="null">Choose...</option>
-              <option repeat.for="product of products" model.bind="product.productId">
-                ${product.productId}
-              </option>
-            </select>
+            <abp-select class="mb-2"
+                        picker-options.bind="pickerOptions"
+                        data-mapping-structure.bind="productMappings"
+                        collection.bind="products"
+                        object-key="productId">
+            </abp-select>
           </td>
           <td><input type="text" aria-label="First name" class="form-control"></td>
           <td>
