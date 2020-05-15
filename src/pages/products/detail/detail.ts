@@ -10,6 +10,7 @@ import {ProductType} from "../../../model/product-type";
 import {ProductTypeService} from "../../../service/product-type-service";
 import {ProductCategoryMemberService} from "../../../service/product-category-member-service";
 import {ProductCategoryMember} from "../../../model/product-category-member";
+
 //import $ from 'jquery'
 
 @inject(ProductService, ProductCategoryService, ProductPriceService, ProductTypeService, ProductCategoryMemberService)
@@ -20,8 +21,7 @@ export class Detail {
   types: ProductType[] = [];
   isEditingMode: boolean = false;
 
-  selectedSubCategories;
-  condimentValue;
+  selectedSubCategories = [];
   categoryMappings = {
     option: 'categoryName',
     id: 'productCategoryId'
@@ -85,7 +85,17 @@ export class Detail {
           this.productPrice.fromDate = this.product._toMany_ProductPrice[0].fromDate;
         }
       })
-      .then(() => console.log(this.product));
+      .then(() => console.log(this.product))
+      .then(() => {
+        if (this.categories !== null) {
+          this.categories.forEach((c) => {
+            if (this.product._toMany_ProductCategoryMember
+              .filter((pc) => pc.productCategoryId === c.productCategoryId).length > 0) {
+              this.selectedSubCategories.push(c);
+            }
+          })
+        }
+      });
   }
 
   addProductToCategory(categoryId: string) {
@@ -105,15 +115,27 @@ export class Detail {
   private loadCategories() {
     this.productCategoryService.getProductCategories()
       .then((categories) => categories.filter((c) => c.categoryName && c.categoryName != ''))
-      .then((categories) => this.categories = categories);
+      .then((categories) => this.categories = categories)
+      .then(() => {
+        if (this.product !== null) {
+          this.categories.forEach((c) => {
+            if (this.product._toMany_ProductCategoryMember
+              .filter((pc) => pc.productCategoryId === c.productCategoryId).length > 0) {
+              this.selectedSubCategories.push(c);
+            }
+          })
+        }
+      });
   }
 
   getCategoryInfo(product: Product): string {
     return ProductUtils.getCategoryInfo(product);
   }
+
   getPriceWithoutTaxString(product: Product): string {
     return ProductUtils.getPriceWithoutTaxString(product);
   }
+
   getPriceWithTaxString(product: Product): string {
     return ProductUtils.getPriceWithTaxString(product);
   }
