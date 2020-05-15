@@ -2,10 +2,13 @@ import {PartyService} from "../../../service/party-service";
 import {Router} from 'aurelia-router';
 import {inject} from 'aurelia-framework'
 import {ContactMechService} from "../../../service/contact-mech-service";
+import {Party} from "../../../model/party";
 
 @inject(Router, PartyService, ContactMechService)
 export class CustomersList {
-  parties = [];
+  parties: Party[] = [];
+  filteredParties: Party[] = [];
+  nameFilter: string = '';
 
   constructor(private router: Router,
               private partyService: PartyService,
@@ -29,7 +32,12 @@ export class CustomersList {
           }
         });
         this.parties = res;
+        this.filteredParties = res;
       });
+  }
+
+  onSearchFilterChanged() {
+    this.filteredParties = this.parties.filter((p) => p.partyId.toLowerCase().startsWith(this.nameFilter.toLowerCase()));
   }
 
   //convertTime(ms: number) {
