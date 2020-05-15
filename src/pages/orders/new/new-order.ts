@@ -1,26 +1,30 @@
 import {inject} from 'aurelia-framework'
-import {ProductsService} from "../../../service/products-service";
 import {Product} from "../../../model/product";
 import {PartyService} from "../../../service/party-service";
 import {Party} from "../../../model/party";
 import {OrderRow} from "../../../model/order-row";
+import {ProductService} from "../../../service/product-service";
 
-@inject(ProductsService, PartyService)
+@inject(ProductService, PartyService)
 export class NewOrder {
 
   products: Product[] = [];
-  party: Party[] = [];
+  parties: Party[] = [];
   rows = [new OrderRow()];
 
-  constructor(private productService: ProductsService, private partyService: PartyService) {
+  constructor(private productService: ProductService, private partyService: PartyService) {
+    this.initData()
+  }
 
+  attached() {
+    this.initData();
   }
 
   initData() {
     this.productService.getAll()
       .then(result => this.products = result);
     this.partyService.getAll()
-      .then(result => this.party = result);
+      .then(result => this.parties = result);
   }
 
   addRow(){

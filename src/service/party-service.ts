@@ -10,7 +10,7 @@ export class PartyService extends Service<Party> {
     );
   }*/
 
-  getAllPersons(): Promise<Party[]> {
+  getAll(): Promise<Party[]> {
     return this.entityQuery<Party[]>("/entityquery/Party",
       (data) => Model.arrayFromJson(data as Object[], Party),
       {
