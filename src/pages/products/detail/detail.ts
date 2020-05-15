@@ -128,11 +128,6 @@ export class Detail {
       .then((res) => console.log(res));
   }
 
-  removeProductFromCategory(categoryMember: ProductCategoryMember) {
-    this.productCategoryMemberService.removeProductFromCategory(categoryMember)
-      .then((res) => console.log(res));
-  }
-
   private loadCategories() {
     this.productCategoryService.getProductCategories()
       .then((categories) => categories.filter((c) => c.categoryName && c.categoryName != ''))
