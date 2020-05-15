@@ -32,16 +32,20 @@
 
         <div class="col-7">
 
-          <select class="form-control header-input">
-            <option model.bind="null">Choose...</option>
-            <option repeat.for="party of parties" model.bind="party.partyId">
-              ${party.partyId}
-            </option>
-          </select>
+          <abp-select class="mb-2"
+                      picker-options.bind="pickerOptions"
+                      data-mapping-structure.bind="partyMappings"
+                      collection.bind="parties"
+                      object-key="partyId">
+          </abp-select>
 
-          <input type="text" aria-label="First name" class="form-control header-input">
+          <fieldset disabled>
+            <input type="text" aria-label="First name" class="form-control header-input">
+          </fieldset>
 
+          <fieldset disabled>
           <input type="text" aria-label="First name" class="form-control header-input">
+          </fieldset>
 
         </div>
 
@@ -100,24 +104,25 @@
         <tr repeat.for="row of rows">
           <td>${ $index + 1}</td>
           <td>
-            <select class="form-control header-input">
-              <option model.bind="null">Choose...</option>
-              <option repeat.for="product of products" model.bind="product.productId">
-                ${product.productId}
-              </option>
-            </select>
+            <abp-select class="mb-2"
+                        picker-options.bind="pickerOptions"
+                        selected-value.bind="row.purchaseProduct"
+                        data-mapping-structure.bind="productMappings"
+                        collection.bind="products"
+                        object-key="productId">
+            </abp-select>
           </td>
-          <td><input type="text" aria-label="First name" class="form-control"></td>
+          <td><input type="text" aria-label="First name" class="form-control" value.bind="row.itemAmount"></td>
           <td>
-            <select class="form-control">
+            <select class="form-control" id="${$index  }" value.bind="row.tax" change.delegate="processTaxValue($event)">
               <option>Vali kaibemaks</option>
               <option>20%</option>
               <option>9%</option>
               <option>0%</option>
             </select>
           </td>
-          <td>-</td>
-          <td>-</td>
+          <td>${ row.valueWithTax }</td>
+          <td>${ row.taxValue }</td>
           <td>
             <button type="button" class="btn btn-danger" click.delegate="removeRow($event)">Remove</button>
           </td>
