@@ -24,6 +24,10 @@ export class Orders{
       .then(() => this.covertTime());
   }
 
+  newView(){
+    this.router.navigateToRoute('new')
+}
+
   detailView(orderReportView: OrderReportView){
     //this.router.navigateToRoute('detail', {id:0})
     this.router.navigateToRoute('detail', {id: orderReportView.orderId})

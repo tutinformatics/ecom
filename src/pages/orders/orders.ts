@@ -10,6 +10,7 @@ export class Products {
     // config.options.root = '/';
     config.map([
       { route: ['', 'list'], moduleId: PLATFORM.moduleName('./list/orders'), name: 'list' },
+      { route: ['/new'], moduleId: PLATFORM.moduleName('./new/new-order'), name: 'new' },
       { route: ['/:id/detail'], moduleId: PLATFORM.moduleName('./detail/orders-detail'), name: 'detail' },
     ]);
     this.router = router;
