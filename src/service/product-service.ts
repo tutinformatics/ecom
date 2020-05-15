@@ -24,6 +24,9 @@ export class ProductService extends Service<Product> {
           },
           "_toMany_ProductPrice": {
             "fieldList": ["price", "priceWithTax", "priceWithoutTax"]
+          },
+          "_toMany_ProductKeyword": {
+            "fieldList": ["keyword"]
           }
         }
       }
@@ -53,6 +56,9 @@ export class ProductService extends Service<Product> {
                 "fieldList": ["categoryName", "productCategoryTypeId", "productCategoryId"]
               }
             }
+          },
+          "_toMany_ProductKeyword": {
+            "fieldList": ["keyword"]
           }
         }
       }

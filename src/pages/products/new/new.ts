@@ -72,6 +72,10 @@ export class New {
     this.newTag = '';
   }
 
+  onRemoveKeyword(keyword: ProductKeyword) {
+    this.productKeywords = this.productKeywords.filter((kw) => kw.keyword !== keyword.keyword);
+  }
+
   private createRelatedEntities(product: Product) {
     console.log(1)
     this.productPrice.productId = product.productId;

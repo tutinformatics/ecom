@@ -121,7 +121,7 @@
                   <button class="btn-dark rounded" style="width: 50% !important; height: 90% !important;" click.delegate="onAddKeyword()"> +</button>
                 </div>
                 <div class="col-6">
-                  <label repeat.for="kw of productKeywords">${ kw.keyword }</label>
+                  <label class="keyword" repeat.for="kw of productKeywords" click.delegate="onRemoveKeyword(kw)">${ kw.keyword }</label>
                 </div>
               </div>
 
