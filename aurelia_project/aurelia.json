@@ -28,6 +28,22 @@
       ]
     },
     {
+      "name": "bootstrap-select",
+      "main": "dist/js/bootstrap-select.js",
+      "path": "../node_modules/bootstrap-select",
+      "resources": [
+        "dist/css/bootstrap-select.min.css"
+      ]
+    },
+    {
+      "name": "aurelia-bootstrap-select",
+      "main": "index",
+      "path": "../node_modules/aurelia-bootstrap-select/dist/amd",
+      "resources": [
+        "**/*.{css,html}"
+      ]
+    },
+    {
       "name": "moment",
       "path": "../node_modules/moment",
       "main": "min/moment-with-locales",

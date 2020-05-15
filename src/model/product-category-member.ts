@@ -9,11 +9,11 @@ export class ProductCategoryMember extends Model {
   _toOne_ProductCategory: ProductCategory;
   productId: string;
   sequenceNum?: number;
-  createdTxStamp: any;
-  createdStamp: any;
+  createdTxStamp: Date;
+  createdStamp: Date;
   lastUpdatedTxStamp: any;
-  thruDate?: any;
-  fromDate: any;
+  thruDate?: Date;
+  fromDate: Date = new Date();
   productCategoryId: string;
   _toOne_Product: Product;
 }

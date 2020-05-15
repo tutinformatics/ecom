@@ -2,6 +2,8 @@ import { autoinject } from "aurelia-framework";
 import {PLATFORM} from 'aurelia-pal';
 import {RouterConfiguration, Router} from 'aurelia-router';
 import 'bootstrap';
+import 'bootstrap-select'
+//import 'aurelia-bootstrap-select/dist/amd/bootstrap-select-bs4.css'
 
 @autoinject
 export class app {

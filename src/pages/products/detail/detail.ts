@@ -11,6 +11,8 @@ import {ProductTypeService} from "../../../service/product-type-service";
 import {ProductCategoryMemberService} from "../../../service/product-category-member-service";
 import {ProductCategoryMember} from "../../../model/product-category-member";
 
+//import $ from 'jquery'
+
 @inject(ProductService, ProductCategoryService, ProductPriceService, ProductTypeService, ProductCategoryMemberService)
 export class Detail {
   product?: Product = null;
@@ -18,6 +20,22 @@ export class Detail {
   categories: ProductCategory[] = [];
   types: ProductType[] = [];
   isEditingMode: boolean = false;
+
+  private prevSelectedSubCategories: any[] = [];
+  selectedSubCategories: any[] = [];
+  categoryMappings = {
+    option: 'categoryName',
+    id: 'productCategoryId'
+  };
+  typeMappings = {
+    option: 'productTypeId',
+    id: 'productTypeId'
+  }
+  pickerOptions = {
+    actionsBox: true,
+    dropupAuto: true,
+    liveSearch: true
+  };
 
   constructor(private productService: ProductService,
               private productCategoryService: ProductCategoryService,
@@ -43,6 +61,28 @@ export class Detail {
         .then((price) => console.log(price));
     }
 
+    if (this.selectedSubCategories) {
+      this.selectedSubCategories.forEach((cat) => {
+        if (this.prevSelectedSubCategories.filter((p) => p.productCategoryId === cat.productCategoryId).length === 0) {
+          cat.productId = this.product.productId;
+          this.productCategoryMemberService.addProductToCategory(cat)
+            .then((res) => console.log(res));
+        }
+      });
+      this.prevSelectedSubCategories.forEach((cat) => {
+        if (this.selectedSubCategories.filter((p) => p.productCategoryId === cat.productCategoryId).length === 0) {
+          const tmp = new ProductCategoryMember();
+          tmp.productId = this.product.productId;
+          tmp.productCategoryId = cat.productCategoryId;
+          tmp.fromDate = new Date();
+          console.log(0, tmp.getPreparedJson()) // TODO: Backend seems to be broken, maybe id's have bait names?
+          this.productCategoryMemberService.removeProductFromCategory(tmp)
+            .then((res) => console.log(res));
+        }
+      });
+      this.prevSelectedSubCategories = this.selectedSubCategories;
+    }
+
     this.productService.updateProduct(this.product)
       .then((product) => console.log(product))
       .then(() => this.loadProduct(this.product.productId)); // Back doesn't have functionality
@@ -63,8 +103,20 @@ export class Detail {
           this.productPrice.productId = this.product._toMany_ProductPrice[0].productId;
           this.productPrice.fromDate = this.product._toMany_ProductPrice[0].fromDate;
         }
+        console.log(this.product)
       })
-      .then(() => console.log(this.product));
+      .then(() => console.log(0, id, this.product))
+      .then(() => {
+        if (this.categories !== null) {
+          this.categories.forEach((c) => {
+            if (this.product._toMany_ProductCategoryMember
+              .filter((pc) => pc.productCategoryId === c.productCategoryId).length > 0) {
+              this.selectedSubCategories.push(c);
+            }
+          });
+          this.prevSelectedSubCategories = this.selectedSubCategories;
+        }
+      });
   }
 
   addProductToCategory(categoryId: string) {
@@ -76,22 +128,31 @@ export class Detail {
       .then((res) => console.log(res));
   }
 
-  removeProductFromCategory(categoryMember: ProductCategoryMember) {
-    this.productCategoryMemberService.removeProductFromCategory(categoryMember)
-      .then((res) => console.log(res));
-  }
-
   private loadCategories() {
     this.productCategoryService.getProductCategories()
-      .then((categories) => this.categories = categories);
+      .then((categories) => categories.filter((c) => c.categoryName && c.categoryName != ''))
+      .then((categories) => this.categories = categories)
+      .then(() => {
+        if (this.product !== null) {
+          this.categories.forEach((c) => {
+            if (this.product._toMany_ProductCategoryMember
+              .filter((pc) => pc.productCategoryId === c.productCategoryId).length > 0) {
+              this.selectedSubCategories.push(c);
+            }
+          });
+          this.prevSelectedSubCategories = this.selectedSubCategories;
+        }
+      });
   }
 
   getCategoryInfo(product: Product): string {
     return ProductUtils.getCategoryInfo(product);
   }
+
   getPriceWithoutTaxString(product: Product): string {
     return ProductUtils.getPriceWithoutTaxString(product);
   }
+
   getPriceWithTaxString(product: Product): string {
     return ProductUtils.getPriceWithTaxString(product);
   }
