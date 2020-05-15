@@ -51,4 +51,21 @@ export class NewOrder {
   removeRow(event) {
     this.rows.splice(event.target.id, 1);
   }
+
+  processTaxValue(event) {
+    let row = this.rows[event.target.id];
+    if (row.tax == undefined) {
+      row.tax = "20%";
+    }
+    if (row.itemAmount == undefined) {
+      row.itemAmount = 1;
+    }
+    let rowTax = row.tax;
+    rowTax = rowTax.substring(0, rowTax.length - 1);
+    let tax = +rowTax;
+    row.taxValue = ( +row.purchaseProduct.priceDetailText * +row.itemAmount) * 0.01 * tax;
+    row.taxValue = +row.taxValue.toFixed(2);
+    row.valueWithTax = (+row.purchaseProduct.priceDetailText * +row.itemAmount) + +row.taxValue;
+    row.valueWithTax = +row.valueWithTax.toFixed(2);
+  }
 }
