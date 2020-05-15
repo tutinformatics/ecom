@@ -10,7 +10,9 @@ import 'aurelia-bootstrap-select/dist/amd/bootstrap-select-bs4.css';
 export function configure(aurelia: Aurelia) {
   aurelia.use
     .standardConfiguration()
-    .feature(PLATFORM.moduleName('resources/index'))
+    .feature(PLATFORM.moduleName('resources/index'));
+
+  aurelia.use
     .plugin(PLATFORM.moduleName('aurelia-bootstrap-select'));
 
   aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');

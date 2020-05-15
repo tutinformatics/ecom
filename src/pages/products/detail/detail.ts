@@ -20,12 +20,17 @@ export class Detail {
   types: ProductType[] = [];
   isEditingMode: boolean = false;
 
-  condimentItem;
+  selectedSubCategories;
   condimentValue;
-  myCollection = [
-    { id: 1, option: 'Ketchup', company: 'Heinz' },
-    { id: 2, option: 'Mustard', company: 'French\'s' }
-  ];
+  categoryMappings = {
+    option: 'categoryName',
+    id: 'productCategoryId'
+  }
+  pickerOptions = {
+    actionsBox: true,
+    dropupAuto: true,
+    liveSearch: true
+  };
 
   constructor(private productService: ProductService,
               private productCategoryService: ProductCategoryService,
@@ -49,6 +54,14 @@ export class Detail {
       this.productPrice.productId = this.product.productId;
       this.productPriceService.createProductPrice(this.productPrice)
         .then((price) => console.log(price));
+    }
+
+    if (this.selectedSubCategories) {
+      this.selectedSubCategories.forEach((cat) => {
+        cat.productId = this.product.productId;
+        this.productCategoryMemberService.addProductToCategory(cat)
+          .then((res) => console.log(res));
+      })
     }
 
     this.productService.updateProduct(this.product)
@@ -91,6 +104,7 @@ export class Detail {
 
   private loadCategories() {
     this.productCategoryService.getProductCategories()
+      .then((categories) => categories.filter((c) => c.categoryName && c.categoryName != ''))
       .then((categories) => this.categories = categories);
   }
 

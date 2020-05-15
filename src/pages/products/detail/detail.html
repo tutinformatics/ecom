@@ -193,12 +193,15 @@
                 <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Sub-Categories</h5></div>
 
                 <div class="col-12">
-                  <select if.bind="isEditingMode" type="text" value.bind="product.primaryProductCategoryId"
-                          class="form-control">
-                    <option model.bind="null">Choose...</option>
-                  </select>
-
-                  <abp-select selected-item.bind="condimentItem" selected-value.bind="condimentValue" collection.bind="myCollection" object-key="id"></abp-select>
+                  <abp-select if.bind="isEditingMode"
+                              picker-options.bind="pickerOptions"
+                              data-mapping-structure.bind="categoryMappings"
+                              selected-item.bind="selectedSubCategories"
+                              selected-value.bind="condimentValue"
+                              collection.bind="categories"
+                              multiple="true"
+                              object-key="productCategoryId">
+                  </abp-select>
 
 
                   <ul if.bind="!isEditingMode" class="">
