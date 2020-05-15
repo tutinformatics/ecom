@@ -34,6 +34,10 @@ export class ProductService extends Service<Product> {
     return this.entityQuery<Product[]>("/entityquery/Product",
       (data) => Model.arrayFromJson(data as Object[], Product),
       {
+        "inputFields":
+          {
+            "productId": id,
+          },
         "fieldList": ["productId", "productName", "description", "longDescription"],
         "entityRelations": {
           "_toOne_PrimaryProductCategory": {

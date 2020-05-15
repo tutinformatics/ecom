@@ -166,11 +166,13 @@
                 <div class="col pt-4 pb-2 "><h5 class="bold">Product type</h5></div>
 
                 <div class="col-12 mt-1">
-                  <select if.bind="isEditingMode" class="form-control" value.bind="product.productTypeId">
-                    <option repeat.for="type of types" model.bind="type.productTypeId">
-                      ${type.productTypeId}
-                    </option>
-                  </select>
+                  <abp-select if.bind="isEditingMode"
+                              picker-options.bind="pickerOptions"
+                              data-mapping-structure.bind="typeMappings"
+                              selected-value.bind="product.productTypeId"
+                              collection.bind="types"
+                              object-key="productTypeId">
+                  </abp-select>
                   <span if.bind="!isEditingMode" class="">${product.productTypeId}</span>
                 </div>
               </div>
@@ -178,13 +180,13 @@
               <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Primary Category</h5></div>
 
               <div class="col-12">
-                <select if.bind="isEditingMode" type="text" value.bind="product.primaryProductCategoryId"
-                        class="form-control" placeholder="First Name">
-                  <option model.bind="null">Choose...</option>
-                  <option repeat.for="category of categories" model.bind="category.productCategoryId">
-                    ${category.categoryName}
-                  </option>
-                </select>
+                <abp-select if.bind="isEditingMode"
+                            picker-options.bind="pickerOptions"
+                            data-mapping-structure.bind="categoryMappings"
+                            selected-value.bind="product.primaryProductCategoryId"
+                            collection.bind="categories"
+                            object-key="productCategoryId">
+                </abp-select>
                 <span if.bind="!isEditingMode" class="">${product._toOne_PrimaryProductCategory.categoryName}</span>
 
               </div>

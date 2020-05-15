@@ -11,6 +11,7 @@ export class ProductPrice extends Model {
   customPriceCalcService?: Date;
   price: number = 0;
   taxAuthGeoId: string;
+  _ENTITY_NAME_ = "ProductPrice";
   productPricePurposeId: string = "COMPONENT_PRICE";
   createdByUserLogin: string;
   lastUpdatedStamp: Date;

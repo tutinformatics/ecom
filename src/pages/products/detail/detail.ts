@@ -26,6 +26,10 @@ export class Detail {
   categoryMappings = {
     option: 'categoryName',
     id: 'productCategoryId'
+  };
+  typeMappings = {
+    option: 'productTypeId',
+    id: 'productTypeId'
   }
   pickerOptions = {
     actionsBox: true,
@@ -99,8 +103,9 @@ export class Detail {
           this.productPrice.productId = this.product._toMany_ProductPrice[0].productId;
           this.productPrice.fromDate = this.product._toMany_ProductPrice[0].fromDate;
         }
+        console.log(this.product)
       })
-      .then(() => console.log(this.product))
+      .then(() => console.log(0, id, this.product))
       .then(() => {
         if (this.categories !== null) {
           this.categories.forEach((c) => {
