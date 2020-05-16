@@ -173,7 +173,7 @@
                               collection.bind="types"
                               object-key="productTypeId">
                   </abp-select>
-                  <span if.bind="!isEditingMode" class="">${product.productTypeId}</span>
+                  <span if.bind="!isEditingMode" class="">${product._toOne_ProductType.description}</span>
                 </div>
               </div>
 

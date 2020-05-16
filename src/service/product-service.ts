@@ -57,6 +57,9 @@ export class ProductService extends Service<Product> {
           },
           "_toMany_ProductKeyword": {
             "fieldList": ["keyword"]
+          },
+          "_toOne_ProductType": {
+            "fieldList": ["description", "productTypeId"]
           }
         }
       }

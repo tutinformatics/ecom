@@ -28,7 +28,7 @@ export class Detail {
     id: 'productCategoryId'
   };
   typeMappings = {
-    option: 'productTypeId',
+    option: 'description',
     id: 'productTypeId'
   }
   pickerOptions = {
