@@ -33,6 +33,9 @@ export class ProductCategory extends Model {
   _toMany_TaxAuthorityCategory: ToManyTaxAuthorityCategory[];
   _toMany_ProductFeatureCategoryAppl: ToManyProductFeatureCategoryAppl[];
   _toMany_ProductCategoryRole: ToManyProductCategoryRole[];
+
+  // Only in post
+  productId?: string
 }
 
 export interface ToManyParentProductCategoryRollup {

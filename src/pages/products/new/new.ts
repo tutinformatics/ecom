@@ -35,7 +35,7 @@ export class New {
     id: 'productCategoryId'
   };
   typeMappings = {
-    option: 'productTypeId',
+    option: 'description',
     id: 'productTypeId'
   }
   pickerOptions = {
@@ -66,9 +66,10 @@ export class New {
   }
 
   onAddKeyword() {
+    if (this.newTag.length === 0) return;
     const keyword = new ProductKeyword();
     keyword.keyword = this.newTag;
-    this.productKeywords.push(keyword)
+    this.productKeywords.push(keyword);
     this.newTag = '';
   }
 
@@ -97,7 +98,7 @@ export class New {
 
   private loadCategories() {
     this.productCategoryService.getAll()
-      .then((categories) => categories.filter((c) => c.categoryName && c.categoryName != ''))
+      .then((categories) => categories.filter((c) => c.categoryName && c.categoryName !== ''))
       .then((categories) => this.categories = categories)
       .then(() => console.log(this.categories));
   }
