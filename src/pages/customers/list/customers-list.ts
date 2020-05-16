@@ -3,8 +3,9 @@ import {Router} from 'aurelia-router';
 import {inject} from 'aurelia-framework'
 import {ContactMechService} from "../../../service/contact-mech-service";
 import {Party} from "../../../model/party";
+import {OrderAndPartyContactMechService} from "../../../service/order-and-party-contact-mech-service";
 
-@inject(Router, PartyService, ContactMechService)
+@inject(Router, PartyService, ContactMechService, OrderAndPartyContactMechService)
 export class CustomersList {
   parties: Party[] = [];
   filteredParties: Party[] = [];
@@ -12,7 +13,8 @@ export class CustomersList {
 
   constructor(private router: Router,
               private partyService: PartyService,
-              private contactMechService: ContactMechService) {
+              private contactMechService: ContactMechService,
+              private orderAndPartyContactMechService: OrderAndPartyContactMechService) {
     this.initParties();
   }
 
@@ -28,6 +30,9 @@ export class CustomersList {
                     party.__toOne_EmailAddress = contact._toOne_ContactMech // Cuz aurelia
                   }
               //  });
+              // Ofbiz has no relation here so we have to fetch separately
+              this.orderAndPartyContactMechService.getForPartyId(party.partyId)
+                .then((orders) => party.__toMany_OrderAndPartyContactMech = orders);
             });
           }
         });
