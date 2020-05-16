@@ -9,13 +9,25 @@ import {ProductPrice} from "../../../model/product-price";
 import {ProductPriceService} from "../../../service/product-price-service";
 import {ProductCategoryMemberService} from "../../../service/product-category-member-service";
 import {Router} from "aurelia-router";
+import {ProductKeyword} from "../../../model/product-keyword";
+import {ProductKeywordService} from "../../../service/product-keyword-service";
 
-@inject(ProductService, ProductCategoryService, ProductTypeService, ProductPriceService, ProductCategoryMemberService, Router)
+@inject(
+  ProductService,
+  ProductCategoryService,
+  ProductTypeService,
+  ProductPriceService,
+  ProductCategoryMemberService,
+  ProductKeywordService,
+  Router
+)
 export class New {
   product = new Product();
   productPrice = new ProductPrice();
   categories: ProductCategory[] = [];
   types: ProductType[] = [];
+  productKeywords: ProductKeyword[] = [];
+  newTag: string = '';
 
   selectedSubCategories: any[] = [];
   categoryMappings = {
@@ -23,7 +35,7 @@ export class New {
     id: 'productCategoryId'
   };
   typeMappings = {
-    option: 'productTypeId',
+    option: 'description',
     id: 'productTypeId'
   }
   pickerOptions = {
@@ -37,6 +49,7 @@ export class New {
               private productTypeService: ProductTypeService,
               private productPriceService: ProductPriceService,
               private productCategoryMemberService: ProductCategoryMemberService,
+              private productKeywordService: ProductKeywordService,
               private router: Router) {
   }
 
@@ -52,6 +65,18 @@ export class New {
       .then(() => this.router.navigateBack())
   }
 
+  onAddKeyword() {
+    if (this.newTag.length === 0) return;
+    const keyword = new ProductKeyword();
+    keyword.keyword = this.newTag;
+    this.productKeywords.push(keyword);
+    this.newTag = '';
+  }
+
+  onRemoveKeyword(keyword: ProductKeyword) {
+    this.productKeywords = this.productKeywords.filter((kw) => kw.keyword !== keyword.keyword);
+  }
+
   private createRelatedEntities(product: Product) {
     console.log(1)
     this.productPrice.productId = product.productId;
@@ -63,12 +88,17 @@ export class New {
       this.productCategoryMemberService.addProductToCategory(cat)
         .then((res) => console.log(res));
     });
+    this.productKeywords.forEach((kw) => {
+      kw.productId = product.productId;
+      this.productKeywordService.addProductKeyword(kw)
+        .then((res) => console.log(res));
+    });
     //this.selectedSubCategories = []
   }
 
   private loadCategories() {
-    this.productCategoryService.getProductCategories()
-      .then((categories) => categories.filter((c) => c.categoryName && c.categoryName != ''))
+    this.productCategoryService.getAll()
+      .then((categories) => categories.filter((c) => c.categoryName && c.categoryName !== ''))
       .then((categories) => this.categories = categories)
       .then(() => console.log(this.categories));
   }

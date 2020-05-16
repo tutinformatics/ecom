@@ -41,3 +41,7 @@
   color: grey;
 }
 
+tbody tr :hover {
+  cursor: default;
+}
+

@@ -1,5 +1,4 @@
 import {Service} from "./service";
-import {ProductType} from "../model/product-type";
 import {Model} from "../model/model";
 import {ProductPrice} from "../model/product-price";
 

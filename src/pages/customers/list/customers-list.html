@@ -17,7 +17,7 @@
         <div class="">All Customers</div>
       </div>
       <div class="col-12 tab">
-        Search
+        <input type="text" value.bind="nameFilter" input.delegate="onSearchFilterChanged()" >
       </div>
 
       <div class="col-12 tab m-0 p-0">
@@ -31,7 +31,7 @@
           </thead>
 
           <tbody>
-            <tr repeat.for="party of parties" click.delegate='onClickCustomer(party)'>
+            <tr repeat.for="party of filteredParties" click.delegate='onClickCustomer(party)'>
               <td>${party.partyId}</td>
               <td>${party.__toOne_EmailAddress.infoString }</td>
               <td>0</td>

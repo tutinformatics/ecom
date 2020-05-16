@@ -49,7 +49,7 @@
               </div>
 
 
-              <div class="col-6 row">
+              <!--<div class="col-6 row">
                 <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Facility ID</h5></div>
 
                 <div class="col-12">
@@ -57,7 +57,7 @@
                   <span if.bind="!isEditingMode" class="">${product.facilityId}</span>
 
                 </div>
-              </div>
+              </div>-->
             </div>
             <div class="col-12 row tab">
 
@@ -173,7 +173,7 @@
                               collection.bind="types"
                               object-key="productTypeId">
                   </abp-select>
-                  <span if.bind="!isEditingMode" class="">${product.productTypeId}</span>
+                  <span if.bind="!isEditingMode" class="">${product._toOne_ProductType.description}</span>
                 </div>
               </div>
 
@@ -211,6 +211,13 @@
                     </li>
                   </ul>
 
+                </div>
+              </div>
+
+              <div class="col-12 row">
+                <div class="col-12 pt-4 pb-2 bold"><h5 class="bold">Keywords</h5></div>
+                <div class="col-12 pt-4 pb-2">
+                  <label class="keyword" repeat.for="kw of product._toMany_ProductKeyword" click.delegate="onRemoveKeyword(kw)">${ kw.keyword }</label>
                 </div>
               </div>
             </div>

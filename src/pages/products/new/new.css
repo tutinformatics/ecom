@@ -46,4 +46,18 @@
   color: grey;
 }
 
+.keyword {
+  border-radius: 2em;
+  background: #2a59c9;
+  color: #F1F6F6;
+  font-size: 1em;
+  padding: 5px 15px 5px;
+  margin: 5px;
+}
+
+.keyword:hover {
+  background: #db0000;
+  transition: 0.5s;
+}
+
 

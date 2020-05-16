@@ -1,6 +1,5 @@
 import {Model} from "../model/model";
 import {Service} from "./service";
-import {ContactMech} from "../model/contact-mech";
 import {PostalAddress} from "../model/postal-address";
 
 export class PostalAddressService extends Service<PostalAddress> {
@@ -23,10 +22,4 @@ export class PostalAddressService extends Service<PostalAddress> {
       (data) => Model.fromJson(data as Object, PostalAddress)
     );
   }
-
-  /*updateContactMech(contactMech: ContactMech): Promise<ContactMech> {
-    return this.post("/services/updateContactMech",
-      contactMech,
-      (data) => Model.fromJson(data as Object, ContactMech))
-  }*/
 }

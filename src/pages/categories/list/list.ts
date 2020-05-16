@@ -7,6 +7,8 @@ import {ProductCategory} from "../../../model/product-category";
 export class List {
 
   categories: ProductCategory[] = [];
+  filteredCategories: ProductCategory[] = [];
+  filterStr: string = '';
   sortAsc = true;
 
   constructor(private router: Router,
@@ -14,7 +16,15 @@ export class List {
     this.loadCategories();
   }
 
-  public sortBy(prop) {
+  onSearchFilterChanged() {
+    this.filteredCategories = this.categories.filter((p) => {
+      return p.categoryName && p.categoryName.toLowerCase().startsWith(this.filterStr.toLowerCase())
+      || p.longDescription && p.longDescription.toLowerCase().includes(this.filterStr.toLowerCase())
+      || p.description && p.description.toLowerCase().includes(this.filterStr.toLowerCase());
+    });
+  }
+
+  sortBy(prop) {
     this.sortAsc = !this.sortAsc;
     this.categories = this.categories.sort((a, b) => {
       if (a[prop] > b[prop]) return this.sortAsc ? 1 : -1;
@@ -28,9 +38,10 @@ export class List {
   }
 
   private loadCategories() {
-    this.productCategoryService.getProductCategories()
+    this.productCategoryService.getAll()
       .then((categories) => this.categories = categories)
-      .then(()=> console.log(this.categories));
+      .then(()=> console.log(this.categories))
+      .then(() => this.onSearchFilterChanged());
   }
 
   onClickCategory(category: ProductCategory) {

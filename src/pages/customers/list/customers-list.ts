@@ -2,10 +2,13 @@ import {PartyService} from "../../../service/party-service";
 import {Router} from 'aurelia-router';
 import {inject} from 'aurelia-framework'
 import {ContactMechService} from "../../../service/contact-mech-service";
+import {Party} from "../../../model/party";
 
 @inject(Router, PartyService, ContactMechService)
 export class CustomersList {
-  parties = [];
+  parties: Party[] = [];
+  filteredParties: Party[] = [];
+  nameFilter: string = '';
 
   constructor(private router: Router,
               private partyService: PartyService,
@@ -14,7 +17,7 @@ export class CustomersList {
   }
 
   initParties() {
-    this.partyService.getAllPersons()
+    this.partyService.getAll()
       .then(res => {
         res.map((party) => {
           if (party._toMany_PartyContactMech) {
@@ -29,7 +32,17 @@ export class CustomersList {
           }
         });
         this.parties = res;
+        this.filteredParties = res;
       });
+  }
+
+  onSearchFilterChanged() {
+    this.filteredParties = this.parties.filter((p) => {
+      return p.partyId.toLowerCase().startsWith(this.nameFilter.toLowerCase())
+      || p.__toOne_EmailAddress && p.__toOne_EmailAddress.infoString.toLowerCase().includes(this.nameFilter.toLowerCase())
+      || p._toOne_Person.firstName && p._toOne_Person.firstName.toLowerCase().includes(this.nameFilter.toLowerCase())
+      || p._toOne_Person.lastName && p._toOne_Person.lastName.toLowerCase().includes(this.nameFilter.toLowerCase());
+    });
   }
 
   //convertTime(ms: number) {

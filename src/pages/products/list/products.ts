@@ -7,12 +7,24 @@ import {ProductUtils} from "../../../util/product-utils";
 @inject(ProductService, Router)
 export class Products {
 
-  // @ts-ignore
-  products: Product[] = []
-  sortAsc = true
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
+  filterStr: string = '';
+  sortAsc = true;
 
   constructor(private productService: ProductService, private router: Router) {
     this.loadProducts()
+  }
+
+  onSearchFilterChanged() {
+    this.filteredProducts = this.products.filter((p) => {
+      return p.productName && p.productName.toLowerCase().includes(this.filterStr.toLowerCase())
+      || p.productId.toLowerCase().includes(this.filterStr.toLowerCase())
+      || p._toMany_ProductKeyword.filter((kw) => kw.keyword.toLowerCase().includes(this.filterStr.toLowerCase())).length > 0
+      || p._toMany_ProductCategoryMember.filter((cm) => {
+        return cm._toOne_ProductCategory.categoryName && cm._toOne_ProductCategory.categoryName.toLowerCase().includes(this.filterStr.toLowerCase())
+        }).length > 0;
+    });
   }
 
   public sortBy(prop) {
@@ -36,7 +48,8 @@ export class Products {
   private loadProducts() {
     this.productService.getAll()
       .then((products) => this.products = products)
-      .then(() => console.log(this.products));
+      .then(() => console.log(this.products))
+      .then(() => this.onSearchFilterChanged());
   }
 
   getCategoryInfo(product: Product): string {
