@@ -1,17 +1,8 @@
 import {Service} from "./service";
 import {Product} from "../model/product";
 import {Model} from "../model/model";
-import {ProductCategory} from "../model/product-category";
-import {ProductCategoryMember} from "../model/product-category-member";
 
 export class ProductService extends Service<Product> {
-
-  /*getAll(): Promise<Product[]> {
-    return this.get<Product[]>("/entities/Product",
-      (data) => Model.arrayFromJson(data as Object[], Product),
-      {_depth: 1}
-    );
-  }*/
 
   getAll(): Promise<Product[]> {
     return this.entityQuery<Product[]>("/entityquery/Product",

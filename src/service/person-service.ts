@@ -1,27 +1,26 @@
 import {Service} from "./service";
-import {Party} from "../model/party";
 import {Model} from "../model/model";
 import {Person} from "../model/person";
 
 export class PersonService extends Service<Person> {
-  //getAll(): Promise<Party[]> {
-  //  return this.get<Party[]>("/entities/Party",
-  //    (data) => Model.arrayFromJson(data as Object[], Party),
-  //    {_depth: 1}
-  //  );
-  //}
+  getAll(): Promise<Person[]> {
+    return this.get<Person[]>("/entities/Person",
+      (data) => Model.arrayFromJson(data as Object[], Person),
+      {_depth: 1}
+    );
+  }
 
-  createPerson(onePerson: Person): Promise<Person> {
+  createPerson(person: Person): Promise<Person> {
     return this.post("/services/createPerson",
-      onePerson,
+      person,
       (data) => Model.fromJson(data as Object[], Person)
     );
   }
 
-  //getSingle(id: string): Promise<Party[]> {
-  //  return this.get<Party[]>("/entities/Party",
-  //    (data) => Model.arrayFromJson(data as Object[], Party),
-  //    {productId: id, _depth: 1}
-  //  );
-  //}
+  getSingle(id: string): Promise<Person[]> {
+    return this.get<Person[]>("/entities/Person",
+      (data) => Model.arrayFromJson(data as Object[], Person),
+      {productId: id, _depth: 1}
+    );
+  }
 }

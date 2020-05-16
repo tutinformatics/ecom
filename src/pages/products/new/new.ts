@@ -96,7 +96,7 @@ export class New {
   }
 
   private loadCategories() {
-    this.productCategoryService.getProductCategories()
+    this.productCategoryService.getAll()
       .then((categories) => categories.filter((c) => c.categoryName && c.categoryName != ''))
       .then((categories) => this.categories = categories)
       .then(() => console.log(this.categories));

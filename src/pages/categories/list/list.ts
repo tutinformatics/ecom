@@ -36,7 +36,7 @@ export class List {
   }
 
   private loadCategories() {
-    this.productCategoryService.getProductCategories()
+    this.productCategoryService.getAll()
       .then((categories) => this.categories = categories)
       .then(()=> console.log(this.categories))
       .then(() => this.onSearchFilterChanged());

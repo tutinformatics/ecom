@@ -12,9 +12,9 @@ export class New {
 
   constructor(private productCategoryService: ProductCategoryService,
               private productCategoryTypeService: ProductCategoryTypeService) {
-    productCategoryService.getProductCategories()
+    productCategoryService.getAll()
       .then((categories) => this.categories = categories);
-    productCategoryTypeService.getProductCategoryTypes()
+    productCategoryTypeService.getAll()
       .then((types) => this.types = types);
   }
 

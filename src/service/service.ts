@@ -47,6 +47,12 @@ export class Service<T extends Model> {
     return query.length > 0 ? url + '?' + query : url;
   }
 
+  /**
+   *
+   * @param url backend url
+   * @param converter converter to convert json response to ts object
+   * @param params json object with query params
+   */
   get<U extends T | T[]>(url: string, converter: (json: Object | Object[]) => U, params: Object = {}): Promise<U> {
     const formattedUrl = this.formatUrl(url, params);
     return this.http.fetch(formattedUrl)
@@ -54,6 +60,12 @@ export class Service<T extends Model> {
       .then((json) => converter(json));
   }
 
+  /**
+   *
+   * @param url backend url
+   * @param data data to send (should extend model class)
+   * @param converter converter to use for de-serializing response
+   */
   post(url: string, data: T, converter: (json: Object) => T): Promise<T> {
     console.log("POST data:", json(data.getPreparedJson()), url);
     data['login.username'] = "admin";
@@ -66,6 +78,12 @@ export class Service<T extends Model> {
       .then((json) => converter(json));
   }
 
+  /**
+   *
+   * @param url backend url
+   * @param data data to upload (should extend model class)
+   * @param converter converter to use converting response back to ts object
+   */
   put(url: string, data: T, converter: (json: Object) => T): Promise<T> {
     console.log("PUT data:", json(data));
     data['login.username'] = "admin";
