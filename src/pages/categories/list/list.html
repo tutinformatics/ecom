@@ -23,7 +23,7 @@
           <thead>
           <tr class="bold">
             <td width="15%" class="table-header" click.delegate="sortBy('categoryName')"><span>Name</span></td>
-            <td width="25%" class="table-header" click.delegate="sortBy('productCategoryTypeId')"><span>Type</span></td>
+            <td width="25%" class="table-header" click.delegate="sortBy('productCategoryTypeId')"><span>Catalog</span></td>
             <td width="30%" class="table-header" click.delegate="sortBy('longDescription')"><span>Description</span></td>
             <td width="15%" class="table-header" click.delegate="sortBy('primaryParentCategoryId')"><span class="cursor-pointer">Parent category</span></td>
           </tr>
@@ -32,7 +32,7 @@
           <tbody>
           <tr  repeat.for="category of filteredCategories" id="${ category.productCategoryId }" click.delegate='onClickCategory(category)'>
             <td>${ category.categoryName }</td>
-            <td>${ category.productCategoryTypeId }</td>
+            <td>${ category._toOne_ProductCategoryType.description }</td>
             <td>${ category.longDescription }</td>
             <td>${ category._toOne_PrimaryParentProductCategory.categoryName ? category._toOne_PrimaryParentProductCategory.categoryName : category.primaryParentCategoryId }</td>
           </tr>
