@@ -8,11 +8,19 @@ import {ProductUtils} from "../../../util/product-utils";
 export class Products {
 
   // @ts-ignore
-  products: Product[] = []
-  sortAsc = true
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
+  nameFilter: string = '';
+  sortAsc = true;
 
   constructor(private productService: ProductService, private router: Router) {
     this.loadProducts()
+  }
+
+  onSearchFilterChanged() {
+    this.filteredProducts = this.products.filter((p) => {
+      return p.productName && p.productName.toLowerCase().startsWith(this.nameFilter.toLowerCase())
+    });
   }
 
   public sortBy(prop) {
@@ -36,7 +44,8 @@ export class Products {
   private loadProducts() {
     this.productService.getAll()
       .then((products) => this.products = products)
-      .then(() => console.log(this.products));
+      .then(() => console.log(this.products))
+      .then(() => this.onSearchFilterChanged());
   }
 
   getCategoryInfo(product: Product): string {

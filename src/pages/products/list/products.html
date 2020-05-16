@@ -17,7 +17,7 @@
         <div click.delegate="goToCategories()" class="pr-5 has-cursor-pointer">Categories</div>
       </div>
       <div class="col-12 tab">
-        Search
+        <input type="text" value.bind="nameFilter" input.delegate="onSearchFilterChanged()" >
       </div>
 
       <div class="col-12 tab m-0 p-0">
@@ -33,7 +33,7 @@
           </thead>
 
           <tbody>
-          <tr  repeat.for="product of products" id="${ product.productId }" click.delegate="onClickProduct(product.productId)">
+          <tr  repeat.for="product of filteredProducts" id="${ product.productId }" click.delegate="onClickProduct(product.productId)">
             <td>${ product.productName }</td>
             <td>${ product.description }</td>
             <td>${ getCategoryInfo(product) }</td>
