@@ -19,8 +19,8 @@ export class List {
   onSearchFilterChanged() {
     this.filteredCategories = this.categories.filter((p) => {
       return p.categoryName && p.categoryName.toLowerCase().startsWith(this.filterStr.toLowerCase())
-      || p.longDescription.toLowerCase().includes(this.filterStr.toLowerCase())
-      || p.description.toLowerCase().includes(this.filterStr.toLowerCase());
+      || p.longDescription && p.longDescription.toLowerCase().includes(this.filterStr.toLowerCase())
+      || p.description && p.description.toLowerCase().includes(this.filterStr.toLowerCase());
     });
   }
 
