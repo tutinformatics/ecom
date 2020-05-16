@@ -10,7 +10,7 @@ export class Products {
   // @ts-ignore
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  nameFilter: string = '';
+  filterStr: string = '';
   sortAsc = true;
 
   constructor(private productService: ProductService, private router: Router) {
@@ -19,7 +19,12 @@ export class Products {
 
   onSearchFilterChanged() {
     this.filteredProducts = this.products.filter((p) => {
-      return p.productName && p.productName.toLowerCase().startsWith(this.nameFilter.toLowerCase())
+      return p.productName && p.productName.toLowerCase().includes(this.filterStr.toLowerCase())
+      || p.productId.toLowerCase().includes(this.filterStr.toLowerCase())
+      || p._toMany_ProductKeyword.filter((kw) => kw.keyword.toLowerCase().includes(this.filterStr.toLowerCase())).length > 0
+      || p._toMany_ProductCategoryMember.filter((cm) => {
+        return cm._toOne_ProductCategory.categoryName && cm._toOne_ProductCategory.categoryName.toLowerCase().includes(this.filterStr.toLowerCase())
+        }).length > 0;
     });
   }
 

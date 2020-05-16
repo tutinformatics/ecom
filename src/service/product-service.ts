@@ -25,6 +25,13 @@ export class ProductService extends Service<Product> {
           "_toMany_ProductPrice": {
             "fieldList": ["price", "priceWithTax", "priceWithoutTax"]
           },
+          "_toMany_ProductCategoryMember": {
+            "entityRelations": {
+              "_toOne_ProductCategory": {
+                "fieldList": ["categoryName", "productCategoryTypeId", "productCategoryId"]
+              }
+            }
+          },
           "_toMany_ProductKeyword": {
             "fieldList": ["keyword"]
           }
