@@ -7,11 +7,19 @@ import {ProductCategory} from "../../../model/product-category";
 export class List {
 
   categories: ProductCategory[] = [];
+  filteredCategories: ProductCategory[] = [];
+  nameFilter: string = '';
   sortAsc = true;
 
   constructor(private router: Router,
               private productCategoryService: ProductCategoryService) {
     this.loadCategories();
+  }
+
+  onSearchFilterChanged() {
+    this.filteredCategories = this.categories.filter((p) => {
+      return p.categoryName && p.categoryName.toLowerCase().startsWith(this.nameFilter.toLowerCase())
+    });
   }
 
   public sortBy(prop) {
@@ -30,7 +38,8 @@ export class List {
   private loadCategories() {
     this.productCategoryService.getProductCategories()
       .then((categories) => this.categories = categories)
-      .then(()=> console.log(this.categories));
+      .then(()=> console.log(this.categories))
+      .then(() => this.onSearchFilterChanged());
   }
 
   onClickCategory(category: ProductCategory) {

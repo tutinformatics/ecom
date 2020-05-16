@@ -15,7 +15,7 @@
         <div href="/categories" class="pr-5 has-cursor-pointer"><span class="bold">Categories</span></div>
       </div>
       <div class="col-12 tab">
-        Search
+        <input type="text" value.bind="nameFilter" input.delegate="onSearchFilterChanged()" >
       </div>
 
       <div class="col-12 tab m-0 p-0">
@@ -30,7 +30,7 @@
           </thead>
 
           <tbody>
-          <tr  repeat.for="category of categories" id="${ category.productCategoryId }" click.delegate='onClickCategory(category)'>
+          <tr  repeat.for="category of filteredCategories" id="${ category.productCategoryId }" click.delegate='onClickCategory(category)'>
             <td>${ category.categoryName }</td>
             <td>${ category.productCategoryTypeId }</td>
             <td>${ category.longDescription }</td>
