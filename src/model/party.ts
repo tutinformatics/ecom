@@ -3,6 +3,7 @@ import {PartyType} from "./party-type";
 import {PartyRole} from "./party-role";
 import {PartyContactMech} from "./party-contact-mech";
 import {ContactMech} from "./contact-mech";
+import {OrderAndPartyContactMech} from "./order-and-party-contact-mech";
 
 export class Party extends Model{
   _toOne_Person: ToOnePerson;
@@ -103,6 +104,7 @@ export class Party extends Model{
    * Does not come with get
    */
   __toOne_EmailAddress: ContactMech;
+  __toMany_OrderAndPartyContactMech: OrderAndPartyContactMech[]
 }
 
 

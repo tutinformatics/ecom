@@ -1,6 +1,6 @@
 import {Model} from "./model";
 
-export class OrderProductAndParty extends Model{
+export class OrderAndPartyContactMech extends Model{
   contactThruDate?: any;
   extension?: any;
   comments?: any;
