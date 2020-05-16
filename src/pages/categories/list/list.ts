@@ -8,7 +8,7 @@ export class List {
 
   categories: ProductCategory[] = [];
   filteredCategories: ProductCategory[] = [];
-  nameFilter: string = '';
+  filterStr: string = '';
   sortAsc = true;
 
   constructor(private router: Router,
@@ -18,11 +18,13 @@ export class List {
 
   onSearchFilterChanged() {
     this.filteredCategories = this.categories.filter((p) => {
-      return p.categoryName && p.categoryName.toLowerCase().startsWith(this.nameFilter.toLowerCase())
+      return p.categoryName && p.categoryName.toLowerCase().startsWith(this.filterStr.toLowerCase())
+      || p.longDescription.toLowerCase().includes(this.filterStr.toLowerCase())
+      || p.description.toLowerCase().includes(this.filterStr.toLowerCase());
     });
   }
 
-  public sortBy(prop) {
+  sortBy(prop) {
     this.sortAsc = !this.sortAsc;
     this.categories = this.categories.sort((a, b) => {
       if (a[prop] > b[prop]) return this.sortAsc ? 1 : -1;
