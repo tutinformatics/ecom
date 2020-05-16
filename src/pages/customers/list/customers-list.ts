@@ -37,7 +37,12 @@ export class CustomersList {
   }
 
   onSearchFilterChanged() {
-    this.filteredParties = this.parties.filter((p) => p.partyId.toLowerCase().startsWith(this.nameFilter.toLowerCase()));
+    this.filteredParties = this.parties.filter((p) => {
+      return p.partyId.toLowerCase().startsWith(this.nameFilter.toLowerCase())
+      || p.__toOne_EmailAddress && p.__toOne_EmailAddress.infoString.toLowerCase().includes(this.nameFilter.toLowerCase())
+      || p._toOne_Person.firstName && p._toOne_Person.firstName.toLowerCase().includes(this.nameFilter.toLowerCase())
+      || p._toOne_Person.lastName && p._toOne_Person.lastName.toLowerCase().includes(this.nameFilter.toLowerCase());
+    });
   }
 
   //convertTime(ms: number) {

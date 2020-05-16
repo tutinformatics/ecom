@@ -7,7 +7,6 @@ import {ProductUtils} from "../../../util/product-utils";
 @inject(ProductService, Router)
 export class Products {
 
-  // @ts-ignore
   products: Product[] = [];
   filteredProducts: Product[] = [];
   filterStr: string = '';
