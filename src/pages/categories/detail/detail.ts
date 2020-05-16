@@ -6,7 +6,7 @@ import {ProductCategoryType} from "../../../model/product-category-type";
 
 @inject(ProductCategoryService, ProductCategoryTypeService)
 export class Detail {
-  category: ProductCategory;
+  category: ProductCategory = null;
   categories: ProductCategory[] = [];
   types: ProductCategoryType[] = [];
   isEditingMode: boolean = false;
@@ -48,7 +48,8 @@ export class Detail {
 
   private loadCategory(id: string) {
     this.productCategoryService.getSingle(id)
-      .then((category) => this.category = category[0]);
+      .then((category) => this.category = category[0])
+      .then(() => console.log(this.isEditingMode, this.category));
   }
 
 }
