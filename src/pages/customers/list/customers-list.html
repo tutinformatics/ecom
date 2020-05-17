@@ -39,7 +39,7 @@
             <tr repeat.for="party of filteredParties" click.delegate='onClickCustomer(party)'>
               <td>${party.partyId}</td>
               <td>${party.__toOne_EmailAddress.infoString }</td>
-              <td>0</td>
+              <td>${party.__toMany_OrderAndPartyContactMech ? party.__toMany_OrderAndPartyContactMech.length : 0}</td>
             </tr>
             </tbody>
 
