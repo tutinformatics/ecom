@@ -75,11 +75,11 @@ export class OrdersDetail {
   changeItemStatus() {
     if (this.orderReportViews[0].itemStatus == "Created") {
       this.orderReportViews[0].itemStatus = "Approved"
-      this.orderButton.orderStatus = "Võta tagasi"
+      this.orderButton.itemStatus = "Võta tagasi"
     }
     else if (this.orderReportViews[0].itemStatus == "Approved") {
       this.orderReportViews[0].itemStatus = "Created"
-      this.orderButton.orderStatus = "Kinnita"
+      this.orderButton.itemStatus = "Kinnita"
     }
     else if (this.orderReportViews[0].itemStatus == "Completed") {
       this.orderReportViews[0].itemStatus = "Approved"
