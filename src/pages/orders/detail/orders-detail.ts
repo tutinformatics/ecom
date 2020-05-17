@@ -52,7 +52,7 @@ export class OrdersDetail {
     this.orderButton.itemStatus = "Võta tagasi"
     this.orderButton.orderStatus = "Võta tagasi"
     this.orderReportViews[0].itemStatus = "Completed"
-    this.orderReportViews[0].itemStatus = "Completed"
+    this.orderReportViews[0].orderStatus = "Completed"
     this.completeButtonStatus()
   }
 
