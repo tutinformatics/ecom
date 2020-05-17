@@ -37,9 +37,7 @@ export class Orders{
     var i;
     for (i in this.orderReportViews) {
       this.date = TimeUtils.convertDate(this.orderReportViews[i].orderDate)
-      var newDate = this.date.toString().split(" ")
-      var toUseDate = newDate[1] + " " + newDate[2] + " " + newDate[3]
-      this.dateDict[this.orderReportViews[i].orderId.toString()] = toUseDate
+      this.dateDict[this.orderReportViews[i].orderId.toString()] = this.date
     }
   }
 }
