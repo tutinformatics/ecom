@@ -46,7 +46,7 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td><a class="btn btn-dark pull-right button m-0">${ orderButton.itemStatus }</a></td>
+                  <td><a class="btn btn-dark pull-right button m-0" click.delegate="changeItemStatus()">${ orderButton.itemStatus }</a></td>
                 </tr>
                 </tbody>
               </table>
@@ -112,7 +112,7 @@
                   <tr>
                     <td></td>
                     <td></td>
-                    <td><a class="btn btn-dark pull-right button mt-3 mb-4">${ orderButton.orderStatus }</a></td>
+                    <td><a class="btn btn-dark pull-right button mt-3 mb-4" click.delegate="changeOrderStatus()">${ orderButton.orderStatus }</a></td>
                   </tr>
                   </tfoot>
                 </table>

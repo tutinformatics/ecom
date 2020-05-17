@@ -45,6 +45,15 @@ export class OrdersDetail {
     }
   }
 
+  completeAllStatus() {
+    var element = <HTMLInputElement> document.getElementById("completeButton");
+    this.orderButton.itemStatus = "Võta tagasi"
+    this.orderButton.orderStatus = "Võta tagasi"
+    this.orderReportViews[0].itemStatus = "Completed"
+    this.orderReportViews[0].itemStatus = "Completed"
+    element.disabled = true;
+  }
+
   changeOrderStatus() {
     if (this.orderReportViews[0].orderStatus == "Created") {
       this.orderReportViews[0].orderStatus = "Approved"
