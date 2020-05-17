@@ -23,7 +23,6 @@
           <tr>
             <td width="10%" class="table-header">Tellimuse nr</td>
             <td width="15%" class="table-header">Kuupäev</td>
-            <td width="15%" class="table-header">Tellija</td>
             <td width="15%" class="table-header">Tasumine</td>
             <td width="15%" class="table-header">Staatus</td>
             <td width="10%" class="table-header">Kokku</td>
@@ -42,7 +41,6 @@
           <tr repeat.for="orderReportView of orderReportViews" id="${ orderReportView.orderId }" click.delegate="detailView(orderReportView)">
             <td>${ orderReportView.orderId }</td>
             <td>${ dateDict[orderReportView.orderId] }</td>
-            <td>-</td>
             <td>${ orderReportView.itemStatus }</td>
             <td>${ orderReportView.orderStatus }</td>
             <td>${ orderReportView.grandTotal } $</td>
