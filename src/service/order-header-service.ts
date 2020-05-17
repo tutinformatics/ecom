@@ -11,7 +11,7 @@ export class OrderHeaderService extends Service<OrderHeader> {
   }
 
   getSingle(id: string): Promise<OrderHeader[]> {
-    return this.get<OrderHeader[]>("/entities/OrderReportView",
+    return this.get<OrderHeader[]>("/entities/OrderHeader",
       (data) => Model.arrayFromJson(data as Object[], OrderHeader),
       {orderId: id, _depth: 1}
     );
