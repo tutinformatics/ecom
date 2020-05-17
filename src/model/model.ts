@@ -9,7 +9,7 @@ export abstract class Model {
         continue;
       }
 
-      if (value === null || value === undefined) continue;
+      if (!!value) continue;
 
       if (value instanceof Date) {
         jsonObj[field] = value.getTime();
