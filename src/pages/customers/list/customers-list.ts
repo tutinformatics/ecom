@@ -14,7 +14,7 @@ export class CustomersList {
   }
 
   initParties() {
-    this.partyService.getAllPersons()
+    this.partyService.getAll()
       .then(res => {
         res.map((party) => {
           if (party._toMany_PartyContactMech) {
