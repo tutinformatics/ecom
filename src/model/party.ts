@@ -4,9 +4,10 @@ import {PartyRole} from "./party-role";
 import {PartyContactMech} from "./party-contact-mech";
 import {ContactMech} from "./contact-mech";
 import {OrderAndPartyContactMech} from "./order-and-party-contact-mech";
+import {Person} from "./person";
 
 export class Party extends Model{
-  _toOne_Person: ToOnePerson;
+  _toOne_Person: Person;
   createdStamp: any;
   description?: any;
   _toMany_PartyStatus: ToManyPartyStatu[];

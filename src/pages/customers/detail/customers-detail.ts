@@ -8,8 +8,10 @@ import {PostalAddress} from "../../../model/postal-address";
 import {OrderAndPartyContactMechService} from "../../../service/order-and-party-contact-mech-service";
 import {OrderHeaderService} from "../../../service/order-header-service";
 import {TimeUtils} from "../../../util/time-utils";
+import {PersonService} from "../../../service/person-service";
+import {Person} from "../../../model/person";
 
-@inject(PartyService, ContactMechService, PostalAddressService, OrderAndPartyContactMechService, OrderHeaderService)
+@inject(PartyService, ContactMechService, PostalAddressService, OrderAndPartyContactMechService, OrderHeaderService, PersonService)
 export class CustomersDetail {
 
   emailContact? = new ContactMech();
@@ -22,7 +24,8 @@ export class CustomersDetail {
               private contactMechService: ContactMechService,
               private postalAddressService: PostalAddressService,
               private orderAndPartyContactMechService: OrderAndPartyContactMechService,
-              private orderHeaderService: OrderHeaderService) {
+              private orderHeaderService: OrderHeaderService,
+              private personService: PersonService) {
   }
 
   activate(params) {
@@ -59,7 +62,10 @@ export class CustomersDetail {
   }
 
   updateData() {
-    this.isEditingMode = false
+    this.isEditingMode = false;
+    const newPerson = Person.fromJson(this.party._toOne_Person, Person);
+    this.personService.updatePerson(newPerson)
+      .then((res) => console.log(res));
   }
 
   formatDate(ms: number): string {

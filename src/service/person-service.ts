@@ -23,4 +23,10 @@ export class PersonService extends Service<Person> {
       {productId: id, _depth: 1}
     );
   }
+
+  updatePerson(person: Person): Promise<Person> {
+    return this.post("/services/updatePerson",
+      person,
+      (data) => Model.fromJson(data as Object[], Person))
+  }
 }
