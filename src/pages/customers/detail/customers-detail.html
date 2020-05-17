@@ -21,8 +21,12 @@
         </div>
 
         <div class="col-1">
-          <div if.bind="!isEditingMode" click.delegate="isEditingMode = true" class="col-2"><button class=" btn btn-dark float-right">EDIT</button></div>
-          <div if.bind="isEditingMode" click.delegate="updateData()" class="col-2"><button class=" btn btn-success float-right">SAVE</button></div>
+          <div if.bind="!isEditingMode" click.delegate="isEditingMode = true" class="col-2">
+            <button class=" btn btn-dark float-right">EDIT</button>
+          </div>
+          <div if.bind="isEditingMode" click.delegate="updateData()" class="col-2">
+            <button class=" btn btn-success float-right">SAVE</button>
+          </div>
         </div>
 
       </div>
@@ -39,12 +43,13 @@
 
                 <div class="col-6">
                   <label class="bold">First name:</label><br>
-                  <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.firstName" class="form-control" >
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.firstName"
+                         class="form-control">
                   <span if.bind="!isEditingMode">${ party._toOne_Person.firstName }</span>
                 </div>
                 <div class="col-6">
                   <label class="bold">Email:</label><br>
-                  <input if.bind="isEditingMode" type="text" value.bind="emailContact.infoString" class="form-control" >
+                  <input if.bind="isEditingMode" type="text" value.bind="emailContact.infoString" class="form-control">
                   <span if.bind="!isEditingMode">${ emailContact.infoString }</span>
                 </div>
 
@@ -52,7 +57,8 @@
               <div class="col-12 row tab">
                 <div class="col-12">
                   <label class="bold">Last name:</label><br>
-                  <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.lastName" class="form-control" >
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.lastName"
+                         class="form-control">
                   <span if.bind="!isEditingMode">${ party._toOne_Person.lastName }</span>
                 </div>
 
@@ -77,11 +83,11 @@
                   </thead>
 
                   <tbody>
-                  <tr repeat.for="party of parties" click.delegate='onClickCustomer($event)'>
-                    <td>${party.partyName}</td>
-                    <td>${party.partyEmail}</td>
-                    <td>${party.partyOrders}</td>
-                    <td>${party.partyOrders}</td>
+                  <tr repeat.for="order of party.__toMany_OrderAndPartyContactMech">
+                    <td>${order.orderId}</td>
+                    <td>${formatDate(order.__toOne_OrderHeader.orderDate)}</td>
+                    <td>${order.__toOne_OrderHeader.orderStatus}</td>
+                    <td>${order.__toOne_OrderHeader.grandTotal + ' ' + order.__toOne_OrderHeader.currencyUom}</td>
                   </tr>
                   </tbody>
 
@@ -100,27 +106,29 @@
                 <div class="col-12 row justify-content-center tab">
                   <div class="col-10 pb-3">
                     <label class="bold">Address:</label><br>
-                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.address1" class="form-control" >
+                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.address1" class="form-control">
                     <span if.bind="!isEditingMode">${ postalAddress.address1 }</span>
                   </div>
                   <div class="col-10 pb-3">
                     <label class="bold">Apartment(optional):</label><br>
-                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.address2" class="form-control" >
+                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.address2" class="form-control">
                     <span if.bind="!isEditingMode">${ postalAddress.address2 }</span>
                   </div>
                   <div class="col-10 pb-3">
                     <label class="bold">City:</label><br>
-                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.city" class="form-control" >
+                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.city" class="form-control">
                     <span if.bind="!isEditingMode">${ postalAddress.city }</span>
                   </div>
                   <div class="col-5 pb-3">
                     <label class="bold">County:</label><br>
-                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.countryGeoId" class="form-control" >
+                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.countryGeoId"
+                           class="form-control">
                     <span if.bind="!isEditingMode">${ postalAddress.countryGeoId }</span>
                   </div>
                   <div class="col-5 pb-3">
                     <label class="bold">Postal code:</label><br>
-                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.postalCode" class="form-control" >
+                    <input if.bind="isEditingMode" type="text" value.bind="postalAddress.postalCode"
+                           class="form-control">
                     <span if.bind="!isEditingMode">${ postalAddress.postalCode }</span>
                   </div>
                 </div>
@@ -133,7 +141,7 @@
       </div>
 
     </div>
-    </div>
+  </div>
 
 
   </div>
