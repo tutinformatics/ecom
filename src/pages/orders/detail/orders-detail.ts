@@ -4,28 +4,33 @@ import {OrderContactService} from "../../../service/order-contact-service";
 import {OrderReportView} from "../../../model/order-report-view";
 import {OrderReportViewService} from "../../../service/order-report-view-service";
 import {OrderButton} from "../../../model/order-button";
+import {OrderHeaderService} from "../../../service/order-header-service";
+import {OrderHeader} from "../../../model/order-header";
 
-@inject(OrderContactService, OrderReportViewService)
+@inject(OrderContactService, OrderReportViewService, OrderHeaderService)
 export class OrdersDetail {
 
   orderButton: OrderButton
   orderContacts: OrderContact [] = []
   orderReportViews: OrderReportView [] = []
+  orderHeader: OrderHeader [] = []
 
-  constructor(private orderContactService: OrderContactService, private orderReportViewService: OrderReportViewService) {
+  constructor(private orderContactService: OrderContactService, private orderReportViewService: OrderReportViewService
+    , private orderHeaderService: OrderHeaderService) {
   }
 
   activate(params) {
     this.loadOrderContacts(params.id)
     this.loadOrderReportView(params.id)
+    this.loadOrderHeader(params.id)
     this.orderButton = new OrderButton()
   }
 
   completeButtonStatus() {
-    var element = <HTMLInputElement> document.getElementById("completeButton");
+    var element = <HTMLInputElement>document.getElementById("completeButton");
     if (this.orderReportViews[0].itemStatus == "Approved" && this.orderReportViews[0].orderStatus == "Approved") {
       element.disabled = false;
-    } else{
+    } else {
       element.disabled = true;
     }
   }
@@ -51,41 +56,20 @@ export class OrdersDetail {
   completeAllStatus() {
     this.orderButton.itemStatus = "Võta tagasi"
     this.orderButton.orderStatus = "Võta tagasi"
-    this.orderReportViews[0].itemStatus = "Completed"
-    this.orderReportViews[0].orderStatus = "Completed"
+    this.orderHeader[0].orderId = "ORDER_COMPLETED"
     this.completeButtonStatus()
   }
 
   changeOrderStatus() {
-    if (this.orderReportViews[0].orderStatus == "Created") {
-      this.orderReportViews[0].orderStatus = "Approved"
+    if (this.orderReportViews[0].orderStatus == "Created"
+      || this.orderReportViews[0].orderStatus == "Completed") {
+      this.orderHeader[0].orderId = "ORDER_APPROVED"
       this.orderButton.orderStatus = "Võta tagasi"
-    }
-    else if (this.orderReportViews[0].orderStatus == "Approved") {
-      this.orderReportViews[0].orderStatus = "Created"
+    } else if (this.orderReportViews[0].orderStatus == "Approved") {
+      this.orderHeader[0].orderId = "ORDER_CREATED"
       this.orderButton.orderStatus = "Kinnita"
+      this.completeButtonStatus()
     }
-    else if (this.orderReportViews[0].orderStatus == "Completed") {
-      this.orderReportViews[0].orderStatus = "Approved"
-      this.orderButton.orderStatus = "Võta tagasi"
-    }
-    this.completeButtonStatus()
-  }
-
-  changeItemStatus() {
-    if (this.orderReportViews[0].itemStatus == "Created") {
-      this.orderReportViews[0].itemStatus = "Approved"
-      this.orderButton.itemStatus = "Võta tagasi"
-    }
-    else if (this.orderReportViews[0].itemStatus == "Approved") {
-      this.orderReportViews[0].itemStatus = "Created"
-      this.orderButton.itemStatus = "Kinnita"
-    }
-    else if (this.orderReportViews[0].itemStatus == "Completed") {
-      this.orderReportViews[0].itemStatus = "Approved"
-      this.orderButton.itemStatus = "Võta tagasi"
-    }
-    this.completeButtonStatus()
   }
 
   loadOrderContacts(id) {
@@ -100,5 +84,18 @@ export class OrdersDetail {
       .then((orderReportViews) => this.orderReportViews = orderReportViews)
       .then(() => console.log(this.orderReportViews))
       .then(() => this.loadItemStatus());
+  }
+
+  loadOrderHeader(id) {
+    this.orderHeaderService.getSingle(id)
+      .then((orderHeader) => this.orderHeader = orderHeader)
+      .then(() => console.log(this.orderHeader))
+      .then(() => this.loadItemStatus());
+  }
+
+  updateHeader() {
+    this.orderHeaderService.updateOrderHeader(this.orderHeader[0])
+      .then((product) => console.log(product))
+      .then(() => this.loadOrderReportView(this.orderHeader[0].orderId));
   }
 }
