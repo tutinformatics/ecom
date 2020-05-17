@@ -28,7 +28,7 @@ export class Detail {
     id: 'productCategoryId'
   };
   typeMappings = {
-    option: 'productTypeId',
+    option: 'description',
     id: 'productTypeId'
   }
   pickerOptions = {
@@ -129,7 +129,7 @@ export class Detail {
   }
 
   private loadCategories() {
-    this.productCategoryService.getProductCategories()
+    this.productCategoryService.getAll()
       .then((categories) => categories.filter((c) => c.categoryName && c.categoryName != ''))
       .then((categories) => this.categories = categories)
       .then(() => {

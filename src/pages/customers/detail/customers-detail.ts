@@ -5,8 +5,11 @@ import {ContactMechService} from "../../../service/contact-mech-service";
 import {PostalAddressService} from "../../../service/postal-address-service";
 import {ContactMech} from "../../../model/contact-mech";
 import {PostalAddress} from "../../../model/postal-address";
+import {OrderAndPartyContactMechService} from "../../../service/order-and-party-contact-mech-service";
+import {OrderHeaderService} from "../../../service/order-header-service";
+import {TimeUtils} from "../../../util/time-utils";
 
-@inject (PartyService, ContactMechService, PostalAddressService)
+@inject(PartyService, ContactMechService, PostalAddressService, OrderAndPartyContactMechService, OrderHeaderService)
 export class CustomersDetail {
 
   emailContact? = new ContactMech();
@@ -17,7 +20,9 @@ export class CustomersDetail {
 
   constructor(private partyService: PartyService,
               private contactMechService: ContactMechService,
-              private postalAddressService: PostalAddressService) {
+              private postalAddressService: PostalAddressService,
+              private orderAndPartyContactMechService: OrderAndPartyContactMechService,
+              private orderHeaderService: OrderHeaderService) {
   }
 
   activate(params) {
@@ -30,25 +35,34 @@ export class CustomersDetail {
       .then((party) => {
         if (party[0]._toMany_PartyContactMech) {
           party[0]._toMany_PartyContactMech.forEach((contact) => {
-            // this.contactMechService.getById(contact.contactMechId)
-            //   .then((contactJson) => {
-                if (contact._toOne_ContactMech.contactMechTypeId === "EMAIL_ADDRESS") {
-                  this.emailContact = contact._toOne_ContactMech;
-                } else if (contact._toOne_ContactMech.contactMechTypeId === "TELECOM_NUMBER") {
-                  this.phoneContact = contact._toOne_ContactMech;
-                } else if (contact._toOne_ContactMech.contactMechTypeId === "POSTAL_ADDRESS") {
-                  this.postalAddressService.getByContactMechId(contact.contactMechId)
-                    .then((address) => this.postalAddress = address[0]);
-                }
-            //   });
+            if (contact._toOne_ContactMech.contactMechTypeId === "EMAIL_ADDRESS") {
+              this.emailContact = contact._toOne_ContactMech;
+            } else if (contact._toOne_ContactMech.contactMechTypeId === "TELECOM_NUMBER") {
+              this.phoneContact = contact._toOne_ContactMech;
+            } else if (contact._toOne_ContactMech.contactMechTypeId === "POSTAL_ADDRESS") {
+              this.postalAddressService.getByContactMechId(contact.contactMechId)
+                .then((address) => this.postalAddress = address[0]);
+            }
           });
         }
         this.party = party[0];
+        this.orderAndPartyContactMechService.getForPartyId(this.party.partyId)
+          .then((res) => {
+            res.forEach((el) => {
+              this.orderHeaderService.getSingle(el.orderId)
+                .then((orderHeader) => el.__toOne_OrderHeader = orderHeader[0])
+            });
+            this.party.__toMany_OrderAndPartyContactMech = res;
+          })
       })
       .then(() => console.log(this.party));
   }
 
   updateData() {
     this.isEditingMode = false
+  }
+
+  formatDate(ms: number): string {
+    return TimeUtils.convertDate(ms);
   }
 }

@@ -6,21 +6,37 @@ import {ProductCategoryType} from "../../../model/product-category-type";
 
 @inject(ProductCategoryService, ProductCategoryTypeService)
 export class Detail {
-  category: ProductCategory;
+  category: ProductCategory = null;
   categories: ProductCategory[] = [];
   types: ProductCategoryType[] = [];
   isEditingMode: boolean = false;
 
+  categoryMappings = {
+    option: 'categoryName',
+    id: 'productCategoryId'
+  };
+  typeMappings = {
+    option: 'description',
+    id: 'productCategoryTypeId'
+  };
+  pickerOptions = {
+    actionsBox: true,
+    dropupAuto: true,
+    liveSearch: true
+  };
+
   constructor(private productCategoryService: ProductCategoryService,
               private productCategoryTypeService: ProductCategoryTypeService) {
-    productCategoryService.getProductCategories()
-      .then((categories) => this.categories = categories);
-    productCategoryTypeService.getProductCategoryTypes()
-      .then((types) => this.types = types);
   }
 
   activate(params) {
     this.loadCategory(params.id);
+    this.productCategoryService.getAll()
+      .then((categories) => categories.filter((c) => c.categoryName && c.categoryName !== ''))
+      .then((categories) => this.categories = categories);
+    this.productCategoryTypeService.getAll()
+      .then((types) => types.filter((t) => t.description && t.description !== ''))
+      .then((types) => this.types = types);
   }
 
   updateData() {
@@ -32,7 +48,8 @@ export class Detail {
 
   private loadCategory(id: string) {
     this.productCategoryService.getSingle(id)
-      .then((category) => this.category = category[0]);
+      .then((category) => this.category = category[0])
+      .then(() => console.log(this.isEditingMode, this.category));
   }
 
 }

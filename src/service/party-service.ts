@@ -3,12 +3,6 @@ import {Party} from "../model/party";
 import {Model} from "../model/model";
 
 export class PartyService extends Service<Party> {
-  /*getAllPersons(): Promise<Party[]> {
-    return this.get<Party[]>("/entities/Party",
-      (data) => Model.arrayFromJson(data as Object[], Party),
-      { partyTypeId: 'PERSON', _depth: 1}
-    );
-  }*/
 
   getAll(): Promise<Party[]> {
     return this.entityQuery<Party[]>("/entityquery/Party",
@@ -41,13 +35,6 @@ export class PartyService extends Service<Party> {
     );
   }
 
-  /*getSingle(id: string): Promise<Party[]> {
-    return this.get<Party[]>("/entities/Party",
-      (data) => Model.arrayFromJson(data as Object[], Party),
-      {partyId: id, _depth: 1}
-    );
-  }*/
-
   getSingle(id: string): Promise<Party[]> {
     return this.entityQuery<Party[]>("/entityquery/Party",
       (data) => Model.arrayFromJson(data as Object[], Party),
@@ -71,5 +58,4 @@ export class PartyService extends Service<Party> {
       }
     );
   }
-
 }

@@ -6,7 +6,6 @@ export class OrderReportView extends Model{
   productId: string;
   orderId: string;
   grandTotal: number;
-  _ENTITY_NAME_: string;
   orderTypeId: string;
   orderStatus: string;
   originFacilityId?: any;
@@ -16,7 +15,6 @@ export class OrderReportView extends Model{
   itemStatus: string;
   paymentMethod: string;
   itemDescription: string;
-  _DELEGATOR_NAME_: string;
   orderDate: number;
   webSiteId: string;
 }
