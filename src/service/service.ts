@@ -67,12 +67,13 @@ export class Service<T extends Model> {
    * @param converter converter to use for de-serializing response
    */
   post(url: string, data: T, converter: (json: Object) => T): Promise<T> {
-    console.log("POST data:", json(data.getPreparedJson()), url);
-    data['login.username'] = "admin";
-    data['login.password'] = "ofbiz";
+    const jsonData = data.getPreparedJson();
+    console.log("POST data:", jsonData, url);
+    jsonData['login.username'] = "admin";
+    jsonData['login.password'] = "ofbiz";
     return this.http.fetch(url, {
       method: 'post',
-      body: json(data.getPreparedJson()) // <- needed to remove related entities
+      body: json(jsonData) // <- needed to remove related entities
     })
       .then(response => response.json())
       .then((json) => converter(json));

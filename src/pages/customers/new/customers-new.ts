@@ -39,6 +39,8 @@ export class CustomersNew {
         this.phoneContact.partyId = res.partyId;
         this.phoneContact.contactMechTypeId = "TELECOM_NUMBER";
 
+        console.log(this.emailContact)
+
         this.contactMechService.createPartyContactMech(this.emailContact)
           .then((resp) => console.log(resp));
 
