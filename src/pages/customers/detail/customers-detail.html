@@ -42,24 +42,24 @@
               <div class="col-12 row tab">
 
                 <div class="col-6">
-                  <label class="bold">First name:</label><br>
+                  <label class="bold">First name</label><br>
                   <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.firstName"
                          class="form-control">
                   <span if.bind="!isEditingMode">${ party._toOne_Person.firstName }</span>
                 </div>
                 <div class="col-6">
-                  <label class="bold">Email:</label><br>
-                  <input if.bind="isEditingMode" type="text" value.bind="emailContact.infoString" class="form-control">
-                  <span if.bind="!isEditingMode">${ emailContact.infoString }</span>
+                  <label class="bold">Last Name</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.lastName"
+                         class="form-control">
+                  <span if.bind="!isEditingMode">${ party._toOne_Person.lastName }</span>
                 </div>
 
               </div>
               <div class="col-12 row tab">
                 <div class="col-12">
-                  <label class="bold">Last name:</label><br>
-                  <input if.bind="isEditingMode" type="text" value.bind="party._toOne_Person.lastName"
-                         class="form-control">
-                  <span if.bind="!isEditingMode">${ party._toOne_Person.lastName }</span>
+                  <label class="bold">Email</label><br>
+                  <input if.bind="isEditingMode" type="text" value.bind="emailContact.infoString" class="form-control">
+                  <span if.bind="!isEditingMode">${ emailContact.infoString }</span>
                 </div>
 
               </div>
