@@ -9,7 +9,7 @@
             <div class="col-7 m-0 p-0 pb-4">
               <a href="/orders" class="back-arrow">
                 <img src="/back-arrow.png">
-                <span>Tellimused</span>
+                <span>Orders</span>
               </a>
             </div>
             <div class="col-5">
@@ -30,10 +30,10 @@
                 <table class="table">
                   <thead>
                   <tr>
-                    <td width="35%" class="table-header">Produkt</td>
-                    <td width="12%" class="table-header">Kogus</td>
-                    <td width="12%" class="table-header">Hind</td>
-                    <td width="12%" class="table-header">Kokku</td>
+                    <td width="35%" class="table-header">Product</td>
+                    <td width="12%" class="table-header">Amount</td>
+                    <td width="12%" class="table-header">Price</td>
+                    <td width="12%" class="table-header">Sum</td>
                   </tr>
                   </thead>
                   <tbody>
@@ -67,22 +67,22 @@
                   <table class="paid">
                     <tbody class="border-bottom">
                     <tr>
-                      <td width="15%">Vahesumma</td>
-                      <td width="30%">${ orderReportViews[0].quantity } toodet</td>
+                      <td width="15%">Subtotal</td>
+                      <td width="30%">${ orderReportViews[0].quantity } product</td>
                       <td width="10%">${ orderReportViews[0].quantity * orderReportViews[0].unitPrice } $</td>
                     </tr>
                     <tr class="">
-                      <td width="15%">Maksud</td>
+                      <td width="15%">Paid</td>
                       <td width="30%"></td>
                       <td width="10%">0$</td>
                     </tr>
                     <tr>
-                      <td width="15%">Allahindlus / hinnatõus</td>
+                      <td width="15%">Discount / Price increase</td>
                       <td width="30%"></td>
                       <td width="10%">${ (orderReportViews[0].grandTotal - (orderReportViews[0].quantity * orderReportViews[0].unitPrice)).toFixed(2) } $</td>
                     </tr>
                     <tr>
-                      <td width="15%">Kokku</td>
+                      <td width="15%">Sum</td>
                       <td width="30%"></td>
                       <td width="10%">${ orderReportViews[0].grandTotal } $</td>
                     </tr>
@@ -93,17 +93,17 @@
                   <table class="paid">
                     <tbody>
                     <tr>
-                      <td width="15%">Broneeritud</td>
+                      <td width="15%">Reserved</td>
                       <td width="30%"></td>
                       <td width="10%">0$</td>
                     </tr>
                     <tr>
-                      <td width="15%">Makstud summa</td>
+                      <td width="15%">Paid amount</td>
                       <td width="30%"></td>
                       <td width="10%">${ orderReportViews[0].grandTotal } $</td>
                     </tr>
                     <tr>
-                      <td width="15%">Vaja maksta</td>
+                      <td width="15%">To pay</td>
                       <td width="30%"></td>
                       <td width="10%">0$</td>
                     </tr>
@@ -124,7 +124,7 @@
           <div class="col-lg-5 col-md-12 col-sm-12">
             <div class="col-10 row border main-body mb-5">
               <div class="col-12 tab">
-                <h3>Klient</h3>
+                <h3>Customer</h3>
               </div>
               <div class="row col-12 tab m-0 p-0">
                 <div class="m-2 col-12">
