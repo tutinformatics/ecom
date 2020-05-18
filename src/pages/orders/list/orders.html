@@ -37,7 +37,7 @@
             </thead>
 
             <tbody>
-            <tr repeat.for="orderReportView of orderReportViews" id="${ orderReportView.orderId }" click.delegate="detailView(orderReportView)">
+            <tr repeat.for="orderReportView of filteredOrderReportViews" id="${ orderReportView.orderId }" click.delegate="detailView(orderReportView)">
               <td>${ orderReportView.orderId }</td>
               <td>${ dateDict[orderReportView.orderId] }</td>
               <td>${ orderReportView.orderStatus }</td>

@@ -6,10 +6,12 @@ import {TimeUtils} from "../../../util/time-utils";
 
 @inject (Router, OrderReportViewService)
 export class Orders{
+
   date: string;
   dateDict: Map<String, String> = new Map<String, String>()
-
   orderReportViews: OrderReportView [] = []
+  filteredOrderReportViews: OrderReportView [] = []
+  nameFilter: string = '';
   orderDate = null
 
   constructor(private router: Router, private orderReportViewService: OrderReportViewService) {
@@ -21,6 +23,7 @@ export class Orders{
   loadOrderReportView() {
     this.orderReportViewService.getAll()
       .then((orderReportViews) => this.orderReportViews = orderReportViews)
+      .then((orderReportViews) => this.filteredOrderReportViews = orderReportViews)
       .then(() => this.covertTime());
   }
 
@@ -31,6 +34,12 @@ export class Orders{
   detailView(orderReportView: OrderReportView){
     //this.router.navigateToRoute('detail', {id:0})
     this.router.navigateToRoute('detail', {id: orderReportView.orderId})
+  }
+
+  onSearchFilterChanged() {
+    this.filteredOrderReportViews = this.orderReportViews.filter((p) => {
+      return p.orderId.toLowerCase().startsWith(this.nameFilter.toLowerCase())
+    });
   }
 
   covertTime(){
