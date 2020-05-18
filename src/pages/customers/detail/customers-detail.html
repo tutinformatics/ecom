@@ -6,10 +6,10 @@
 
       <!-- BACK BUTTON -->
       <div class="col-10 row head justify-content-between back">
-        <div class="col-2 m-0 p-0 pb-4">
+        <div class="col-4 m-0 p-0 pb-4">
           <a href="/customers">
             <img src="/back-arrow.png">
-            <span>Kliendid</span>
+            <span>Customers</span>
           </a>
         </div>
       </div>
@@ -17,7 +17,7 @@
       <!-- KLIENDI NIMI -->
       <div class="col-10 row head justify-content-between">
         <div class="col-10 m-0 p-0 pb-3">
-          <h3>Kliendi nimi</h3>
+          <h3>Customer</h3>
         </div>
 
         <div class="col-1">
@@ -68,7 +68,7 @@
 
             <div class="col-12 row border main-body mb-5">
               <div class="col-12 tab">
-                <div>Tellimused</div>
+                <div>Orders</div>
               </div>
 
               <div class="col-12 tab m-0 p-0">
@@ -76,9 +76,9 @@
                   <thead>
                   <tr>
                     <td width="25%" class="table-header">Nr</td>
-                    <td width="15%" class="table-header">Kuupaev</td>
-                    <td width="15%" class="table-header">Seisund</td>
-                    <td width="15%" class="table-header">Kokku</td>
+                    <td width="15%" class="table-header">Date</td>
+                    <td width="15%" class="table-header">Status</td>
+                    <td width="15%" class="table-header">Sum</td>
                   </tr>
                   </thead>
 
@@ -120,7 +120,7 @@
                     <span if.bind="!isEditingMode">${ postalAddress.city }</span>
                   </div>
                   <div class="col-5 pb-3">
-                    <label class="bold">County:</label><br>
+                    <label class="bold">Country:</label><br>
                     <input if.bind="isEditingMode" type="text" value.bind="postalAddress.countryGeoId"
                            class="form-control">
                     <span if.bind="!isEditingMode">${ postalAddress.countryGeoId }</span>

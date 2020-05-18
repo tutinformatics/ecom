@@ -18,16 +18,16 @@
         </div>
 
         <div class="col-12">
-          <h1>Tellimuse sisestamine</h1>
+          <h1>Order creation</h1>
         </div>
 
         <form>
           <div class="row justify-content-around border main-body p-4 pb-0 mb-4">
             <div class="col-xl-4 col-lg-11 col-md-11 col-sm-11 col-11 row ">
               <div class="col-5">
-                <p><label class="form-label">Klient:</label></p>
-                <p><label class="form-label">Kokku:</label></p>
-                <p><label class="form-label">Tasuda:</label></p>
+                <p><label class="form-label">Customer:</label></p>
+                <p><label class="form-label">Sum:</label></p>
+                <p><label class="form-label">To pay:</label></p>
 
               </div>
 
@@ -55,9 +55,9 @@
             <div class="col-xl-5 col-lg-11 col-md-11 col-sm-11 col-11 row ">
 
               <div class="col-5">
-                <p><label class="form-label">Esitamise kuupäev:</label></p>
-                <p><label class="form-label">Tasumistingimus:</label></p>
-                <p><label class="form-label">Tähtpäev:</label></p>
+                <p><label class="form-label">Filing date:</label></p>
+                <p><label class="form-label">Payment condition:</label></p>
+                <p><label class="form-label">Due date:</label></p>
               </div>
 
               <div class="col-7">
@@ -74,7 +74,7 @@
             <div class="col-xl-3 col-lg-11 col-md-11 col-sm-11 col-11 row ">
 
               <div class="col-5">
-                <p><label class="form-label">MT nr.:</label></p>
+                <p><label class="form-label">SO nr.:</label></p>
               </div>
 
               <div class="col-7">
@@ -92,11 +92,11 @@
               <thead>
               <tr>
                 <td width="5%"></td>
-                <td width="">Toode</td>
-                <td width="">Kogus</td>
-                <td width="">Kaibemaks</td>
-                <td width="">Summa KM`ta</td>
-                <td width="">Summa KM`ga</td>
+                <td width="">Product</td>
+                <td width="">Amount</td>
+                <td width="">Tax</td>
+                <td width="">Price</td>
+                <td width="">Price with tax</td>
                 <td width="7%"></td>
               </tr>
               </thead>
@@ -116,7 +116,7 @@
                 <td><input type="text" aria-label="First name" class="form-control" value.bind="row.itemAmount"></td>
                 <td>
                   <select class="form-control" id="${$index  }" value.bind="row.tax" change.delegate="processTaxValue($event)">
-                    <option>Vali kaibemaks</option>
+                    <option>Choose tax</option>
                     <option>20%</option>
                     <option>9%</option>
                     <option>0%</option>
