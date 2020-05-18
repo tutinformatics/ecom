@@ -1,53 +1,54 @@
 <template>
+  <require from="./orders.css"></require>
   <div class="row justify-content-center mt-5">
-    <require from="./orders.css"></require>
-    <div class="justify-content-between row col-12">
-      <h1 class="col-6 mb-5 ml-5 pl-5">
-        Tellimused
-      </h1>
-      <div class="col-2 mb-2">
-        <button class="btn btn-dark pull-right button m-2 mt-5" click.delegate="newView()">Uus tellimus</button>
+    <div class="col row justify-content-center fixed">
+      <div class="justify-content-between row col-10">
+        <h1 class="col-6 mb-2 ">
+          Tellimused
+        </h1>
+        <div class="col-6 mb-2">
+          <button class="btn btn-dark pull-right button m-2 mt-5 float-right" click.delegate="newView()">Uus tellimus</button>
+        </div>
+      </div>
+      <div class="col-10 row border main-body">
+        <div class="col-12 tab">
+          Kõik tellimused
+        </div>
+        <div class="col-12 row">
+          <div class="col-1 tab search-name" >
+            <h6 class="pt-2">Search:</h6>
+          </div>
+          <div class="col-11 tab search-bar" >
+            <input type="text"  class="form-control" value.bind="nameFilter" input.delegate="onSearchFilterChanged()" >
+          </div>
+
+        </div>
+
+        <div class="col-12 tab m-0 p-0">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <td width="10%" class="table-header">Tellimuse nr</td>
+              <td width="15%" class="table-header">Kuupäev</td>
+              <td width="15%" class="table-header">Tasumine</td>
+              <td width="15%" class="table-header">Staatus</td>
+              <td width="10%" class="table-header">Kokku</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr repeat.for="orderReportView of filteredOrderReportViews" id="${ orderReportView.orderId }" click.delegate="detailView(orderReportView)">
+              <td>${ orderReportView.orderId }</td>
+              <td>${ dateDict[orderReportView.orderId] }</td>
+              <td>${ orderReportView.orderStatus }</td>
+              <td>${ orderReportView.orderStatus }</td>
+              <td>${ orderReportView.grandTotal } $</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="col-10 row border main-body">
-      <div class="col-12 tab">
-        Kõik tellimused
-      </div>
-      <div class="col-12 tab">
-        Otsing
-      </div>
 
-      <div class="col-12 tab m-0 p-0">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <td width="10%" class="table-header">Tellimuse nr</td>
-            <td width="15%" class="table-header">Kuupäev</td>
-            <td width="15%" class="table-header">Tasumine</td>
-            <td width="15%" class="table-header">Staatus</td>
-            <td width="10%" class="table-header">Kokku</td>
-          </tr>
-          </thead>
-
-          <tbody>
-          <!--<tr id="0" click.delegate="detailView($event)">-->
-            <!--<td>#123.2</td>-->
-            <!--<td>10h tagasi</td>-->
-            <!--<td>Kristopher Kristopher</td>-->
-            <!--<td>Makstud</td>-->
-            <!--<td>Kinnitamata</td>-->
-            <!--<td>112$</td>-->
-          <!--</tr>-->
-          <tr repeat.for="orderReportView of orderReportViews" id="${ orderReportView.orderId }" click.delegate="detailView(orderReportView)">
-            <td>${ orderReportView.orderId }</td>
-            <td>${ dateDict[orderReportView.orderId] }</td>
-            <td>${ orderReportView.itemStatus }</td>
-            <td>${ orderReportView.orderStatus }</td>
-            <td>${ orderReportView.grandTotal } $</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
 </template>

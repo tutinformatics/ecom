@@ -67,5 +67,11 @@ export class NewOrder {
     row.taxValue = +row.taxValue.toFixed(2);
     row.valueWithTax = (+row.purchaseProduct.priceDetailText * +row.itemAmount) + +row.taxValue;
     row.valueWithTax = +row.valueWithTax.toFixed(2);
+    if (isNaN(row.valueWithTax)) {
+      row.valueWithTax = 0
+    }
+    if (isNaN(row.taxValue)) {
+      row.taxValue = 0
+    }
   }
 }
